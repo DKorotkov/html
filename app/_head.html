@@ -1,0 +1,82 @@
+<head>
+   <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png" />
+   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png" />
+   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png" />
+   <link rel="manifest" href="/img/favicon/site.webmanifest" />
+   <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+   <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
+   <meta name="apple-mobile-web-app-title" content="Loft Blog" />
+   <meta name="application-name" content="Loft Blog" />
+   <meta name="msapplication-TileColor" content="#2b5797" />
+   <meta name="msapplication-config" content="/img/favicon/browserconfig.xml" />
+   <meta name="theme-color" content="#ffffff" />
+
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+   <!--Запрещает увеличивать изображение на экране мобильных устройств-->
+   <!--- <meta name="viewport" content="width=device-width, initial-scale=1.0,initial-scale=1.0,maximum=1.0,user-scalable=0"> -->
+   <!-- Отключает форматирование ссылки у номера телефона на ios -->
+   <meta name="format-detection" content="telephone=no" />
+   <!-- Краткое описание страницы -->
+   <meta name="description" content="Тестовое задание от loftblog" />
+   <!-- Ключевые слова страницы -->
+   <meta name="keywords" content="loftblog, тестовое задание, лофтблог" />
+
+   <!-- Управление доступом поисковых роботов к старнице -->
+   <!-- <meta name="robots" content=""> -->
+   <!-- Запрет индексации страницы полностью -->
+   <!-- <meta name="robots" content="noindex, nofollow"> -->
+   <!-- или <meta name="robots" content="none"> -->
+   <!-- Запрет индексации ссылок и изобраений -->
+   <!-- <meta name="robots" content="noimageindex, nofolow"> -->
+
+   <!-- Автор страницы -->
+   <meta name="Author" content="Данила Коротков" />
+   <!-- Авторские права -->
+   <meta name="Copyright" content="Данила Коротков" />
+   <!-- Адрес автора -->
+   <meta name="Address" content="Санкт-Петербург" />
+
+   <!-- Соцтальные сети: -->
+   <!-- Локализация сайта -->
+   <meta property="og:locale" content="ru_RU" />
+   <!-- Тип контента -->
+   <meta property="og:type " content="article" />
+   <!-- Заголовок страницы, который будет выводиться в записи социальной сети -->
+   <meta property="og:title" content="Загооовок старницы" />
+   <!-- Описание страницы -->
+   <meta property="og:description" content="Описание страницы" />
+   <!-- Ссылка на изображение которое будет публиковаться в записи -->
+   <meta property="og:image" content="http://1.img" />
+   <!-- Ссылка на текущую страницу -->
+   <meta property="og:url" content="http://index.html" />
+   <!-- Название сайта -->
+   <meta property="og:site_name" content="Название сайта" />
+
+   <!-- Twitter -->
+   <!-- Тип карты -->
+   <meta name="twitter:card" content="summary" />
+   <!-- Имя\Логин автора -->
+   <meta name="twitter:site" content="Имя" />
+   <!-- Название страницы -->
+   <meta name="twitter:title" content="Название страницы" />
+   <!-- Описание страницы -->
+   <meta name="twitter:description" content="Описание страницы" />
+   <!-- Ссылка на изображение -->
+   <meta name="twitter:image" content="http://1.img" />
+
+   <link rel="stylesheet" href="css/style.min.css" />
+   <!-- Здесь загружается иконочный шрифт, если иконки используються в верхней части страницы -->
+   <!-- <link rel="preload" href="/fonts/fontello.woff" as="font" /> -->
+   <!-- Здесь проверяется есть ли шрифт в кэше, в кэш он попал из js при прошлой загрузке (используется font face observe) -->
+   <script>
+      var html = document.documentElement;
+      html.classList.add("fonts-loading");
+      if (sessionStorage.fontsLoaded) {
+         html.classList.remove("fonts-loading");
+         html.classList.add("fonts-loaded");
+      }
+   </script>
+   <title>Loft Blog</title>
+</head>

@@ -1,0 +1,484 @@
+// ШРИФТЫ
+// Подключаем шрифты--------------------------------------------------------------------------------------------------------------
+// &display=swap&subset=cyrillic-ext Для подкючения шрифтов Кирилицы в Google Fonts в самом конце ссылки к размерам шрифта
+// Не забудь поставить ковычки в Google Fonts при применении плагина и отключить лишние шрифты
+
+//Для подклюения файлов шрифтов с использованием Gulp
+@mixin font($font_name, $file_name, $weight, $style) {
+    @font-face {
+        font-family: $font_name;
+        font-display: swap;
+        src: url("../fonts/#{$file_name}.woff") format("woff"), url("../fonts/#{$file_name}.woff2") format("woff2");
+        font-weight: #{$weight};
+        font-style: #{$style};
+    }
+}
+
+// Здесь определяются все системные шрифты
+@font-face {
+    font-family: system;
+    font-style: normal;
+    font-weight: 300;
+    src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"),
+        local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+}
+
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:300,300italic,regular,italic,500,500italic&display=swap&subset=cyrillic-ext);
+
+@font-face {
+    font-family: "fontello";
+    src: url("../fonts/fontello.woff2") format("woff2"), url("../fonts/fontello.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+//RFS (simply the abbreviation for Responsive Font Size)  Это модуль, который дает возможность работы с адаптивным шрифтом (пример использования - @include rfs(64); где 64 это размер шрифта.
+
+@import "../../node_modules/rfs/scss";
+$rfs-two-dimensional: "true"; //Включение двухмерных медиа-запросов определит размер шрифта на основе самой маленькой стороны экрана с vmin. Это предотвращает изменение размера шрифта, если устройство переключается между портретным и альбомным режимами.
+
+@import "_fonts"; //импортируем шрифты из файла, созданного автоматически через Gulp
+
+@import "_elements"; // Импорт сбросов параметров, общих классов и классов неповторимых элементов страницы и переменных
+//@import "_reset.scss";
+@import "_functions"; // Импорт моих функций
+@import "_normalise";
+
+@import "_hamburger.scss"; // Кнопка бургера мобильного меню на чистом css
+
+//----------------------------ОСНОВНЫЕ СТИЛИ----------------------------------------------------
+
+// ____________header____________________________
+.header-main {
+    color: #fff;
+    background-color: $color-primary;
+    box-shadow: 0px rem(5) rem(2.5) rgba(0, 0, 0, 0.2);
+    @media (max-width: $md0+px) {
+        align-items: center;
+        padding: rem(15);
+    }
+    @media (min-width: $md1+px) {
+        padding: rem(20) 0;
+    }
+    @media (min-width: $md3+px) {
+        padding: 20px;
+    }
+    &__container {
+        display: flex;
+
+        @media (max-width: $md0+px) {
+            justify-content: space-between;
+            flex-direction: column;
+        }
+        @media (min-width: $md1+px) {
+            justify-content: space-around;
+        }
+        @media (min-width: $md3+px) {
+            justify-content: space-between;
+        }
+    }
+    &__info {
+        @media (max-width: $md0+px) {
+            padding-bottom: rem(20);
+        }
+        @media (min-width: $md1+px) {
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            grid-column-gap: rem(10);
+        }
+    }
+
+    &__navigation {
+        align-self: center;
+    }
+    &__navigation-list {
+        margin: 0;
+        padding: 0;
+        li {
+            display: inline-block;
+        }
+    }
+    &__navigation-item {
+        font-size: 0;
+        text-decoration: none;
+    }
+    &__navigation-item:focus {
+        @include focus;
+        outline-color: #fff;
+    }
+    &__navigation-item::before {
+        @include rfs(32px);
+        @media (max-width: $md0+px) {
+            color: #fff;
+        }
+        @media (min-width: $md1+px) {
+            color: #ffffff9e;
+        }
+    }
+    &__navigation-item:hover::before {
+        @media (min-width: $md1+px) {
+            color: #fff;
+        }
+    }
+    &__navigation-mail {
+        @media (min-width: $md1+px) {
+            display: none;
+        }
+    }
+}
+.info {
+    &__logo {
+        width: rem(60);
+        height: rem(60);
+        border: 1px solid #fff;
+        border-radius: 50%;
+        overflow: hidden;
+        @media (max-width: $md0+px) {
+            margin: 0 auto;
+        }
+        @media (min-width: $md1+px) {
+            grid-row: span 2;
+        }
+    }
+
+    &__name {
+        @include rfs(21px);
+        line-height: em(28, 21);
+        font-weight: 500;
+        @media (max-width: $md0+px) {
+            padding-top: rem(10);
+            text-align: center;
+        }
+        @media (min-width: $md1+px) {
+            align-self: end;
+        }
+    }
+
+    &__mail {
+        @include rfs(14px);
+        line-height: em(28, 14);
+        color: #ffffff;
+        font-weight: 400;
+        @media (max-width: $md0+px) {
+            display: none;
+        }
+    }
+}
+
+// ______________________________MAIN_______________________________
+
+// -------------О будущем ученике
+.section-future {
+    @media (max-width: $md0+px) {
+        padding: rem(20) rem(10);
+    }
+    &__title {
+    }
+
+    &__subtitle {
+    }
+
+    &__records {
+        display: flex;
+        @media (max-width: $md0+px) {
+            padding-top: rem(20);
+        }
+        @media (min-width: $md1+px) {
+            padding-top: rem(25);
+        }
+        @media (min-width: $md2+px) {
+            gap: rem(25);
+        }
+        @media (min-width: $md3+px) {
+            gap: rem(35);
+        }
+        @media (max-width: $md2+px) {
+            flex-direction: column;
+        }
+    }
+
+    &__record {
+        @media (min-width: $md2+px) {
+            flex-basis: 50%;
+        }
+    }
+}
+
+.future-record {
+    @media (min-width: $md2+px) {
+        padding-left: calc(16.666% + 20px);
+    }
+    &__title {
+        @include rfs(21px);
+        line-height: em(28, 21);
+        color: $color-font-dark;
+        font-weight: 400;
+    }
+
+    &__text {
+        @include rfs(14px);
+        line-height: em(21, 14);
+        color: $color-font-light;
+        font-weight: 300;
+    }
+
+    &__link {
+        text-decoration: underline;
+    }
+    &__link:focus {
+        @include focus;
+        outline-color: $color-primary;
+    }
+    &--about-me {
+        @media (min-width: $md2+px) {
+            background: url(../img/svg/icons.svg#hello) center left / 33.333% no-repeat;
+        }
+    }
+    &--my-experience {
+        @media (min-width: $md2+px) {
+            background: url(../img/svg/icons.svg#lamp) center left / 33.333% no-repeat;
+        }
+    }
+}
+
+// ------------------Курсы на loftblog
+.section-courses {
+    background-image: url(../img/bg.jpg);
+    background-repeat: repeat;
+    background-position: top left;
+    background-attachment: fixed;
+    background-size: cover;
+    &__courses-list {
+        @media (max-width: $md0+px) {
+            padding-top: rem(20);
+        }
+        @media (min-width: $md1+px) {
+            padding-top: rem(25);
+        }
+    }
+    &__courses-list {
+        display: grid;
+        gap: rem(20);
+        @media (min-width: $md2+px) {
+            grid-template-columns: 1fr 1fr;
+        }
+        @media (min-width: $md3+px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    &__course {
+    }
+}
+.course {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    border-radius: rem(2);
+    background-color: #fff;
+
+    &:focus {
+        @include focus;
+        outline-color: $color-primary;
+    }
+
+    &__header {
+        flex-shrink: 0;
+        overflow: hidden;
+        @media (max-width: $md0+px) {
+            height: rem(200);
+        }
+        @media (min-width: $md1+px) {
+            height: rem(250);
+        }
+    }
+
+    &__logo {
+    }
+
+    &__main {
+        position: relative;
+
+        flex-shrink: 0;
+        flex-grow: 1;
+        padding: rem(20);
+        z-index: 5;
+    }
+    &__main::before {
+        position: absolute;
+        display: block;
+        content: "";
+
+        height: rem(4);
+
+        width: 100%;
+        $em: rem(1);
+        top: (-$em);
+        left: 0;
+        transition: background 0.5s ease;
+    }
+    &__main:hover > &__title {
+        cursor: pointer;
+        color: $color-primary;
+    }
+    &__main:hover::before {
+        background-color: $color-primary;
+    }
+
+    &__title {
+        margin: em(10, 21) 0;
+
+        @include rfs(21px);
+        line-height: em(24, 21);
+        color: $color-font-dark;
+        font-weight: 400;
+        transition: color 0.5s ease;
+    }
+
+    &__text {
+        @include rfs(14px);
+        line-height: em(21, 14);
+        font-weight: 300;
+        margin: em(10, 14) 0;
+        margin-top: 0;
+
+        color: $color-font-light;
+    }
+
+    &__time {
+        display: inline-block;
+
+        @include rfs(14px);
+        line-height: em(21, 14);
+
+        color: $color-font-lighten;
+    }
+    &__time::before {
+        margin-left: 0;
+    }
+
+    &__footer {
+        flex-shrink: 0;
+    }
+    &__label-wrapper {
+        background-color: #f6f7f2;
+    }
+    &__check {
+        display: inline-block;
+        width: 100%;
+        padding: rem(20) rem(20);
+        position: relative;
+        z-index: 20;
+    }
+
+    &__check-input {
+        appearance: none;
+        position: absolute;
+    }
+    &__check-label {
+        padding-left: em(40, 16);
+        position: relative;
+        user-select: none;
+    }
+    &__check-label::before {
+        display: block;
+        content: "";
+        position: absolute;
+        $em: em(2, 16);
+        top: (-$em);
+        width: em(20, 16);
+        height: em(20, 16);
+        border-radius: 2px;
+        background-color: #ffffff;
+        border: 2px solid #b6b6b6;
+    }
+    &__check-label::after {
+        display: none;
+        content: "\2713";
+        position: absolute;
+        // $em: em(2, 16);
+        // top: em(1, 20);
+        left: em(2, 20);
+        font-family: "fontello";
+        @include rfs(20px);
+
+        font-style: normal;
+        font-weight: 800;
+
+        // display: inline-block;
+        text-decoration: inherit;
+        // width: 1em;
+        // margin-right: 0.2em;
+        text-align: center;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1em;
+        // margin-left: 0.2em;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: #fff;
+    }
+    &__check-input:focus + &__check-label::before {
+        box-shadow: 0 0 0px 2px #488303;
+    }
+
+    &__check-input:checked + &__check-label::before {
+        background-color: $color-primary;
+        border-color: $color-primary;
+    }
+    &__check-input:checked + &__check-label::after {
+        display: inline-block;
+    }
+    &__check-input:checked + &__check-label {
+        color: $color-primary;
+    }
+}
+.course__bg {
+    &--viewed {
+        background-color: rgba($color: $color-primary, $alpha: 0.2);
+        box-shadow: none;
+        z-index: 10;
+    }
+    position: absolute;
+    box-shadow: 0 rem(1) rem(2.5) rgba(0, 0, 0, 0.2);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // z-index: -1;
+}
+// _____________________________FOOTER________________________________
+.footer-main {
+    background-color: $color-bg-dark;
+    color: $color-font-light;
+
+    @media (max-width: $md0+px) {
+        padding: rem(15);
+    }
+    @media (min-width: $md1+px) {
+        text-align: center;
+        padding: rem(20) 0;
+    }
+
+    &__content {
+        display: inline-block;
+
+        padding: 0;
+        margin: 0;
+
+        @include rfs(14px);
+        line-height: em(21, 14);
+        font-weight: 400;
+        @media (min-width: $md1+px) {
+            max-width: 70%;
+            text-align: left;
+        }
+        @media (min-width: $md2+px) {
+            max-width: 60%;
+            text-align: center;
+        }
+        @media (min-width: $md3+px) {
+            max-width: 50%;
+        }
+    }
+}

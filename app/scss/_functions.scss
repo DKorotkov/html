@@ -1,0 +1,8 @@
+// Чтобы получить отрицательный отступ надо использовать:    $em: em(15, 16); margin: 0px (-$em);
+@function em($pixels, $font_size) {
+   @return $pixels / $font_size + em;
+}
+
+@function rem($pixels) {
+   @return $pixels / 16 + rem; //16 -  default font size
+}

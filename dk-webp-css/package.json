@@ -1,0 +1,52 @@
+{
+  "_from": "gulp-webp-css",
+  "_id": "gulp-webp-css@1.1.0",
+  "_inBundle": false,
+  "_integrity": "sha1-kOQqfV18+FsSrGa/XbWmH1FAZEQ=",
+  "_location": "/gulp-webp-css",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "gulp-webp-css",
+    "name": "gulp-webp-css",
+    "escapedName": "gulp-webp-css",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/gulp-webp-css/-/gulp-webp-css-1.1.0.tgz",
+  "_shasum": "90e42a7d5d7cf85b12ac66bf5db5a61f51406444",
+  "_spec": "gulp-webp-css",
+  "_where": "D:\\WorkSpace\\html\\__Repository\\html",
+  "author": {
+    "name": "seokirill"
+  },
+  "bugs": {
+    "url": "https://github.com/seokirill/gulp-webp-css/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "css": "^2.2.1",
+    "gulp-util": "^3.0.7",
+    "through2": "^2.0.1"
+  },
+  "deprecated": false,
+  "description": "replace background image to webp if supports",
+  "gitHead": "cfb5bc6821bd6e182906a1a34e0f26c53c2d15ca",
+  "homepage": "https://github.com/seokirill/gulp-webp-css#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "name": "gulp-webp-css",
+  "repository": {
+    "url": "git://github.com/seokirill/gulp-webp-css.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.1.0"
+}

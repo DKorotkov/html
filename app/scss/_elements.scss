@@ -1,0 +1,193 @@
+@import "_functions"; // Импорт моих функций
+@import "../../node_modules/system-font-css/system-font.scss"; //Не забудь посмотреть обновления к этому модулю. npm install --save system-font-css
+
+// -----------------------------------------ПЕРЕМЕННЫЕ-----------------------------------------------
+
+// Шрифт по умолчанию-------
+$fontFamily: "Fira Sans", system-ui;
+
+$minWidth: 320px; // минимальным размер экрана
+$maxWidth: 1200; // максимальный размер экрана
+
+//Ьочки в bootstrap sm-540px	md-720px	lg-960px	xl-1140px
+// @media (min-width:320px) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ }
+// @media (min-width:480px) { /* smartphones, Android phones, landscape iPhone */ }
+// @media (min-width:600px) { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ }
+// @media (min-width:801px) { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
+// @media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+// @media (min-width:1281px) { /* hi-res laptops and desktops */ }
+
+// Брейкпоинты
+$md0: 540;
+$md1: 541;
+$md2: 720;
+$md3: 960;
+$md4: 1140;
+
+// Цвета
+$color-primary: #8cc34b;
+$color-bg-dark: #212121;
+
+$color-font-light: #727272;
+$color-font-lighten: #b6b6b6;
+
+$color-font-dark: #212121;
+
+// --------------------------------------ОБНУЛЕНИ И ОБЩИЕ ПАРАМЕТРЫ--------------------------------------
+* {
+   font-family: system-ui;
+   background-size: cover;
+}
+html,
+body {
+   width: 100%;
+}
+img,
+picture {
+   width: 100%;
+   max-width: 100%;
+   height: auto;
+   object-fit: cover;
+   // aspect-ratio: attr(width) / attr(height);
+   // background-image: url(data:image/gif;base64,R0lGODlhCgAIAIABAN3d3f///yH5BAEAAAEALAAAAAAKAAgAAAINjAOnyJv2oJOrVXrzKQA7);
+}
+
+// ----------------------------------------------СТАНДАРТНЫЕ КЛАССЫ---------------------------------------------
+// класс для объявления шрифты после его загрузки
+.fonts-loaded * {
+   font-family: $fontFamily;
+}
+// Класс для поределения фокуса элементов :focus
+@mixin focus {
+   outline: rem(3) solid;
+   outline-offset: rem(3);
+   outline-style: auto;
+}
+// Класс для полифила focus
+.js-focus-visible :focus:not(.focus-visible) {
+   outline: none;
+}
+
+// ОБОЛОЧКА
+.wrapper {
+   width: 100%;
+   min-height: 100%;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+   align-items: stretch;
+   // &._loaded {
+   // }
+}
+.page {
+   flex-grow: 1;
+}
+.header-main,
+.page,
+.footer-main {
+   flex-shrink: 0;
+}
+// СЕТКА
+.container {
+   margin: 0 auto;
+   @media (max-width: $md1+px) {
+      padding: 0 rem(10);
+      min-width: $minWidth;
+   }
+   // Small devices (landscape phones, 576px and up)
+   @media (min-width: $md1+px) {
+      padding: 0;
+      max-width: 570px;
+   }
+
+   // Medium devices (tablets, 768px and up)
+   @media (min-width: $md2+px) {
+      max-width: 750px;
+   }
+
+   // Large devices (desktops, 992px and up)
+   @media (min-width: $md3+px) {
+      max-width: 970px;
+   }
+
+   // Extra large devices (large desktops, 1200px and up)
+   @media (min-width: $md4+px) {
+      max-width: 1170px;
+   }
+}
+
+.container-max {
+   max-width: $maxWidth + px;
+   width: 100%;
+   margin: 0 auto;
+}
+// ---------------------------------------------КЛАССЫ СТРАНИЦЫ-------------------------------------------
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+   font-family: "fontello";
+   font-style: normal;
+   font-weight: normal;
+
+   display: inline-block;
+   text-decoration: inherit;
+   width: 1em;
+   margin-right: 0.2em;
+   text-align: center;
+   font-variant: normal;
+   text-transform: none;
+   line-height: 1em;
+   margin-left: 0.2em;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ok:before {
+   content: "\2713";
+} /* '✓' */
+.icon-github:before {
+   content: "\f09b";
+} /* '' */
+.icon-mail-alt:before {
+   content: "\f0e0";
+} /* '' */
+.icon-skype:before {
+   content: "\f17e";
+} /* '' */
+.icon-vkontakte:before {
+   content: "\f189";
+} /* '' */
+.icon-clock:before {
+   content: "🕔";
+} /* '\1f554' */
+
+.section {
+   @media (max-width: $md1+px) {
+      padding: rem(20) 0;
+   }
+   @media (min-width: $md1+px) {
+      padding: rem(40) 0;
+   }
+   @media (min-width: $md2+px) {
+      padding: rem(75) 0;
+   }
+   &__title {
+      @include rfs(42px);
+      line-height: em(28, 42);
+      color: $color-font-dark;
+      font-weight: 500;
+      text-align: center;
+   }
+   &__subtitle {
+      display: block;
+
+      @include rfs(21px);
+      line-height: em(28, 21);
+      font-weight: 300;
+
+      color: $color-font-light;
+      @media (min-width: $md2+px) {
+         text-align: center;
+      }
+   }
+}
