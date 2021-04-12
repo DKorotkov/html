@@ -35,7 +35,14 @@ picture {
 .js-focus-visible :focus:not(.focus-visible) {
    outline: none;
 }
-
+.focus-visible {
+   @include focus;
+}
+// необходимо Модофицировать этот элемент только для тех, на кого может попасть фокус
+* {
+   outline-offset: 0;
+   transition: outline-offset 0.2s linear;
+}
 // ОБОЛОЧКА
 .wrapper {
    width: 100%;
@@ -50,6 +57,12 @@ picture {
    //    padding: rem(20);
    // }
 }
+
+.wrpapper,
+.container {
+   overflow: visible;
+}
+
 .page {
    flex-grow: 1;
 }

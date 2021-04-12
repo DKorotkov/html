@@ -20,8 +20,14 @@
    }
 
    &__item {
-      display: inline-block;
-      width: 100%;
+      @media (max-width: $md0+px) {
+         display: inline-block;
+         width: 100%;
+      }
+      @include rfs(20px);
+   }
+   &__item:hover {
+      text-decoration: underline;
    }
 
    &__box {

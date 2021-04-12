@@ -60,21 +60,6 @@ body {
    background-color: var(--color-bg-main);
 }
 
-// необходимо Модофицировать этот элемент только для тех, на кого может попасть фокус
-* {
-   outline-offset: 0;
-   transition: outline-offset 0.2s linear;
-}
-
-.wrpapper,
-.container {
-   overflow: visible;
-}
-
-.focus-visible {
-   @include focus;
-}
-
 // ________________________header____________________________
 
 // :root,
