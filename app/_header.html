@@ -1,19 +1,24 @@
 <header class="header-main">
-   <div class="container-max header-main__container">
-      <div class="header-main__info info">
-         <div class="info__logo">
-            <img src="/img/user.jpeg" alt="Быстров Борис Викторович" />
-         </div>
-         <div class="info__name">Быстров Борис Викторович</div>
-         <a href="mailto:bystrov@gmail.com" class="info__mail">bystrov@gmail.com</a>
-      </div>
-      <nav class="header-main__navigation">
-         <ul class="header-main__navigation-list">
-            <li><a class="icon-mail-alt header-main__navigation-item header-main__navigation-mail" href="mailto:bystrov@gmail.com">Отправить сообщение на почту</a></li>
-            <li><a class="icon-github header-main__navigation-item" href="#git">Перейти на Github</a></li>
-            <li><a class="icon-skype header-main__navigation-item" href="#skype">Связаться через Skype</a></li>
-            <li><a class="icon-vkontakte header-main__navigation-item" href="#vk">Связаться через вконтакте</a></li>
-         </ul>
-      </nav>
+   <div class="header-main__container container">
+      <button class="hamburger hamburger--squeeze header-main__hamburger" type="button" aria-label="Открыть основную навгацию" aria-controls="navigation" aria-haspopup>
+         <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+         </span>
+      </button>
    </div>
+   <nav class="header-main__nav nav nav--not-active" id="navigation">
+      <div class="container nav__container">
+         <ul class="nav__box nav__box-l1">
+            <li class="nav__list nav__list--visible">
+               <a href="/" class="nav__title">Главная</a>
+               <ul class="nav__box nav__box-l2">
+                  <li><a class="nav__heading nav__item" href="/#appointment">Записаться</a></li>
+                  <li><a class="nav__heading nav__item" href="/#services">Услуги</a></li>
+                  <li><a class="nav__heading nav__item" href="/#about-doctor">О докторе</a></li>
+                  <li><a class="nav__heading nav__item" href="/#contacts">Контакты</a></li>
+               </ul>
+            </li>
+         </ul>
+      </div>
+   </nav>
 </header>

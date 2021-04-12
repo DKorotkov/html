@@ -21,7 +21,7 @@ let path = {
    },
    app: {
       html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"],
-      css: source_folder + "/scss/style.scss",
+      css: [source_folder + "/scss/style.scss", source_folder + "/scss/header.scss"],
       js: source_folder + "/js/*.js",
       img: [source_folder + "/img/*.{jpeg,jpg,png,svg,gif,ico,webp}", "!" + source_folder + "/img/ImgToResp/*", "!" + source_folder + "/img/favicon/*"],
       imgToRespons: source_folder + "/img/ImgToResp/*.{jpg,jpeg,png}",
@@ -78,13 +78,14 @@ function html() {
       src(path.app.html)
          .pipe(fileinclude())
 
-         .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" })) // Для корректной работы плагина необходимо передавать в случае если эти изображения необходимо подготовить для разный разрешений -
+         // .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" })) // Для корректной работы плагина необходимо передавать в случае если эти изображения необходимо подготовить для разный разрешений -
          //  <img class="lazyload"  data-was-processed="true" data-src="/img/hello.jpg" alt="Hello!" />
          // в случает, если разные разрешения не нужны, а нужен только webp
          // <img src="/img/user.jpeg" alt="Быстров Борис Викторович" />
          // в случае если надо создать несколько вариантов изображений для загрузки через laziload в background
          // <section class="test lazyload" data-bgset="../img/projects.jpg" data-sizes="auto"> Это для lazyload background-image
          .pipe(GulpWebpHtml2())
+
          .pipe(dest(path.dest.html))
          .pipe(browsersync.stream())
    );
