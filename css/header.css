@@ -567,6 +567,12 @@ body {
   overflow: hidden;
 }
 
+.hamburger {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 @media (min-width: 521px) {
   .container {
     padding: 2.25rem 2rem;
