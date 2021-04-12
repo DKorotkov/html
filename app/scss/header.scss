@@ -46,6 +46,7 @@ $hamburger-hover-opacity: 1 !default;
 $hamburger-types: (squeeze) !default;
 
 @import "../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss"; // Кнопка бургера мобильного меню
+// npm install hamburgers - если не установлен
 // .hamburger {
 //    display: inline-grid;
 // }
