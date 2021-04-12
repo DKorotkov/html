@@ -1,0 +1,15 @@
+.header-main {
+   &__container {
+      @media (max-width: $md0+px) {
+         padding-top: 0;
+         padding-bottom: 0;
+
+         height: var(--space-xl);
+         display: flex;
+         align-items: center;
+      }
+      @media (min-width: $md1+px) {
+         display: none;
+      }
+   }
+}

@@ -1,0 +1,33 @@
+.nav {
+   @media (max-width: $md0+px) {
+      display: none;
+
+      background-color: tomato;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin-top: var(--space-xl);
+   }
+   @media (min-width: $md1+px) {
+      display: block;
+   }
+
+   &--active {
+      @media (max-width: $md0+px) {
+         display: block;
+      }
+   }
+
+   &__item {
+      display: inline-block;
+      width: 100%;
+   }
+
+   &__box {
+      @media (min-width: $md1+px) {
+         display: flex;
+         gap: rem(20);
+      }
+   }
+}

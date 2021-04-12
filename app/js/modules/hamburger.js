@@ -1,23 +1,23 @@
 // Работа с меню бургером, управление клавиатурой и фокусом
 
-// hamburger(
-//    (hum = {
-//       button: ".hamburger", // Кнопка открытия\закрытия меню
-//       navigation: ".nav", // Меню с навгицаией по сайту
-//       itemNavigation: ".nav__item", // элемент навигации, по которому проходим фокусом.
-//    })
-// );
+hamburger(
+   (hum = {
+      button: ".hamburger", // Кнопка открытия\закрытия меню
+      navigation: ".nav", // Меню с навгицаией по сайту
+      itemNavigation: ".nav__item", // элемент навигации, по которому проходим фокусом.
+   })
+);
 
-// // Скопировать в основной файл во избежании дублирования
-// const KEY = {
-//       ESC: 27,
-//       SPACE: 32,
-//       ENTER: 13,
-//       ARROW_LEFT = 37,
-//       ARROW_UP = 38,
-//       ARROW_RIGHT = 39,
-//       ARROW_DOWN = 40,
-//    };
+// Скопировать в основной файл во избежании дублирования
+const KEY = {
+      ESC: 27,
+      SPACE: 32,
+      ENTER: 13,
+      ARROW_LEFT = 37,
+      ARROW_UP = 38,
+      ARROW_RIGHT = 39,
+      ARROW_DOWN = 40,
+   };
 
 function hamburger(hamburger) {
    const button = document.querySelector(hamburger.button);
@@ -46,13 +46,13 @@ function hamburger(hamburger) {
 
       // Команды нестандартного поведения
       navigation.classList.add("nav--active");
-      navigation.classList.remove("nav--not-active");
+      // navigation.classList.remove("nav--not-active");
 
-      if (!navigation.classList.contains("nav--active") && pageYOffset < 70) {
-         header.classList.remove("header-main--before-scrolling");
-         header.classList.remove("header-main--scrolling");
-      } else header.classList.add("header-main--scrolling");
-      if (!onceClick) addBtnInformation();
+      // if (!navigation.classList.contains("nav--active") && pageYOffset < 70) {
+      //    header.classList.remove("header-main--before-scrolling");
+      //    header.classList.remove("header-main--scrolling");
+      // } else header.classList.add("header-main--scrolling");
+      // if (!onceClick) addBtnInformation();
       // -------------------------------------------
    }
 
@@ -72,11 +72,11 @@ function hamburger(hamburger) {
       // Команды нестандартного поведения
 
       navigation.classList.remove("nav--active");
-      navigation.classList.add("nav--not-active");
-      if (!navigation.classList.contains("nav--active") && pageYOffset < 70) {
-         header.classList.remove("header-main--before-scrolling");
-         header.classList.remove("header-main--scrolling");
-      } else header.classList.add("header-main--scrolling");
+      // navigation.classList.add("nav--not-active");
+      // if (!navigation.classList.contains("nav--active") && pageYOffset < 70) {
+      //    header.classList.remove("header-main--before-scrolling");
+      //    header.classList.remove("header-main--scrolling");
+      // } else header.classList.add("header-main--scrolling");
       //--------------------------------------
 
       button.focus();
@@ -84,7 +84,6 @@ function hamburger(hamburger) {
 
    function checkFocus() {
       setTimeout(function () {
-         console.log(document.activeElement.classList.value);
          if (!document.activeElement.classList.contains(hamburger.itemNavigation.slice(1)) & !document.activeElement.classList.contains(hamburger.button.slice(1)) & !document.activeElement.classList.contains(hamburger.navigation.slice(1))) close();
       }, 1);
    }
