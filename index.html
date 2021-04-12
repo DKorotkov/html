@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png" />
+   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png" />
+   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png" />
+   <link rel="manifest" href="/img/favicon/site.webmanifest" />
+   <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+   <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
+   <meta name="msapplication-TileColor" content="#2b5797" />
+   <meta name="msapplication-config" content="/img/favicon/browserconfig.xml" />
+   <meta name="theme-color" content="#ffffff" />
+   <!--Запрещает увеличивать изображение на экране мобильных устройств-->
+   <!--- <meta name="viewport" content="width=device-width, initial-scale=1.0,initial-scale=1.0,maximum=1.0"> -->
+   <!-- Отключает форматирование ссылки у номера телефона на ios -->
+   <meta name="format-detection" content="telephone=no" />
+   <!-- Краткое описание страницы -->
+   <meta name="description" content="@@description" />
+   <!-- Ключевые слова страницы -->
+   <meta name="keywords" content="трихология, трихолог, трихоскопии, трихоскопия, грибок ногтей, лечение, косметология, мезоторопия, волосы, волос, опухоль, кожа, ботокс, пилиг кожи, гиалуроновая кислота, филлеры, анализы, обследование, выпадение волос, диагностика контурная пластика" />
+
+   <!-- Управление доступом поисковых роботов к старнице -->
+   <!-- <meta name="robots" content=""> -->
+   <!-- Запрет индексации страницы полностью -->
+   <!-- <meta name="robots" content="noindex, nofollow"> -->
+   <!-- или <meta name="robots" content="none"> -->
+   <!-- Запрет индексации ссылок и изобраений -->
+   <!-- <meta name="robots" content="noimageindex, nofolow"> -->
+
+   <!-- Автор страницы -->
+   <meta name="Author" content="Максим Клюкин, Данила Коротков" />
+   <!-- Авторские права -->
+   <meta name="Copyright" content="Максим Клюкин, Данила Коротков" />
+   <!-- Адрес автора -->
+   <meta name="Address" content="drklyukin@gmail.com, danila.korotkov@gmail.com" />
+
+   <!-- Соцтальные сети: -->
+   <!-- Локализация сайта -->
+   <meta property="og:locale" content="ru_RU" />
+   <!-- Тип контента -->
+   <meta property="og:type" content="article" />
+   <!-- Заголовок страницы, который будет выводиться в записи социальной сети -->
+   <meta property="og:title" content="@@title" />
+   <!-- Описание страницы -->
+   <meta property="og:description" content="@@description" />
+   <!-- Ссылка на изображение которое будет публиковаться в записи -->
+   <meta property="og:image" content="@@image" />
+   <!-- Ссылка на текущую страницу -->
+   <meta property="og:url" content="@@link" />
+   <!-- Название сайта -->
+   <meta property="og:site_name" content="Ваш трихолог.рф" />
+
+   <!-- Twitter -->
+   <!-- Тип карты -->
+   <meta name="twitter:card" content="summary" />
+   <!-- Имя\Логин автора -->
+   <meta name="twitter:site" content="Максим Клюкин, Данила Коротков" />
+   <!-- Название страницы -->
+   <meta name="twitter:title" content="@@title" />
+   <!-- Описание страницы -->
+   <meta name="twitter:description" content="@@description" />
+   <!-- Ссылка на изображение -->
+   <meta name="twitter:image" content="@@image" />
+
+   <link rel="stylesheet" href="css/header.min.css" />
+   <link rel="stylesheet" href="css/style.min.css" />
+   <!-- Здесь загружается иконочный шрифт, если иконки используються в верхней части страницы -->
+   <!-- <link rel="preload" href="/fonts/fontello.woff" as="font" /> -->
+   <!-- Здесь проверяется есть ли шрифт в кэше, в кэш он попал из js при прошлой загрузке (используется font face observe) -->
+   <script>
+      var html = document.documentElement;
+      html.classList.add("fonts-loading");
+      if (sessionStorage.fontsLoaded) {
+         html.classList.remove("fonts-loading");
+         html.classList.add("fonts-loaded");
+      }
+   </script>
+   <title>Ваш трихолог.рф | @@title</title>
+</head>
+
+   <body>
+      <div class="wrapper">
+         <header class="header-main">
+   <div class="header-main__container container">
+      <button class="hamburger hamburger--squeeze header-main__hamburger" type="button" aria-label="Открыть основную навгацию" aria-controls="navigation" aria-haspopup>
+         <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+         </span>
+      </button>
+   </div>
+   <nav class="header-main__nav nav nav--not-active" id="navigation">
+      <div class="container nav__container">
+         <ul class="nav__box nav__box-l1">
+            <li class="nav__list nav__list--visible">
+               <a href="/" class="nav__title">Главная</a>
+               <ul class="nav__box nav__box-l2">
+                  <li><a class="nav__heading nav__item" href="/#appointment">Записаться</a></li>
+                  <li><a class="nav__heading nav__item" href="/#services">Услуги</a></li>
+                  <li><a class="nav__heading nav__item" href="/#about-doctor">О докторе</a></li>
+                  <li><a class="nav__heading nav__item" href="/#contacts">Контакты</a></li>
+               </ul>
+            </li>
+         </ul>
+      </div>
+   </nav>
+</header>
+
+         <main class="page"></main>
+         <footer class="footer-main">
+   <p class="footer-main__content">А это футер, с текстом внутри. Он должен быть прибит к низу окна браузера, не зависимо от количества контента на странице и размера окна.</p>
+</footer>
+
+      </div>
+      <!-- js для загрухки шрифтов по времени, событию или из кэша -->
+      <script src="js/fontfaceobserver.standalone.min.js"></script>
+      <!-- ленивая загрузка изображений -->
+      <script defer src="js/lazyload.min.js"></script>
+      <!-- <script src="js/ls.bgset.js"></script> -->
+      <!-- Скрипт полифил для корректной работы не стадартного фокуса (focus-visible)  -->
+      <script defer src="js/focus-visible.min.js"></script>
+
+      <script defer src="js/script.min.js"></script>
+   </body>
+</html>
