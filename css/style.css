@@ -27,7 +27,7 @@
   --space-xxxl: calc(8.5 * var(--space-unit));
   --space-xxxxl: calc(13.75 * var(--space-unit));
   --component-padding: var(--space-md);
-  --size-navigation-small: 3.5rem;
+  --size-navigation-small: 3.75rem;
   --size-navigation-large: 4.5rem;
 }
 

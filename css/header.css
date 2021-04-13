@@ -233,7 +233,7 @@ select {
   --space-xxxl: calc(8.5 * var(--space-unit));
   --space-xxxxl: calc(13.75 * var(--space-unit));
   --component-padding: var(--space-md);
-  --size-navigation-small: 3.5rem;
+  --size-navigation-small: 3.75rem;
   --size-navigation-large: 4.5rem;
 }
 
@@ -640,7 +640,7 @@ body {
   .header-main__container {
     padding-top: 0;
     padding-bottom: 0;
-    height: var(--space-xl);
+    height: var(--size-navigation-small);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -655,7 +655,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    margin-top: var(--space-xl);
+    margin-top: var(--size-navigation-small);
   }
 
   .nav--active {
