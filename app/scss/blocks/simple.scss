@@ -1,0 +1,48 @@
+.page {
+   @media (min-width: $md1+px) {
+      display: flex;
+      flex-wrap: wrap;
+   }
+}
+
+.simple__section {
+}
+
+.sblock {
+   &__title {
+      margin: 10px 0;
+   }
+}
+
+.color {
+   border: 1px dotted #5b5858;
+   margin-bottom: 5px;
+   &__title {
+      color: white;
+      mix-blend-mode: difference;
+   }
+   &--active {
+      background-color: var(--color-active);
+   }
+   &--bg-main {
+      background-color: var(--color-bg-main);
+   }
+   &--bg-gray {
+      background-color: var(--color-bg-main);
+   }
+   &--white {
+      background-color: var(--color-white);
+   }
+   &--black {
+      background-color: var(--color-black);
+   }
+   &--success {
+      background-color: var(--color-success);
+   }
+   &--error {
+      background-color: var(--color-error);
+   }
+   &--warning {
+      background-color: var(--color-warning);
+   }
+}

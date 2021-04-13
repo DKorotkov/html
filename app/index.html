@@ -5,13 +5,25 @@
       <div class="wrapper">
          @@include('_header.html')
          <main class="page">
-            <section class="section container">
-               <div class="section__title">Заголовки</div>
+            <section class="simple__section container">
+               <div class="sblock__title">Заголовки</div>
                <h1>H1</h1>
                <h2>H2</h2>
                <h3>H3</h3>
                <h4>H4</h4>
                <h5>H5</h5>
+            </section>
+            <section class="simple__section container sblock">
+               <div class="sblock__title">Цветовая схема</div>
+               <div class="color color--primary"><p class="color__title">primary</p></div>
+               <div class="color color--active"><p class="color__title">active</p></div>
+               <div class="color color--bg-main"><p class="color__title">bg-main</p></div>
+               <div class="color color--bg-gray"><p class="color__title">bg-gray</p></div>
+               <div class="color color--white"><p class="color__title">white</p></div>
+               <div class="color color--black"><p class="color__title">black</p></div>
+               <div class="color color--success"><p class="color__title">success</p></div>
+               <div class="color color--error"><p class="color__title">error</p></div>
+               <div class="color color--warning"><p class="color__title">warning</p></div>
             </section>
          </main>
          @@include('_footer.html')

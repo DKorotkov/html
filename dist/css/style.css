@@ -38,6 +38,70 @@
     }
 }
 }
+
+.sblock__title {
+  margin: 10px 0;
+}
+
+.color {
+  border: 1px dotted #5b5858;
+  margin-bottom: 5px;
+}
+
+.color__title {
+  color: white;
+  mix-blend-mode: difference;
+}
+
+.color--active {
+  background-color: var(--color-active);
+}
+
+.color--bg-main {
+  background-color: var(--color-bg-main);
+}
+
+.color--bg-gray {
+  background-color: var(--color-bg-main);
+}
+
+.color--white {
+  background-color: var(--color-white);
+}
+
+.color--black {
+  background-color: var(--color-black);
+}
+
+.color--success {
+  background-color: var(--color-success);
+}
+
+.color--error {
+  background-color: var(--color-error);
+}
+
+.color--warning {
+  background-color: var(--color-warning);
+}
+
+@media (min-width: 521px) {
+  .page {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
 @supports (-webkit-appearance:none){
+
+}
+
+ @media (min-width: 521px){
+
+@supports (-webkit-appearance:none){
+
+}
 
 }
