@@ -62,21 +62,6 @@ body {
 
 // ________________________header____________________________
 
-// :root,
-// * {
-//    &::-webkit-scrollbar {
-//       width: rem(8);
-//       background-color: transparent;
-//    }
-//    &::-webkit-scrollbar-thumb {
-//       background-color: var(--color-active);
-//       border-radius: rem(3);
-//    }
-// }
-.no-scroll {
-   overflow: hidden;
-}
-
 @import "blocks/header-main.scss";
 @import "blocks/hamburger.scss";
 @import "blocks/navigation.scss";

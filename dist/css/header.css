@@ -406,6 +406,10 @@ picture {
   overflow: hidden;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 /*!
  * Hamburgers
  * @description Tasty CSS-animated hamburgers
@@ -561,10 +565,6 @@ picture {
 
 body {
   background-color: var(--color-bg-main);
-}
-
-.no-scroll {
-  overflow: hidden;
 }
 
 .hamburger {
