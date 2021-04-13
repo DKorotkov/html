@@ -651,7 +651,6 @@ body {
 
   .nav {
     display: none;
-    background-color: tomato;
     position: absolute;
     top: 0;
     left: 0;
@@ -666,6 +665,10 @@ body {
   .nav__item {
     display: inline-block;
     width: 100%;
+  }
+
+  .nav {
+    background-color: tomato;
   }
 }
 
