@@ -8,17 +8,6 @@ hamburger(
    })
 );
 
-// Скопировать в основной файл во избежании дублирования
-const KEY = {
-      ESC: 27,
-      SPACE: 32,
-      ENTER: 13,
-      ARROW_LEFT = 37,
-      ARROW_UP = 38,
-      ARROW_RIGHT = 39,
-      ARROW_DOWN = 40,
-   };
-
 function hamburger(hamburger) {
    const button = document.querySelector(hamburger.button);
    const navigation = document.querySelector(hamburger.navigation);
