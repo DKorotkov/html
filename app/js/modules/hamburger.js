@@ -15,6 +15,8 @@ function hamburger(hamburger) {
 
    button.addEventListener("click", open);
    button.addEventListener("keydown", checkPress);
+   button.addEventListener("focusout", checkFocus);
+
    navigation.addEventListener("keydown", checkPress);
 
    function open() {
@@ -33,16 +35,7 @@ function hamburger(hamburger) {
          element.addEventListener("focusout", checkFocus);
       });
 
-      // Команды нестандартного поведения
       navigation.classList.add("nav--active");
-      // navigation.classList.remove("nav--not-active");
-
-      // if (!navigation.classList.contains("nav--active") && pageYOffset < 70) {
-      //    header.classList.remove("header-main--before-scrolling");
-      //    header.classList.remove("header-main--scrolling");
-      // } else header.classList.add("header-main--scrolling");
-      // if (!onceClick) addBtnInformation();
-      // -------------------------------------------
    }
 
    function checkPress(e) {
@@ -58,17 +51,9 @@ function hamburger(hamburger) {
          element.removeEventListener("focusout", checkFocus);
       });
 
-      // Команды нестандартного поведения
+      if (document.activeElement.classList.contains(hamburger.itemNavigation.slice(1))) button.focus();
 
       navigation.classList.remove("nav--active");
-      // navigation.classList.add("nav--not-active");
-      // if (!navigation.classList.contains("nav--active") && pageYOffset < 70) {
-      //    header.classList.remove("header-main--before-scrolling");
-      //    header.classList.remove("header-main--scrolling");
-      // } else header.classList.add("header-main--scrolling");
-      //--------------------------------------
-
-      button.focus();
    }
 
    function checkFocus() {
