@@ -16,6 +16,7 @@ function hamburger(hamburger) {
    button.addEventListener("click", open);
    button.addEventListener("keydown", checkPress);
    button.addEventListener("focusout", checkFocus);
+   button.setAttribute("aria-expanded", "false");
 
    navigation.addEventListener("keydown", checkPress);
 
@@ -36,6 +37,7 @@ function hamburger(hamburger) {
       });
 
       navigation.classList.add("nav--active");
+      button.setAttribute("aria-expanded", "true");
    }
 
    function checkPress(e) {
@@ -54,6 +56,7 @@ function hamburger(hamburger) {
       if (document.activeElement.classList.contains(hamburger.itemNavigation.slice(1))) button.focus();
 
       navigation.classList.remove("nav--active");
+      button.setAttribute("aria-expanded", "false");
    }
 
    function checkFocus() {
