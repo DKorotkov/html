@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 :root {
   --color-primary: #0a8fc4;
   --color-active: #0a8fc4;
@@ -37,6 +39,38 @@
       --space-unit: 1.2em;
     }
 }
+}
+
+/*
+
+   Блок стилизации основной кнопки на сайте
+
+*/
+
+.button {
+  border: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+}
+
+.button {
+  width: 120px;
+  height: 45px;
+  border-radius: 5px;
+}
+
+.button:hover {
+  border: 1px solid black;
 }
 
 .sblock__title {
