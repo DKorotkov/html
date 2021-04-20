@@ -1,0 +1,27 @@
+//****************************************
+/*
+
+   Блок стилизации основной кнопки на сайте
+
+*/
+
+.button {
+   border: 0;
+   padding: 0;
+   display: flex;
+   cursor: pointer;
+   align-items: center;
+   justify-content: center;
+   overflow: hidden;
+}
+
+//---------------------СТИЛИЗАЦИЯ-----------Требует удаления в проекте!-------------------------------
+.button {
+   width: 120px;
+   height: 45px;
+   border-radius: 5px;
+   &:hover {
+      border: 1px solid black;
+   }
+}
+// ----

@@ -573,6 +573,12 @@ body {
   display: flex;
 }
 
+/*
+
+   Блок стилизации основной навигации на сайте
+
+*/
+
 .nav__item {
   font-size: 1.25rem;
 }
@@ -668,7 +674,8 @@ body {
   }
 
   .nav {
-    background-color: tomato;
+    border: 1px dotted #ccc;
+    background-color: #ebebebde;
   }
 }
 
