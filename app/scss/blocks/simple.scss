@@ -2,10 +2,12 @@
    @media (min-width: $md1+px) {
       display: flex;
       flex-wrap: wrap;
+      gap: 20px;
    }
 }
 
 .simple__section {
+   border: 1px dotted #ccc;
 }
 
 .sblock {
