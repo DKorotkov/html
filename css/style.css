@@ -74,6 +74,10 @@
   border: 1px solid black;
 }
 
+.simple__section {
+  border: 1px dotted #ccc;
+}
+
 .sblock__title {
   margin: 10px 0;
 }
@@ -131,6 +135,7 @@
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    gap: 20px;
   }
 }
 @supports (-webkit-appearance:none){
