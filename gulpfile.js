@@ -133,12 +133,12 @@ function css() {
          // Для того чтобы создать разные разрешения для разный экранов надо: url(../img/ImgToResp/bg-small.jpg) top left repeat;
 
          // Просто для webp надо: background: url(../img/bg.jpg) top left repeat;
-         .pipe(
-            webpcss({
-               replace_from: /\.(png|jpg|jpeg)/,
-               replace_to: ".webp",
-            })
-         )
+         // .pipe(
+         //    webpcss({
+         //       replace_from: /\.(png|jpg|jpeg)/,
+         //       replace_to: ".webp",
+         //    })
+         // )
          .pipe(dest(path.dest.css))
          .pipe(clean_css())
          .pipe(

@@ -138,14 +138,3 @@
     gap: 20px;
   }
 }
-@supports (-webkit-appearance:none){
-
-}
-
- @media (min-width: 521px){
-
-@supports (-webkit-appearance:none){
-
-}
-
-}
