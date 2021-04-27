@@ -54,7 +54,7 @@ let { src, dest } = require("gulp"),
    uglify = require("gulp-uglify-es").default,
    // imagemin = require("gulp-imagemin"),
    webp = require("gulp-webp"),
-   // webphtml = require("gulp-webp-html"),
+   webphtml = require("gulp-webp-html"),
    GulpWebpHtml2 = require("dk-webp-in-html"),
    webpcss = require("dk-webp-css"),
    svgSprite = require("gulp-svg-sprite"),
@@ -93,7 +93,7 @@ function html() {
          // <img src="/img/user.jpeg" alt="Быстров Борис Викторович" />
          // в случае если надо создать несколько вариантов изображений для загрузки через laziload в background
          // <section class="test lazyload" data-bgset="../img/projects.jpg" data-sizes="auto"> Это для lazyload background-image
-         .pipe(GulpWebpHtml2())
+         .pipe(webphtml())
          .pipe(entities("decode"))
          .pipe(dest(path.dest.html))
          .pipe(browsersync.stream())
