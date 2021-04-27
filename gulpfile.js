@@ -383,8 +383,10 @@ function clean(params) {
    return del(path.clean);
 }
 
-let fb = gulp.parallel(otf2ttf);
-let build = gulp.series(clean, gulp.parallel(js, css, html, imgToResp, img, svgsprite, favicon, fonts), towebp, fontsStyle);
+let server = gulp.parallel(gulp.series(clean, html, css, js), watchFiles, browserSync); // Основной режим для верстки
+let fb = gulp.series(cleanAll, gulp.parallel(otf2ttf, imgToResp, img, svgsprite, favicon, fonts), towebp, fontsStyle); // Первый запуск
+
+let build = gulp.series(cleanAll, gulp.parallel(js, css, html_build, imgToResp, img, svgsprite, favicon, fonts), towebp, fontsStyle);
 //let build = gulp.series(clean, gulp.parallel(js, css, html, img));
 let watch = gulp.parallel(build, watchFiles, browserSync);
 
@@ -400,6 +402,8 @@ exports.js = js;
 exports.css = css;
 exports.build = build;
 exports.html = html;
+exports.html_build = html_build;
 exports.fb = fb;
 exports.watch = watch;
-exports.default = watch;
+exports.server = server;
+exports.default = server;
