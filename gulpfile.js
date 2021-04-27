@@ -36,7 +36,12 @@ let path = {
       img: source_folder + "/img/**/*.{jpeg,jpg,png}",
       svg: source_folder + "/img/icons/svg/*.svg",
    },
-   clean: "./" + project_folder + "/",
+   clean: {
+      html: project_folder + "/**/*.html",
+      css: project_folder + "/css/*.css",
+      js: project_folder + "/js/*.js",
+   },
+   cleanAll: "./" + project_folder + "/",
 };
 
 let { src, dest } = require("gulp"),
@@ -75,6 +80,22 @@ function browserSync(params) {
 }
 
 function html() {
+   return (
+      src(path.app.html)
+         .pipe(fileinclude())
+         .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" }))
+         .pipe(webphtml())
+         //  <img class="lazyload"  data-was-processed="true" data-src="/img/hello.jpg" alt="Hello!" />
+         // в случает, если разные разрешения не нужны, а нужен только webp
+         // <img src="/img/user.jpeg" alt="Быстров Борис Викторович" />
+         // в случае если надо создать несколько вариантов изображений для загрузки через laziload в background
+         // <section class="test lazyload" data-bgset="../img/projects.jpg" data-sizes="auto"> Это для lazyload background-image
+
+         .pipe(dest(path.dest.html))
+         .pipe(browsersync.stream())
+   );
+}
+function html_build() {
    return (
       src(path.app.html)
          .pipe(fileinclude())
