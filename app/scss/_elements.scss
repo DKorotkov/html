@@ -80,7 +80,7 @@ picture {
    }
    // Small devices (landscape phones, 576px and up)
    @media (min-width: $md1+px) {
-      padding: rem(36) rem(32);
+      padding: 0 rem(32);
       max-width: 570px;
    }
 

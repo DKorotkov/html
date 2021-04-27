@@ -51,8 +51,8 @@ let { src, dest } = require("gulp"),
    uglify = require("gulp-uglify-es").default,
    // imagemin = require("gulp-imagemin"),
    webp = require("gulp-webp"),
-   // webphtml = require("gulp-webp-html"),
-   GulpWebpHtml2 = require("dk-webp-in-html"),
+   webphtml = require("gulp-webp-in-html"),
+   // GulpWebpHtml2 = require("dk-webp-in-html"),
    webpcss = require("dk-webp-css"),
    svgSprite = require("gulp-svg-sprite"),
    ttf2woff = require("gulp-ttf2woff"),
@@ -78,14 +78,13 @@ function html() {
    return (
       src(path.app.html)
          .pipe(fileinclude())
-
-         // .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" })) // Для корректной работы плагина необходимо передавать в случае если эти изображения необходимо подготовить для разный разрешений -
+         .pipe(webphtml())
+         .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" })) // Для корректной работы плагина необходимо передавать в случае если эти изображения необходимо подготовить для разный разрешений -
          //  <img class="lazyload"  data-was-processed="true" data-src="/img/hello.jpg" alt="Hello!" />
          // в случает, если разные разрешения не нужны, а нужен только webp
          // <img src="/img/user.jpeg" alt="Быстров Борис Викторович" />
          // в случае если надо создать несколько вариантов изображений для загрузки через laziload в background
          // <section class="test lazyload" data-bgset="../img/projects.jpg" data-sizes="auto"> Это для lazyload background-image
-         .pipe(GulpWebpHtml2())
 
          .pipe(dest(path.dest.html))
          .pipe(browsersync.stream())

@@ -590,7 +590,7 @@ body {
 
 @media (min-width: 521px) {
   .container {
-    padding: 2.25rem 2rem;
+    padding: 0 2rem;
     max-width: 570px;
   }
 
