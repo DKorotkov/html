@@ -2,7 +2,7 @@
 <html lang="ru">
    @@include('_head.html')
    <body>
-      <div class="wrapper">
+      < class="wrapper">
          @@include('_header.html')
          <main class="page">
             <section class="simple__section container">
@@ -31,13 +31,17 @@
                <button class="button">Кнопка</button>
             </section>
             <section class="simple__section container sblock">
-               <div class="sblock__title">Изображения</div>
-               <img class="lazyload" data-src="/img/user.jpeg" alt="User" data-was-processed="true" />
+               <div class="sblock__title">Обычное изображение</div>
+               <img src="/img/user.jpeg" alt="User" />
 
                <!-- <picture>
                   <source data-srcset="../img/sec1.webp" type="image/webp" />
                   <img class="lazyload" data-src="../img/sec1.jpeg" alt="User" data-was-processed="true"
                /></picture> -->
+            </section>
+            <section class="simple__section container sblock">
+               <div class="sblock__title">Изображение с lazyload</div>             
+               <img class="lazyload" data-src="/img/user.jpeg" alt="User" data-was-processed="true" />
             </section>
          </main>
          @@include('_footer.html')

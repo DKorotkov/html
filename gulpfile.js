@@ -78,8 +78,8 @@ function html() {
    return (
       src(path.app.html)
          .pipe(fileinclude())
+         .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" }))
          .pipe(webphtml())
-         .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" })) // Для корректной работы плагина необходимо передавать в случае если эти изображения необходимо подготовить для разный разрешений -
          //  <img class="lazyload"  data-was-processed="true" data-src="/img/hello.jpg" alt="Hello!" />
          // в случает, если разные разрешения не нужны, а нужен только webp
          // <img src="/img/user.jpeg" alt="Быстров Борис Викторович" />
