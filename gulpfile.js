@@ -380,7 +380,11 @@ function watchFiles(params) {
 }
 
 function clean(params) {
-   return del(path.clean);
+   return del([path.clean.html, path.clean.css, path.clean.js]);
+}
+
+function cleanAll(params) {
+   return del(path.cleanAll);
 }
 
 let server = gulp.parallel(gulp.series(clean, html, css, js), watchFiles, browserSync); // Основной режим для верстки
