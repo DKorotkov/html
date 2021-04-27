@@ -2,8 +2,6 @@
 //npm-check-updates - обновление всех плагинов !!!  ncu  !!
 //git subtree push --prefix dist origin gh-pages - добавляет в репозиторий новую ветку, для отображения страницы в github pages
 
-//gulp fb - запускает первый запуск: генерирует шрифты.
-
 let project_folder = "dist";
 //let project_folder = require("path").basename(__dirname); //Папка по имени проекта
 let source_folder = "app";
@@ -56,17 +54,20 @@ let { src, dest } = require("gulp"),
    uglify = require("gulp-uglify-es").default,
    // imagemin = require("gulp-imagemin"),
    webp = require("gulp-webp"),
-   webphtml = require("gulp-webp-in-html"),
-   // GulpWebpHtml2 = require("dk-webp-in-html"),
+   // webphtml = require("gulp-webp-html"),
+   GulpWebpHtml2 = require("dk-webp-in-html"),
    webpcss = require("dk-webp-css"),
    svgSprite = require("gulp-svg-sprite"),
    ttf2woff = require("gulp-ttf2woff"),
    ttf2woff2 = require("gulp-ttf2woff2"),
    fonter = require("gulp-fonter"),
-   // changed = require("gulp-changed"),
+   changed = require("gulp-changed"),
    responsiveImg = require("gulp-responsive"),
-   never = require("gulp-newer"),
+   newer = require("gulp-newer"),
    lqipBase64 = require("gulp-lqip-base64"),
+   gulpImgLqip = require("gulp-image-lqip"),
+   htmlclean = require("gulp-htmlclean"),
+   entities = require("gulp-html-entities"),
    del = require("del");
 
 function browserSync(params) {
@@ -79,18 +80,21 @@ function browserSync(params) {
    });
 }
 
+// В сборку добавить удаление комментариев и минификацию
 function html() {
    return (
       src(path.app.html)
+         .pipe(changed(project_folder))
          .pipe(fileinclude())
-         .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" }))
-         .pipe(webphtml())
+
+         .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" })) // Для корректной работы плагина необходимо передавать в случае если эти изображения необходимо подготовить для разный разрешений -
          //  <img class="lazyload"  data-was-processed="true" data-src="/img/hello.jpg" alt="Hello!" />
          // в случает, если разные разрешения не нужны, а нужен только webp
          // <img src="/img/user.jpeg" alt="Быстров Борис Викторович" />
          // в случае если надо создать несколько вариантов изображений для загрузки через laziload в background
          // <section class="test lazyload" data-bgset="../img/projects.jpg" data-sizes="auto"> Это для lazyload background-image
-
+         .pipe(GulpWebpHtml2())
+         .pipe(entities("decode"))
          .pipe(dest(path.dest.html))
          .pipe(browsersync.stream())
    );
@@ -276,7 +280,7 @@ function imgToResp() {
                } else path.dirname += "/" + path.basename;
             })
          )
-         // .pipe(never(path.dest.img)) // Отслеживает только измененные файлы
+         // .pipe(newer(path.dest.img)) // Отслеживает только измененные файлы
 
          .pipe(dest(path.dest.imgToResponsSRC))
 
@@ -286,6 +290,7 @@ function imgToResp() {
 
 function img() {
    return src(path.app.img)
+      .pipe(newer(path.dest.img))
       .pipe(dest(path.dest.img))
 
       .pipe(browsersync.stream());
@@ -302,8 +307,8 @@ function towebp() {
                quality: 70,
             })
          )
-         // .pipe(never(path.dest.img)) // Отслеживает только измененные файлы
-         // .pipe(never(path.dest.img)) // Отслеживает только измененные файлы
+         // .pipe(newer(path.dest.img)) // Отслеживает только измененные файлы
+         // .pipe(newer(path.dest.img)) // Отслеживает только измененные файлы
          .pipe(dest(path.dest.img))
    );
 }
@@ -314,21 +319,23 @@ function favicon() {
 }
 
 function svgsprite() {
-   return gulp
-      .src([source_folder + "/img/svg/*.svg", "!" + source_folder + "/img/svg/icons.svg"])
-      .pipe(never(path.dest.img)) // Отслеживает только измененные файлы
-      .pipe(
-         svgSprite({
-            mode: {
-               stack: {
-                  sprite: "../svg/icons.svg",
-                  example: true,
+   return (
+      gulp
+         .src([source_folder + "/img/svg/*.svg", "!" + source_folder + "/img/svg/icons.svg"])
+         // .pipe(newer(path.app.img)) // Отслеживает только измененные файлы
+         .pipe(
+            svgSprite({
+               mode: {
+                  stack: {
+                     sprite: "../svg/icons.svg",
+                     example: true,
+                  },
                },
-            },
-         })
-      )
-      .pipe(dest(path.dest.img))
-      .pipe(browsersync.stream());
+            })
+         )
+         .pipe(dest(path.dest.img))
+         .pipe(browsersync.stream())
+   );
 }
 
 function fonts(params) {
@@ -394,7 +401,7 @@ function watchFiles(params) {
    gulp.watch([path.watch.html], html);
    gulp.watch([path.watch.css], css);
    gulp.watch([path.watch.js], js);
-   gulp.watch([path.watch.img], img);
+   gulp.watch([path.watch.img], gulp.series(img, towebp));
    gulp.watch([path.watch.svg], svgsprite);
 }
 
