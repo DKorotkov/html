@@ -634,7 +634,7 @@ body {
 
 @media (max-width: 521px) {
   .container {
-    padding: var(--space-md);
+    padding: 0 var(--space-md);
     min-width: 320px;
   }
 }

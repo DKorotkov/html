@@ -76,6 +76,8 @@
 
 .simple__section {
   border: 1px dotted #ccc;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
 }
 
 .sblock__title {
