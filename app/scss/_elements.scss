@@ -75,7 +75,7 @@ picture {
 .container {
    margin: 0 auto;
    @media (max-width: $md1+px) {
-      padding: var(--space-md);
+      padding: 0 var(--space-md);
       min-width: $minWidth;
    }
    // Small devices (landscape phones, 576px and up)

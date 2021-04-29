@@ -68,6 +68,7 @@ let { src, dest } = require("gulp"),
    gulpImgLqip = require("gulp-image-lqip"),
    htmlclean = require("gulp-htmlclean"),
    entities = require("gulp-html-entities"),
+   source = require("./index"),
    del = require("del");
 
 function browserSync(params) {
@@ -87,13 +88,14 @@ function html() {
          .pipe(changed(project_folder))
          .pipe(fileinclude())
 
-         .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" })) // Для корректной работы плагина необходимо передавать в случае если эти изображения необходимо подготовить для разный разрешений -
          //  <img class="lazyload"  data-was-processed="true" data-src="/img/hello.jpg" alt="Hello!" />
          // в случает, если разные разрешения не нужны, а нужен только webp
          // <img src="/img/user.jpeg" alt="Быстров Борис Викторович" />
          // в случае если надо создать несколько вариантов изображений для загрузки через laziload в background
          // <section class="test lazyload" data-bgset="../img/projects.jpg" data-sizes="auto"> Это для lazyload background-image
-         .pipe(webphtml())
+         .pipe(source())
+         .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" })) // Для корректной работы плагина необходимо передавать в случае если эти изображения необходимо подготовить для разный разрешений -
+
          .pipe(entities("decode"))
          .pipe(dest(path.dest.html))
          .pipe(browsersync.stream())
