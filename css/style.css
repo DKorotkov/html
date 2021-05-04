@@ -80,6 +80,10 @@
   padding-bottom: 0.625rem;
 }
 
+.sblock {
+  max-width: 25rem;
+}
+
 .sblock__title {
   margin: 10px 0;
 }
@@ -138,5 +142,11 @@
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     gap: 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .simple__section {
+    margin: 1.25rem auto;
   }
 }
