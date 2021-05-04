@@ -10,9 +10,13 @@
    border: 1px dotted #ccc;
    padding-top: rem(10);
    padding-bottom: rem(10);
+   @media (max-width: $md0+px) {
+      margin: rem(20) auto;
+   }
 }
 
 .sblock {
+   max-width: rem(400);
    &__title {
       margin: 10px 0;
    }

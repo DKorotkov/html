@@ -27,7 +27,7 @@ const gulpSourceToHTML = (pluginOptions = {}) => {
             // let RePicture = /([\s\S]*?<\/picture>)([\s\S]*)/; // Строка которая закрывает верхнюю строку
             // let RePicture2 = /.*<\/picture>/;
             // let Reimg2 = /.*<img.*(data-src|src).*(\D*<\/picture>|\/>)/; // Строка которая закрывает верхнюю строку
-            let reImg3 = /.*<img.*(\sdata-src|\ssrc)="(.*\.\w*)\D*(<\/picture>|\/>)/;
+            let reImg3 = /<img.*(\sdata-src|\ssrc)=[\'\"](\S*)[\'\"].*\s*(\/>|<\/picture>)/;
             let reImg4 = /<img.*\n*?\/>/;
 
             let SplitImg = "<img "; // Строка, которой разбивает на массивы во второй раз.
