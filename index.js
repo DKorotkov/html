@@ -23,16 +23,10 @@ const gulpSourceToHTML = (pluginOptions = {}) => {
       const options = { ...defaultOptions, ...pluginOptions };
       (async () => {
          try {
-            // let SplitPicture = /<picture>/; // Строка, которой разбивает на массивы в первый раз.
-            // let RePicture = /([\s\S]*?<\/picture>)([\s\S]*)/; // Строка которая закрывает верхнюю строку
-            // let RePicture2 = /.*<\/picture>/;
-            // let Reimg2 = /.*<img.*(data-src|src).*(\D*<\/picture>|\/>)/; // Строка которая закрывает верхнюю строку
             let reImg3 = /<img.*(\sdata-src|\ssrc)=[\'\"](\S*)[\'\"].*\s*(\/>|<\/picture>)/;
             let reImg4 = /<img.*\n*?\/>/;
 
             let SplitImg = "<img "; // Строка, которой разбивает на массивы во второй раз.
-            // let ReImg = /<img([^>]*)src=[\"\'](\S+)[\"\']([^>]*)>/; // Подстрока, где хранится адрес к картинке в src
-            // var ReImgDataSrc = /<img([^>]*)src=[\"\'](\S+)[\"\']([^>]*)>/; // Подстрока, где хранится адрес к картинке в data-src
 
             const data = file.contents;
 
@@ -71,7 +65,6 @@ const gulpSourceToHTML = (pluginOptions = {}) => {
                   return line;
                })
                .join("");
-            // console.log(`--------------------------------all ---------------------- \n ${newData}`);
 
             file.contents = Buffer.from(newData);
             callback(null, file);
@@ -83,5 +76,3 @@ const gulpSourceToHTML = (pluginOptions = {}) => {
 };
 
 module.exports = gulpSourceToHTML;
-
-// function changeExtensions ()
