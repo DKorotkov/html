@@ -1,2 +1,17 @@
-@@include("modules/keys.js"); //Управление кнопкой меню "Гамбургер"
+@@include("modules/keys.js"); // Набор описания кнопок
 @@include("modules/hamburger.js"); //Управление кнопкой меню "Гамбургер"
+
+
+// Загрузка шрифтов через скрипт
+var font = new FontFaceObserver('Pangolin');
+var html = document.documentElement;
+
+font.load().then(function () {
+    html.classList.remove('fonts-loading');
+    html.classList.add('fonts-loaded');
+    sessionStorage.fontsLoaded = true;
+}).catch(function () {
+    html.classList.remove('fonts-loading');
+    html.classList.add('fonts-failed');
+    sessionStorage.fontsLoaded = false;
+});
