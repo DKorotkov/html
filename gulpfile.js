@@ -7,6 +7,18 @@ let project_folder = "dist";
 let source_folder = "app";
 
 let fs = require("fs");
+const { basename } = require("path");
+
+let rImg = {
+   path: "/ImgToResp/", // Папка с изображениями, которые необходимо будет разбить на разные разрешения
+   resolution: {
+      // Размерность разбитых файлов
+      md1: 360,
+      md2: 1280,
+      md3: 1920,
+   },
+   suffix: "-",
+};
 
 let path = {
    dest: {
@@ -14,7 +26,7 @@ let path = {
       css: project_folder + "/css/",
       js: project_folder + "/js/",
       img: project_folder + "/img/",
-      imgToResponsSRC: project_folder + "/img/ImgToResp/",
+      imgToResponsSRC: project_folder + "/img" + rImg.path,
       imgToRespons: [project_folder + "/img/**/*.{jpeg,jpg,png}", "!" + project_folder + "/img/favicon/*"],
       fonts: project_folder + "/fonts/",
    },
@@ -22,8 +34,8 @@ let path = {
       html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"],
       css: [source_folder + "/scss/style.scss", source_folder + "/scss/header.scss"],
       js: source_folder + "/js/*.js",
-      img: [source_folder + "/img/*.{jpeg,jpg,png,svg,gif,ico,webp}", "!" + source_folder + "/img/ImgToResp/*", "!" + source_folder + "/img/favicon/*"],
-      imgToRespons: source_folder + "/img/ImgToResp/*.{jpg,jpeg,png}",
+      img: [source_folder + "/img/*.{jpeg,jpg,png,svg,gif,ico,webp}", "!" + source_folder + "/img" + rImg.path + "*", "!" + source_folder + "/img/favicon/*"],
+      imgToRespons: source_folder + "/img" + rImg.path + "*.{jpg,jpeg,png}",
       fav: source_folder + "/img/favicon/**/*",
       fonts: source_folder + "/fonts/*.ttf",
    },
@@ -85,7 +97,7 @@ function browserSync(params) {
 function html() {
    return (
       src(path.app.html)
-         .pipe(changed(project_folder))
+         // .pipe(changed(project_folder))
          .pipe(fileinclude())
 
          //  <img class="lazyload"  data-was-processed="true" data-src="/img/hello.jpg" alt="Hello!" />
@@ -93,7 +105,7 @@ function html() {
          // <img src="/img/user.jpeg" alt="Быстров Борис Викторович" />
          // в случае если надо создать несколько вариантов изображений для загрузки через laziload в background
          // <section class="test lazyload" data-bgset="../img/projects.jpg" data-sizes="auto"> Это для lazyload background-image
-         .pipe(source())
+         .pipe(source({ rImg: rImg }))
          .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" })) // Для корректной работы плагина необходимо передавать в случае если эти изображения необходимо подготовить для разный разрешений -
 
          .pipe(entities("decode"))
@@ -178,80 +190,75 @@ function imgToResp() {
    //Формирует изображения для разных размеров экрана из оригинального.
    return (
       src(path.app.imgToRespons)
+         .pipe(changed(project_folder))
          .pipe(
             responsiveImg(
                {
                   "*": [
                      {
-                        width: 600,
+                        quality: 100,
+                     },
+                     {
+                        width: rImg.resolution.md1,
                         rename: {
-                           suffix: "-small",
-                           extname: ".jpg",
+                           suffix: rImg.suffix + rImg.resolution.md1.toString(),
                         },
                         withoutEnlargement: true,
                      },
                      {
-                        width: 600 * 2,
+                        width: rImg.resolution.md1 * 2,
                         rename: {
-                           suffix: "-small@2x",
-                           extname: ".jpg",
+                           suffix: rImg.suffix + (rImg.resolution.md1 * 2).toString(),
                         },
                         withoutEnlargement: true,
                      },
                      {
-                        width: 600 * 3,
+                        width: rImg.resolution.md1 * 3,
                         rename: {
-                           suffix: "-small@3x",
-                           extname: ".jpg",
+                           suffix: rImg.suffix + (rImg.resolution.md1 * 3).toString(),
                         },
                         withoutEnlargement: true,
                      },
                      {
-                        width: 1024,
+                        width: rImg.resolution.md2,
                         rename: {
-                           suffix: "-large",
-                           extname: ".jpg",
+                           suffix: rImg.suffix + rImg.resolution.md2.toString(),
                         },
                         withoutEnlargement: true,
                      },
                      {
-                        width: 1024 * 2,
+                        width: rImg.resolution.md2 * 2,
                         rename: {
-                           suffix: "-large@2x",
-                           extname: ".jpg",
+                           suffix: rImg.suffix + (rImg.resolution.md2 * 2).toString(),
                         },
                         withoutEnlargement: true,
                      },
                      {
-                        width: 1024 * 3,
+                        width: rImg.resolution.md2 * 3,
                         rename: {
-                           suffix: "-large@3x",
-                           extname: ".jpg",
+                           suffix: rImg.suffix + (rImg.resolution.md2 * 3).toString(),
                         },
                         withoutEnlargement: true,
                      },
 
                      {
-                        width: 2560,
+                        width: rImg.resolution.md3,
                         rename: {
-                           suffix: "-extralarge",
-                           extname: ".jpg",
+                           suffix: rImg.suffix + rImg.resolution.md3.toString(),
                         },
                         withoutEnlargement: true,
                      },
                      {
-                        width: 2560 * 2,
+                        width: rImg.resolution.md3 * 2,
                         rename: {
-                           suffix: "-extralarge@2x",
-                           extname: ".jpg",
+                           suffix: rImg.suffix + (rImg.resolution.md3 * 2).toString(),
                         },
                         withoutEnlargement: true,
                      },
                      {
-                        width: 2560 * 3,
+                        width: rImg.resolution.md3 * 3,
                         rename: {
-                           suffix: "-extralarge@3x",
-                           extname: ".jpg",
+                           suffix: rImg.suffix + (rImg.resolution.md3 * 3).toString(),
                         },
                         withoutEnlargement: true,
                      },

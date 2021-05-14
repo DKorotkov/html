@@ -19,7 +19,7 @@ const gulpSourceToHTML = (pluginOptions = {}) => {
          return callback(new PluginError(PLUGIN_NAME, "Streaming not supported"));
       }
 
-      const defaultOptions = { rootpath: file.base, extensions: [".jpg", ".png", ".jpeg", ".JPG", ".PNG", ".JPEG"], newExtensions: [".webp"] };
+      const defaultOptions = { rootpath: file.base, newExtensions: [".webp"] };
       const options = { ...defaultOptions, ...pluginOptions };
       (async () => {
          try {
@@ -27,6 +27,8 @@ const gulpSourceToHTML = (pluginOptions = {}) => {
             let reImg4 = /<img.*\n*?\/>/;
 
             let SplitImg = "<img "; // Строка, которой разбивает на массивы во второй раз.
+
+            let density = 3; // Плотность экрана 1х, 2х, 3х
 
             const data = file.contents;
 
@@ -47,16 +49,42 @@ const gulpSourceToHTML = (pluginOptions = {}) => {
 
                      let src = "srcset";
                      if (lsrc.includes("data-")) src = "data-srcset"; // Если содержит data
+
                      let newHTML = "";
 
                      options.newExtensions.forEach(function (item) {
                         // для каждого нового расширения
-                        for (let k in options.extensions) {
-                           // Находим нужное расширение из доступных
-                           lpath = lpath.replace(options.extensions[k], item);
+
+                        if (options.rImg.path && lpath.indexOf(options.rImg.path) > -1) {
+                           // Если объявлен путь к файлам с респонс изображениями
+                           let re = /[^\/]+(?=\.)/;
+                           let filename = lpath.match(re);
+                           lpath = lpath.replace(filename, filename + "/" + filename);
+                           for (let md in options.rImg.resolution) {
+                              let newLpath = "";
+                              let sufx = "";
+                              for (let i = 1; i <= density; i++) {
+                                 // Для всех плотностей экрана
+                                 sufx = " " + i + "x, ";
+                                 if (i == 1) sufx = ", ";
+                                 else if (i == density) sufx = " " + i + "x";
+
+                                 newLpath += lpath.replace(filename + ".", filename + "-" + (options.rImg.resolution[md] * i).toString() + ".");
+                                 newLpath += sufx;
+                              }
+                              newHTML += '<source media="(max-width: ' + options.rImg.resolution[md] + 'px)" ' + src + '="' + newLpath + '" type="image/' + item.slice(1) + '">';
+                              var lResolut = options.rImg.resolution[md];
+                           }
+                           newHTML += '<source media="(min-width: ' + lResolut + 'px)" ' + src + '="' + lpath + '" type="image/' + item.slice(1) + '">';
+                           re = /\.\w+/gm;
+                           let tHTML = newHTML.replace(re, item);
+                           newHTML = tHTML + newHTML;
+                        } else {
+                           let re = /\.\w+/gm;
+                           lpath = lpath.replace(re, item);
+                           newHTML += "<source " + src + '="' + lpath + '" type="image/' + item.slice(1) + '">';
+                           lpath = lineA[2];
                         }
-                        newHTML += "<source " + src + '="' + lpath + '" type="image/' + item.slice(1) + '">';
-                        lpath = lineA[2];
                      });
                      newHTML += limage;
                      if (!lpic.includes("/picture")) newHTML = `<picture>\n${newHTML}\n</picture>`; // Если не в picture
