@@ -58,45 +58,45 @@ picture {
    // }
 }
 
-.wrpapper,
-.container {
-   overflow: visible;
-}
+// .wrpapper,
+// .container {
+//    overflow: visible;
+// }
 
-.page {
+.page-main {
    flex-grow: 1;
 }
 .header-main,
-.page,
-.footer {
+.page-main,
+.footer-main {
    flex-shrink: 0;
 }
 // СЕТКА
 .container {
    margin: 0 auto;
-   @media (max-width: $md1+px) {
+   @media (max-width: $md0+px) {
       padding: 0 var(--space-md);
-      min-width: $minWidth;
+      min-width: var(--minWidth);
    }
    // Small devices (landscape phones, 576px and up)
    @media (min-width: $md1+px) {
-      padding: 0 rem(32);
-      max-width: 570px;
+      padding: 0 var(--space-lg);
+      max-width: calc(var(--space-lg) * 2 + var(--md1));
    }
 
    // Medium devices (tablets, 768px and up)
    @media (min-width: $md2+px) {
-      max-width: 750px;
+      max-width: calc(var(--space-lg) * 2 + var(--md2));
    }
 
    // Large devices (desktops, 992px and up)
    @media (min-width: $md3+px) {
-      max-width: 970px;
+      max-width: calc(var(--space-lg) * 2 + var(--md3));
    }
 
    // Extra large devices (large desktops, 1200px and up)
    @media (min-width: $md4+px) {
-      max-width: 1170px;
+      max-width: var(--maxWidth);
    }
 }
 

@@ -3,8 +3,12 @@
 // Шрифт по умолчанию-------
 $fontFamily: system-ui;
 
-$minWidth: 320px; // минимальным размер экрана
-$maxWidth: 1200; // максимальный размер экрана
+// $minWidth: 320; // минимальным размер экрана
+// $maxWidth: 1200; // максимальный размер экрана
+:root {
+   --minWidth: 320px;
+   --maxWidth: 1140px;
+}
 
 //Ьочки в bootstrap sm-540px	md-720px	lg-960px	xl-1140px
 // @media (min-width:320px) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ }
@@ -20,6 +24,13 @@ $md1: 521;
 $md2: 720;
 $md3: 960;
 $md4: 1140;
+
+:root {
+   --md1: 520px;
+   --md2: 720px;
+   --md3: 960px;
+   // --md4: 1140px;
+}
 
 // Цвета
 :root {
@@ -61,13 +72,13 @@ $md4: 1140;
    --size-navigation-large: 4.5rem;
 }
 
-@supports (--css: variables) {
-   :root {
-      @media (max-width: $md0+px) {
-         --space-unit: 1.2em;
-      }
-   }
-}
+// @supports (--css: variables) {
+//    :root {
+//       @media (max-width: $md0+px) {
+//          --space-unit: 1.2em;
+//       }
+//    }
+// }
 
 // ---------------------------------------------МИКСИНЫ--------------------------------------------
 // Класс для поределения фокуса элементов :focus

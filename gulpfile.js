@@ -105,8 +105,8 @@ function html() {
          // <img src="/img/user.jpeg" alt="Быстров Борис Викторович" />
          // в случае если надо создать несколько вариантов изображений для загрузки через laziload в background
          // <section class="test lazyload" data-bgset="../img/projects.jpg" data-sizes="auto"> Это для lazyload background-image
-         .pipe(source({ rImg: rImg }))
-         .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" })) // Для корректной работы плагина необходимо передавать в случае если эти изображения необходимо подготовить для разный разрешений -
+         // .pipe(source({ rImg: rImg }))
+         // .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" })) // Для корректной работы плагина необходимо передавать в случае если эти изображения необходимо подготовить для разный разрешений -
 
          .pipe(entities("decode"))
          .pipe(dest(path.dest.html))
@@ -117,6 +117,10 @@ function html() {
 function html_build() {
    return src(path.app.html)
       .pipe(fileinclude())
+      .pipe(source({ rImg: rImg }))
+      .pipe(lqipBase64({ srcAttr: "data-src", attribute: "src" })) // Для корректной работы плагина необходимо передавать в случае если эти изображения необходимо подготовить для разный разрешений -
+
+      .pipe(entities("decode"))
       .pipe(
          htmlclean({
             protect: /<\!--%fooTemplate\b.*?%-->/g,
