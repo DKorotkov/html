@@ -97,7 +97,7 @@ function browserSync(params) {
 function html() {
    return (
       src(path.app.html)
-         // .pipe(changed(project_folder))
+         .pipe(changed(project_folder))
          .pipe(fileinclude())
 
          //  <img class="lazyload"  data-was-processed="true" data-src="/img/hello.jpg" alt="Hello!" />
