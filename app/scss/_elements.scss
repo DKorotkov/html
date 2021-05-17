@@ -1,32 +1,5 @@
-@import "_functions"; // Импорт моих функций
-@import "../../node_modules/system-font-css/system-font.scss"; //Не забудь посмотреть обновления к этому модулю. npm install --save system-font-css
-
-// ШРИФТЫ
-// Подключаем шрифты--------------------------------------------------------------------------------------------------------------
-// &display=swap&subset=cyrillic-ext Для подкючения шрифтов Кирилицы в Google Fonts в самом конце ссылки к размерам шрифта
-// Не забудь поставить ковычки в Google Fonts при применении плагина и отключить лишние шрифты
-
-//Для подклюения файлов шрифтов с использованием Gulp
-@mixin font($font_name, $file_name, $weight, $style) {
-   @font-face {
-      font-family: $font_name;
-      font-display: swap;
-      src: url("../fonts/#{$file_name}.woff") format("woff"), url("../fonts/#{$file_name}.woff2") format("woff2");
-      font-weight: #{$weight};
-      font-style: #{$style};
-   }
-}
-
-@import "_fonts"; //импортируем шрифты из файла, созданного автоматически через Gulp
-
-// Здесь определяются все системные шрифты, если не используем загрузку шрифтов
-@font-face {
-   font-family: system;
-   font-style: normal;
-   font-weight: 300;
-   src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"),
-      local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
-}
+@import "functions"; // Импорт функций
+@import "variables"; // Импорт переменных
 
 // --------------------------------------ОБНУЛЕНИE И ОБЩИЕ ПАРАМЕТРЫ--------------------------------------
 
@@ -53,18 +26,21 @@ picture {
 }
 
 // ----------------------------------------------СТАНДАРТНЫЕ КЛАССЫ---------------------------------------------
-// класс для объявления шрифты после его загрузки
+// __класс для объявления шрифты после его загрузки_____
 .fonts-loaded body {
    font-family: $fontFamily;
 }
+// _____________________________________________________
 
-// Класс для полифила focus
+// ________Класс для полифила focus_____________________
 .js-focus-visible :focus:not(.focus-visible) {
    outline: none;
 }
 .focus-visible {
    @include focus;
 }
+// ____________________________________________________
+
 // необходимо Модофицировать этот элемент только для тех, на кого может попасть фокус
 * {
    outline-offset: 0;
@@ -90,6 +66,7 @@ picture {
 //    overflow: visible;
 // }
 
+// _____________Футер к низу_______________
 .page-main {
    flex-grow: 1;
 }
@@ -98,7 +75,9 @@ picture {
 .footer-main {
    flex-shrink: 0;
 }
-// СЕТКА
+// _________________________________________
+
+// __Обычный контейнер для респонза_________
 .container {
    margin: 0 auto;
    @media (max-width: $md0+px) {
@@ -126,6 +105,7 @@ picture {
       max-width: var(--maxWidth);
    }
 }
+// ____________________________________________________________
 
 .hide {
    display: none;
@@ -155,7 +135,3 @@ picture {
 .no-scroll {
    overflow: hidden;
 }
-
-// -----------------------------------------------ИКОНОЧНЫЙ ШРИФТ-----------------------------------------------
-
-// ---------------------------------------------КЛАССЫ СТРАНИЦЫ-------------------------------------------

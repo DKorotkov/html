@@ -1,86 +1,3 @@
-// -----------------------------------------ПЕРЕМЕННЫЕ-----------------------------------------------
-
-// Шрифт по умолчанию-------
-// $fontFamily: system-ui;
-$fontFamily: "Pangolin", system, sans-serif;
-
-// $minWidth: 320; // минимальным размер экрана
-// $maxWidth: 1200; // максимальный размер экрана
-:root {
-   --minWidth: 320px;
-   --maxWidth: 1140px;
-}
-
-//Ьочки в bootstrap sm-540px	md-720px	lg-960px	xl-1140px
-// @media (min-width:320px) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ }
-// @media (min-width:480px) { /* smartphones, Android phones, landscape iPhone */ }
-// @media (min-width:600px) { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ }
-// @media (min-width:801px) { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
-// @media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
-// @media (min-width:1281px) { /* hi-res laptops and desktops */ }
-
-// Брейкпоинты
-$md0: 520;
-$md1: 521;
-$md2: 720;
-$md3: 960;
-$md4: 1140;
-
-:root {
-   --md1: 520px;
-   --md2: 720px;
-   --md3: 960px;
-   // --md4: 1140px;
-}
-
-// Цвета
-:root {
-   --color-primary: #0a8fc4;
-   --color-active: #0a8fc4;
-
-   --color-bg-main: #fff;
-   --color-bg-gray: #f0f0f0;
-
-   --color-white: #fff;
-   --color-black: #000;
-
-   --color-success: rgb(38, 203, 124);
-   --color-error: rgb(255, 70, 66);
-   --color-warning: rgb(247, 125, 5);
-   --color-information: rgb(56, 132, 255);
-}
-
-// Размеры отступов
-:root {
-   --space-unit: 1em;
-}
-
-:root {
-   --space-xxxxs: calc(0.125 * var(--space-unit));
-   --space-xxxs: calc(0.25 * var(--space-unit));
-   --space-xxs: calc(0.375 * var(--space-unit));
-   --space-xs: calc(0.5 * var(--space-unit));
-   --space-sm: calc(0.75 * var(--space-unit));
-   --space-md: calc(1.25 * var(--space-unit));
-   --space-lg: calc(2 * var(--space-unit));
-   --space-xl: calc(3.25 * var(--space-unit));
-   --space-xxl: calc(5.25 * var(--space-unit));
-   --space-xxxl: calc(8.5 * var(--space-unit));
-   --space-xxxxl: calc(13.75 * var(--space-unit));
-   --component-padding: var(--space-md);
-
-   --size-navigation-small: 3.75rem;
-   --size-navigation-large: 4.5rem;
-}
-
-// @supports (--css: variables) {
-//    :root {
-//       @media (max-width: $md0+px) {
-//          --space-unit: 1.2em;
-//       }
-//    }
-// }
-
 // ---------------------------------------------МИКСИНЫ--------------------------------------------
 // Класс для поределения фокуса элементов :focus
 @mixin focus {
@@ -89,8 +6,6 @@ $md4: 1140;
    outline-style: auto;
    outline-color: var(--color-primary);
 }
-
-// ПОЛЬЗОВАТЕЛЬСКИЕ
 
 // --------------------------------------------ФУНКЦИИ----------------------------------------------
 
