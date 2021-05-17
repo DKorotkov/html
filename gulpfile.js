@@ -47,7 +47,7 @@ let path = {
       svg: source_folder + "/img/icons/svg/*.svg",
    },
    clean: {
-      html: project_folder + "/**/*.html",
+      html: project_folder + "*.html",
       css: project_folder + "/css/*.css",
       js: project_folder + "/js/*.js",
    },
