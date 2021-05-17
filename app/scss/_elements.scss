@@ -67,6 +67,10 @@ picture {
 // }
 
 // _____________Футер к низу_______________
+.body-main {
+   display: flex;
+   flex-direction: column;
+}
 .page-main {
    flex-grow: 1;
 }

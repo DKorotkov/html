@@ -2,56 +2,9 @@
 <html lang="ru">
    @@include('_head.html', { "description": "Описание сайта", "keywords": "Ключевые слова", "title": " Главная страница ", "site_name": " Название сайта ", "socials": { "autor": " Данила Коротков ", "copyright": " Данила Коротков ", "adress": "danila.korotkov@gmail.com", "image": "img/img1.jpeg",
    "link": "/index.html", "fb": "facebook.com/include", "tw": "twitter.com/include" } })
-   <body>
+   <body class="body-main">
       @@include('_header.html')
-      <main class="page-main container">
-         <section class="simple__section sblock">
-            <div class="sblock__title">Заголовки</div>
-            <h1>H1</h1>
-            <h2>H2</h2>
-            <h3>H3</h3>
-            <h4>H4</h4>
-            <h5>H5</h5>
-         </section>
-         <section class="simple__section sblock">
-            <div class="sblock__title">Цветовая схема</div>
-            <div class="color color--primary"><p class="color__title">primary</p></div>
-            <div class="color color--active"><p class="color__title">active</p></div>
-            <div class="color color--bg-main"><p class="color__title">bg-main</p></div>
-            <div class="color color--bg-gray"><p class="color__title">bg-gray</p></div>
-            <div class="color color--white"><p class="color__title">white</p></div>
-            <div class="color color--black"><p class="color__title">black</p></div>
-            <div class="color color--success"><p class="color__title">success</p></div>
-            <div class="color color--information"><p class="color__title">information</p></div>
-            <div class="color color--error"><p class="color__title">error</p></div>
-            <div class="color color--warning"><p class="color__title">warning</p></div>
-         </section>
-         <section class="simple__section sblock">
-            <div class="sblock__title">Элементы формы</div>
-            <button class="button">Кнопка</button>
-         </section>
-         <section class="simple__section sblock">
-            <div class="sblock__title">Обычное изображение</div>
-            <img src="img/bg.jpg" alt="bg" />
-         </section>
-         <section class="simple__section sblock">
-            <div class="sblock__title">Изображение с lazyload</div>
-            <img class="lazyload" data-src="img/user.jpeg" alt="User" data-was-processed="true" />
-         </section>
-         <section class="simple__section sblock">
-            <div class="sblock__title">Адаптивное изображение с lazyload</div>
-            <img class="lazyload" data-src="img/ImgToResp/sec1.jpeg" alt="sec1" data-was-processed="true" />
-         </section>
-      </main>
-      @@include('_footer.html')
-      <!-- js для загрухки шрифтов по времени, событию или из кэша -->
-      <script src="js/fontfaceobserver.standalone.min.js"></script>
-      <!-- ленивая загрузка изображений -->
-      <script defer src="js/lazyload.min.js"></script>
-      <!-- <script src="js/ls.bgset.js"></script> -->
-      <!-- Скрипт полифил для корректной работы не стадартного фокуса (focus-visible)  -->
-      <script defer src="js/focus-visible.min.js"></script>
-
-      <script defer src="js/script.min.js"></script>
+      <main class="page-main"><p>v</p></main>
+      @@include('_footer.html') @@include('_scripts.html')
    </body>
 </html>

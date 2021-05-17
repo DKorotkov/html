@@ -58,6 +58,7 @@ $hamburger-types: (squeeze) !default;
 
 //----------------------------СТИЛИ ЭЛЕМЕНТОВ----------------------------------------------------
 @import "elements/hamburger.scss";
+@import "elements/button.scss";
 
 //-----------------------------СТИЛИ БЛОКОВ-------------------------------------------------------
 @import "blocks/header-main.scss";

@@ -97,7 +97,7 @@ function browserSync(params) {
 function html() {
    return (
       src(path.app.html)
-         .pipe(changed(project_folder))
+         // .pipe(changed(project_folder)) // Не обновляет страницу, если изменения внесены только в файле, который инклудится
          .pipe(fileinclude())
 
          //  <img class="lazyload"  data-was-processed="true" data-src="/img/hello.jpg" alt="Hello!" />
