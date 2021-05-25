@@ -4,34 +4,43 @@
    Возможно использовать для основной навгиации на сайте и любых других меню.
    При объявлении кнопки закрытия меню фокус перемещяется только по элементам меню (trap focus)
 
+   data-selectFirst="true" - необходимо установить на элемент, который должн попасть в фокус при открытии модального окна 
+
 */
 
-modal(
-   (modalObj = {
-      activeButton: ".hamburger", // Кнопка открытия\закрытия меню
-      modal: ".nav", // Меню
-      itemModal: ".nav__item", // элемент меню, по которому проходим фокусом.
-      closeButton: ".nav__close", // Кнопка закрытия меню
-   })
-);
+// Модальное окно основной навигации на сатйе
+// modal(
+//    (modalObj = {
+//       activeButton: ".hamburger", // Кнопка открытия\закрытия модального окна | Обязательно для заполнения
+//       modal: ".nav", // Модальное окно | Обязательно для заполнения
+//       closeButton: ".nav__close", // Кнопка закрытия модального окна
+//       overlay: ".overlay", // Класс для оверлэя
+//       activeClass: "--active", // Класс, который будет добавляться при активации | Обязательно для заполнения
+//       isRoving: "true", // Необходимо ли переещать фокус только внутри открытого модального окна
+//    })
+// );
 
 function modal(modalObj) {
    const activeButton = document.querySelector(modalObj.activeButton);
    const modal = document.querySelector(modalObj.modal);
-   const itemModal = document.querySelectorAll(modalObj.itemModal);
    const closeButton = document.querySelector(modalObj.closeButton);
+   const overlay = document.querySelector(modalObj.overlay);
+   const isRoving = modalObj.isRoving ? modalObj.isRoving : false;
 
    const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
    const firstFocusableElement = modal.querySelectorAll(focusableElements)[0];
    const focusableContent = modal.querySelectorAll(focusableElements);
    const lastFocusableElement = focusableContent[focusableContent.length - 1];
+   const firstSelectedElement = modal.querySelector('[data-selectFirst="true"]');
+
+   let countPressTab = 0;
 
    activeButton.addEventListener("mousedown", open);
    activeButton.addEventListener("keydown", checkPress);
    activeButton.setAttribute("aria-expanded", "false");
 
    function open() {
-      if (activeButton.classList.contains("is-active")) {
+      if (activeButton.classList.contains(modalObj.activeButton.slice(1) + modalObj.activeClass)) {
          close();
          return;
       }
@@ -40,20 +49,23 @@ function modal(modalObj) {
       modal.addEventListener("keydown", checkPress);
       // modal.addEventListener("focusout", checkFocus);
 
-      itemModal.forEach((element) => {
+      focusableContent.forEach((element) => {
          element.addEventListener("focusout", checkFocus);
       });
 
       if (closeButton) closeButton.addEventListener("click", close);
 
-      activeButton.classList.add("is-active");
+      activeButton.classList.add(modalObj.activeButton.slice(1) + modalObj.activeClass);
       activeButton.setAttribute("aria-expanded", "true");
 
       modal.setAttribute("tabindex", "-1");
-      modal.classList.add("nav--active");
+      modal.classList.add(modalObj.modal.slice(1) + modalObj.activeClass);
+
+      if (overlay) overlay.classList.add(modalObj.overlay.slice(1) + modalObj.activeClass);
 
       setTimeout(function () {
-         itemModal[0].focus();
+         if (firstSelectedElement) firstSelectedElement.focus();
+         else firstFocusableElement.focus();
       }, 100);
    }
 
@@ -62,10 +74,10 @@ function modal(modalObj) {
          close();
       }
       if (e.keyCode === KEY.ENTER || e.keyCode === KEY.SPACE) {
-         if (!activeButton.classList.contains("is-active")) open();
+         if (!activeButton.classList.contains(modalObj.activeButton.slice(1) + modalObj.activeClass)) open();
       }
       if (e.keyCode === KEY.TAB) {
-         if (closeButton) {
+         if (isRoving) {
             if (e.shiftKey) {
                // if shift key pressed for shift + tab combination
                if (document.activeElement === firstFocusableElement) {
@@ -80,6 +92,17 @@ function modal(modalObj) {
                   e.preventDefault();
                }
             }
+         } else if (firstSelectedElement) {
+            countPressTab++;
+            if (countPressTab === focusableContent.length) {
+               close();
+               countPressTab = 0;
+            }
+            if (document.activeElement === lastFocusableElement) {
+               // if focused has reached to last focusable element then focus first focusable element after pressing tab
+               firstFocusableElement.focus(); // add focus for the first focusable element
+               e.preventDefault();
+            }
          }
       }
    }
@@ -90,19 +113,23 @@ function modal(modalObj) {
       modal.removeEventListener("keydown", checkPress);
       // modal.removeEventListener("focusout", checkFocus);
 
-      itemModal.forEach((element) => {
+      focusableContent.forEach((element) => {
          element.removeEventListener("focusout", checkFocus);
       });
 
       if (closeButton) closeButton.removeEventListener("click", close);
 
-      activeButton.classList.remove("is-active");
+      activeButton.classList.remove(modalObj.activeButton.slice(1) + modalObj.activeClass);
       activeButton.setAttribute("aria-expanded", "false");
 
       modal.setAttribute("tabindex", "");
-      modal.classList.remove("nav--active");
+      modal.classList.remove(modalObj.modal.slice(1) + modalObj.activeClass);
 
-      activeButton.focus();
+      if (overlay) overlay.classList.remove(modalObj.overlay.slice(1) + modalObj.activeClass);
+
+      setTimeout(function () {
+         activeButton.focus();
+      }, 100);
    }
 
    function checkFocus() {
