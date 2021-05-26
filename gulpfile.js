@@ -34,7 +34,7 @@ let path = {
       html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"],
       css: [source_folder + "/scss/style.scss", source_folder + "/scss/header.scss"],
       js: source_folder + "/js/*.js",
-      img: [source_folder + "/img/*.{jpeg,jpg,png,svg,gif,ico,webp}", "!" + source_folder + "/img" + rImg.path + "*", "!" + source_folder + "/img/favicon/*"],
+      img: [source_folder + "/img/**/*.{jpeg,jpg,png,svg,gif,ico,webp}", "!" + source_folder + "/img" + rImg.path + "*", "!" + source_folder + "/img/favicon/*"],
       imgToRespons: source_folder + "/img" + rImg.path + "*.{jpg,jpeg,png}",
       fav: source_folder + "/img/favicon/**/*",
       fonts: source_folder + "/fonts/*.ttf",
