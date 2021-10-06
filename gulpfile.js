@@ -1,5 +1,5 @@
+//npm-check-updates - обновление всех плагинов !!!  ncu -u  !!
 //npm i - установка всех пакетов.
-//npm-check-updates - обновление всех плагинов !!!  ncu  !!
 //git subtree push --prefix dist origin gh-pages - добавляет в репозиторий новую ветку, для отображения страницы в github pages
 
 let project_folder = "dist";
@@ -58,7 +58,8 @@ let { src, dest } = require("gulp"),
    gulp = require("gulp"),
    browsersync = require("browser-sync").create(),
    fileinclude = require("gulp-file-include"),
-   scss = require("gulp-sass"),
+   scss = require("gulp-sass")(require("sass")),
+   // scss = gulpSass(dartSass),
    autoPrefixer = require("gulp-autoprefixer"),
    group_media = require("gulp-group-css-media-queries"),
    clean_css = require("gulp-clean-css"),
@@ -135,11 +136,12 @@ function html_build() {
 function css() {
    return (
       src(path.app.css)
-         .pipe(
-            scss({
-               outputStyle: "expanded",
-            })
-         )
+         // .pipe(
+         //    scss({
+         //       outputStyle: "expanded",
+         //    })
+         // )
+         .pipe(scss({ outputStyle: "expanded" }).on("error", scss.logError))
          .pipe(group_media())
          .pipe(
             autoPrefixer({
