@@ -139,3 +139,17 @@ picture {
 .no-scroll {
    overflow: hidden;
 }
+
+.skip-nav-link {
+   position: absolute;
+   transform: translateY(-120%);
+   left: rem(5);
+   transition: transform 300ms ease-in;
+
+   background-color: #fff;
+   padding: rem(5) rem(10);
+
+   &:focus {
+      transform: translateY(0);
+   }
+}

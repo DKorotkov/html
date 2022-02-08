@@ -1,14 +1,15 @@
-// @import "normalise";
+@import "settings/normalise";
 
-// // --------------------------------------------------------------ШРИФТЫ------------------------------------------------------------
-// //RFS (simply the abbreviation for Responsive Font Size)  Это модуль, который дает возможность работы с адаптивным шрифтом (пример использования - @include rfs(64); где 64 это размер шрифта.
-// @import "../../node_modules/rfs/scss";
-// $rfs-two-dimensional: "true"; //Включение двухмерных медиа-запросов определит размер шрифта на основе самой маленькой стороны экрана с vmin. Это предотвращает изменение размера шрифта, если устройство переключается между портретным и альбомным режимами.
+// --------------------------------------------------------------ШРИФТЫ------------------------------------------------------------
+// RFS (simply the abbreviation for Responsive Font Size)  Это модуль, который дает возможность работы с адаптивным шрифтом (пример использования - @include rfs(64); где 64 это размер шрифта.
+@import "../../node_modules/rfs/scss";
+$rfs-two-dimensional: "true"; //Включение двухмерных медиа-запросов определит размер шрифта на основе самой маленькой стороны экрана с vmin. Это предотвращает изменение размера шрифта, если устройство переключается между портретным и альбомным режимами.
 
 // @import "../../node_modules/system-font-css/system-font.scss"; //Не забудь посмотреть обновления к этому модулю. npm install --save system-font-css, и отключи если не нужны эти системные шрифты ---system-ui----
+@import "../../node_modules/system-font-css/system-font";
 
-// // &display=swap&subset=cyrillic-ext Для подкючения шрифтов Кирилицы в Google Fonts в самом конце ссылки к размерам шрифта
-// // Не забудь поставить ковычки в Google Fonts при применении плагина и отключить лишние шрифты
+// &display=swap&subset=cyrillic-ext Для подкючения шрифтов Кирилицы в Google Fonts в самом конце ссылки к размерам шрифта
+// Не забудь поставить ковычки в Google Fonts при применении плагина и отключить лишние шрифты
 
 // //Для подклюения файлов шрифтов с использованием Gulp
 // @mixin font($font_name, $file_name, $weight, $style) {
@@ -32,10 +33,10 @@
 //       local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
 // }
 
-// // @import "_functions"; // Импорт моих функций
-// // @import "variables"; // Импорт переменных
-// @import "elements";
-// //@import "_reset.scss";
+@import "settings/functions"; // Импорт моих функций
+@import "settings/variables"; // Импорт переменных
+@import "settings/elements";
+// @import "_reset.scss";
 
 // // Кнопка бургера и настройки
 // $hamburger-layer-color: var(--color-black) !default;
@@ -58,9 +59,278 @@
 
 // //----------------------------СТИЛИ ЭЛЕМЕНТОВ----------------------------------------------------
 // @import "elements/hamburger.scss";
-// @import "elements/button.scss";
+@import "elements/button.scss";
 
 // //-----------------------------СТИЛИ БЛОКОВ-------------------------------------------------------
-// @import "blocks/header-main.scss";
-// @import "blocks/navigation.scss";
-// @import "blocks/page-main.scss";
+@import "blocks/header-main.scss";
+@import "blocks/navigation.scss";
+@import "blocks/page-main.scss";
+
+.page-main {
+   display: flex;
+   position: relative;
+   gap: 50px;
+   flex-direction: column;
+   padding: 50px;
+}
+
+.action-btn {
+   position: fixed;
+   top: 50px;
+   z-index: 999;
+}
+
+.block1 {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 80%;
+   gap: 20px;
+
+   &__container {
+      display: flex;
+
+      & p {
+         border: 1px solid #ccc;
+         padding: 20px;
+         height: 200px;
+         overflow: hidden;
+         transition: all 1s ease-in-out;
+      }
+      & p:nth-child(1) {
+         background-color: tomato;
+         width: 70%;
+      }
+      & p:nth-child(2) {
+         background-color: paleturquoise;
+         width: 30%;
+      }
+   }
+
+   &__container--action {
+      & p:nth-child(1) {
+         background-color: paleturquoise;
+         width: 30%;
+      }
+      & p:nth-child(2) {
+         width: 70%;
+         background-color: tomato;
+      }
+   }
+}
+
+.block2 {
+   position: relative;
+
+   width: 200px;
+   height: 350px;
+   cursor: pointer;
+
+   &::before {
+      position: absolute;
+      content: "";
+      inset: 0;
+      background-color: slategray;
+      opacity: 0.9;
+      transition: all 0.8s ease-out;
+   }
+
+   &__text-container {
+      // border: 1px solid red;
+
+      display: flex;
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      height: 30px;
+      width: 50%;
+      overflow: hidden;
+      flex-direction: column;
+   }
+
+   &:hover::before {
+      opacity: 0;
+   }
+
+   &__text-hover,
+   &__text {
+      position: absolute;
+      line-height: 1;
+      font-weight: bold;
+      font-size: 25px;
+      transition: transform 0.8s ease-out, color 0.8s ease-in;
+      color: snow;
+   }
+
+   &__text-hover {
+      transform: translateY(30px);
+   }
+
+   &:hover &__text-hover {
+      color: yellow;
+      transform: translateY(0px);
+   }
+   &:hover &__text {
+      color: yellow;
+      transform: translateY(-30px);
+   }
+}
+
+.block3 {
+   display: flex;
+   width: 150px;
+   height: 150px;
+   background-color: silver;
+   overflow: hidden;
+   transition-property: transform, font-size, color;
+   transition-duration: 1s, 300ms, 300ms;
+   transition-timing-function: ease-out;
+
+   color: snow;
+   justify-content: center;
+   align-items: center;
+   font-weight: bold;
+   font-size: 20px;
+
+   &--active {
+      transform: translateX(350px);
+      font-size: 500px;
+      color: transparent;
+   }
+}
+
+.block4 {
+   --transition-time: 300ms;
+   --x-transform: -40%;
+   position: relative;
+   width: min(100%, rem(450));
+   aspect-ratio: 1;
+   background: url("../@img/komnata.jpg");
+   background-size: cover;
+   overflow: hidden;
+   .chair {
+      &__img-container {
+         display: flex;
+         position: relative;
+         top: 45%;
+         // transform: rotatey(180deg) translate(var(--x-transform), 90%);
+         // transform: translate(0%, 45%);
+         left: 45%;
+         height: 100%;
+         opacity: 0;
+         perspective: 1000px;
+         transform-style: preserve-3d;
+         transition: all var(--transition-time) ease-out;
+         text-shadow: 0 0 20px 20px black;
+      }
+
+      &__img-left {
+         position: absolute;
+         width: 200px;
+         height: 200px;
+         background-image: url("../@img/chair.png");
+         background-repeat: no-repeat;
+         background-size: contain;
+
+         perspective-origin: right center;
+         clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+
+         animation: chair 3s ease-in-out infinite;
+         animation-direction: alternate;
+      }
+
+      &__img-right {
+         position: absolute;
+         width: 200px;
+         height: 200px;
+         background-image: url("../@img/chair.png");
+         background-repeat: no-repeat;
+         background-size: contain;
+
+         perspective-origin: left center;
+         clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+
+         animation: chair 3s ease-in-out infinite;
+         animation-direction: alternate;
+      }
+      &__text {
+         position: absolute;
+         top: 10%;
+         right: 0;
+         max-width: 80%;
+      }
+      &__text p,
+      &__text::before,
+      &__text::after {
+         transition: transform var(--transition-time);
+         transition-delay: 0ms;
+         transform: translateX(120%);
+      }
+
+      &__text p {
+         position: relative;
+         padding: 5px 10px;
+         background-color: #474646;
+         color: snow;
+         font-weight: bold;
+         transition-timing-function: ease-in;
+         z-index: 2;
+         @include rfs(20px);
+      }
+
+      &__text::before,
+      &__text::after {
+         position: absolute;
+         content: "";
+         inset: 0;
+      }
+      &__text::before {
+         left: -20%;
+         background-color: snow;
+         transition-timing-function: ease-out;
+      }
+      &__text::after {
+         left: -10%;
+         background-color: steelblue;
+         transition-timing-function: ease;
+      }
+   }
+
+   &:hover {
+      .chair {
+         &__img-container {
+            // transform: translate(10%, 45%);
+            left: 20%;
+            opacity: 1;
+         }
+         &__text p,
+         &__text::before,
+         &__text::after {
+            transform: translateX(0);
+            transition-delay: 300ms;
+         }
+      }
+   }
+}
+
+@keyframes chair {
+   0% {
+      transform: rotateY(10deg);
+   }
+   // 50% {
+   //    transform: rotateY(0deg)    // }
+   100% {
+      transform: rotateY(-10deg);
+   }
+}
+
+// @keyframes chair-left {
+//    0% {
+//       transform: rotateY(10deg);
+//    }
+//    // 50% {
+//    //    transform: rotateY(0deg)    // }
+//    100% {
+//       transform: rotateY(-10deg);
+//    }
+// }

@@ -12,6 +12,7 @@ export const scss = () => {
    return (
       gl.gulp
          .src(gl.path.app.scss)
+         .pipe(gl.plugins.newer(gl.path.dist.css))
          .pipe(
             gl.plugins.rename({
                extname: ".min.css",

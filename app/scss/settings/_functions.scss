@@ -1,5 +1,7 @@
 // ---------------------------------------------МИКСИНЫ--------------------------------------------
 // Класс для поределения фокуса элементов :focus
+@use "sass:math";
+
 @mixin focus {
    outline: rem(3) solid;
    outline-offset: rem(3);
@@ -12,9 +14,9 @@
 // Чтобы получить отрицательный отступ надо использовать:    $em: em(15, 16); margin: 0px (-$em);
 // width: calc(100% - #{rem(40)});
 @function em($pixels, $font_size) {
-   @return $pixels / $font_size + em;
+   @return math.div($pixels, $font_size) + em;
 }
 
 @function rem($pixels) {
-   @return $pixels / 16 + rem; //16 -  default font size
+   @return math.div($pixels, 16) + rem; //16 -  default font size
 }

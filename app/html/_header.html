@@ -1,19 +1,10 @@
 <header class="header-main">
-   <div class="header-main__container">
-      <button class="hamburger hamburger--squeeze header-main__hamburger" type="button" aria-label="Открыть основную навгацию" aria-controls="navigation" aria-haspopup>
-         <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-         </span>
-      </button>
-   </div>
-   <nav class="header-main__nav nav" id="navigation">
-      <div class="nav__container">
-         <ul class="nav__box">
-            <li><a class="nav__item" href="/simple.html">Simple</a></li>
-            <li><a class="nav__item" href="/img/stack/sprite.stack.html">SVG</a></li>
-            <li><a class="nav__item" href="#">Cсылка 3</a></li>
-            <li><a class="nav__item" href="#">Cсылка 4</a></li>
-         </ul>
-      </div>
+   <a class="skip-nav-link" href="#main-content">Пропустить навигацию</a>
+   <nav class="header-main__nav nav" id="navigation" aria-label="Главная навигация">
+      <ul class="nav__box" role="list">
+         <li><a class="nav__item" href="/simple.html" aria-current="page">Simple</a></li>
+         <li><a class="nav__item" href="#">Cсылка</a></li>
+         <li><a class="nav__item" href="#">Cсылка</a></li>
+      </ul>
    </nav>
 </header>

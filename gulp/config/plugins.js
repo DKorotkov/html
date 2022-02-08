@@ -6,6 +6,7 @@ import newer from "gulp-newer"; // Отслеживает только изме�
 import sourcemaps from "gulp-sourcemaps";
 import browserSync from "browser-sync";
 import gulpIf from "gulp-if";
+import fileinclude from "gulp-file-include";
 
 export const plugins = {
    replace,
@@ -16,4 +17,5 @@ export const plugins = {
    sourcemaps,
    newer,
    gulpIf,
+   fileinclude,
 };

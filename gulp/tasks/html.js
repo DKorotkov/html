@@ -1,4 +1,3 @@
-import fileinclude from "gulp-file-include";
 import webpHtmlNosvg from "gulp-webp-html-nosvg"; // Создает тэг для поддержки webp
 import versionNumber from "gulp-version-number"; // Для обновления версий файлов стилей и скриптов (проблема кэширования на сервере)
 
@@ -15,7 +14,7 @@ export const html = () => {
          //       })
          //    )
          // )
-         .pipe(fileinclude())
+         .pipe(gl.plugins.fileinclude())
          .pipe(gl.plugins.replace(/@img\//g, "img/"))
          .pipe(webpHtmlNosvg())
          .pipe(
