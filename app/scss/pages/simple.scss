@@ -1,3 +1,6 @@
+// @use "../settings/variables" as *; // Импорт функций
+
+
 .page {
    @media (min-width: $md1+px) {
       display: flex;
