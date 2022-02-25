@@ -9,35 +9,32 @@
 // @media (min-width:1281px) { /* hi-res laptops and desktops */ }
 
 // $minWidth: 320; // минимальным размер экрана
-// $maxWidth: 1200; // максимальный размер экрана
+// $maxWidth: 1140; // максимальный размер экрана
+
 :root {
    --minWidth: 320px;
    --maxWidth: 1140px;
 }
 
-// Брейкпоинты
-$md0: 520;
-$md1: 521;
-$md2: 720;
-$md3: 960;
-$md4: 1140;
+// ____________________Брейкпоинты__________________________________
+// $md0: 520;
+// $md1: 521;
+// $md2: 720;
+// $md3: 960;
+// $md4: 1140;
 
-:root {
-   --md1: 520px;
-   --md2: 720px;
-   --md3: 960px;
-   // --md4: 1140px;
-}
+// :root {
+//    --md0: 520px;
+//    --md1: 521px;
+//    --md2: 720px;
+//    --md3: 960px;
+//    --md4: 1140px;
+// }
 
-// Шрифт по умолчанию-------
-// $fontFamily: system-ui;
-// $fontFamily: "Pangolin", system, sans-serif;
-$fontFamily: system-ui, "Segoe UI", Tahoma;
 
-// Цвета
+// ____________________Цвета_________________________________________
 :root {
    --color-primary: #0a8fc4;
-   --color-active: #0a8fc4;
 
    --color-bg-main: #fff;
    --color-bg-gray: #f0f0f0;
@@ -51,7 +48,7 @@ $fontFamily: system-ui, "Segoe UI", Tahoma;
    --color-information: rgb(56, 132, 255);
 }
 
-// Размеры отступов
+// _____________________Размеры отступов_________________________________
 :root {
    --space-unit: 1em;
 }
@@ -68,6 +65,7 @@ $fontFamily: system-ui, "Segoe UI", Tahoma;
    --space-xxl: calc(5.25 * var(--space-unit));
    --space-xxxl: calc(8.5 * var(--space-unit));
    --space-xxxxl: calc(13.75 * var(--space-unit));
+
    --component-padding: var(--space-md);
 
    --size-navigation-small: 3.75rem;

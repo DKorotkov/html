@@ -17,15 +17,51 @@
    //          html.classList.add("fonts-failed");
    //          sessionStorage.fontsLoaded = false;
    //       });
+   gsap.registerPlugin(ScrollTrigger);
 
-   const actionBtn = document.querySelector(".action-btn");
-   actionBtn.addEventListener("click", actionClick);
+   let sections = gsap.utils.toArray(".section");
+   sections.forEach((section, i) => {
+      // Анимация пролистывания страниц
+      gsap.to(section, {
+         scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            snap: 1,
+         },
+      });
+      // Секция Инфо
+      section.info = section.querySelector(".info");
+      // gsap.fromTo(
+      //    section.info,
+      //    { yPercent: 200 },
+      //    {
+      //       yPercent: -200,
+      //       scrollTrigger: {
+      //          trigger: section,
+      //          start: "top center",
+      //          // end: "bottom center",
+      //          markers: true,
+      //          scrub: 1,
+      //       },
+      //    }
+      // );
+      // Секция img
+      section.img = section.querySelector(".section__img-wrapper");
+      gsap.fromTo(
+         section.img,
+         { opacity: 0, className: "section__img-wrapper--fixed" },
+         {
+            opacity: 1,
+            scrollTrigger: {
+               trigger: section,
+               start: "top center",
+               end: "bottom center",
+               // markers: true,
+               toggleActions: "restart reverse restart reverse",
+            },
+         }
+      );
+   });
 
-   function actionClick() {
-      const bkContainer = document.querySelector(".block1__container");
-      bkContainer.classList.toggle("block1__container--action");
-
-      const block3 = document.querySelector(".block3");
-      block3.classList.toggle("block3--active");
-   }
+   // ---------
 })();

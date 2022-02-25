@@ -1,0 +1,141 @@
+@use "config" as *;
+@use "sass:map";
+
+// --------------------------------------ОБНУЛЕНИE И ОБЩИЕ ПАРАМЕТРЫ--------------------------------------
+
+// необходимо Модофицировать этот элемент только для тех, на кого может попасть фокус
+* {
+   outline-offset: 0;
+   transition: outline-offset 0.2s linear;
+}
+
+html,
+body {
+   width: 100%;
+}
+
+body {
+   font-family: system-ui, system, sans-serif;
+   background-size: cover;
+}
+
+*::selection { // Цвет выделения текста
+   background-color: var(--color-primary);
+   color: var(--color-bg-main);
+}
+
+img,
+picture {
+   // width: 100%;
+   // max-width: 100%;
+   // height: inherit;
+   object-fit: cover;
+   // aspect-ratio: attr(width) / attr(height);
+   // background-image: url(data:image/gif;base64,R0lGODlhCgAIAIABAN3d3f///yH5BAEAAAEALAAAAAAKAAgAAAINjAOnyJv2oJOrVXrzKQA7);
+}
+
+// ----------------------------------------------СТАНДАРТНЫЕ КЛАССЫ---------------------------------------------
+
+// _____________Футер к низу_______________
+.body-main {
+   display: flex;
+   flex-direction: column;
+   background-color: var(--color-black);
+}
+.page-main {
+   flex-grow: 1;
+}
+.header-main,
+.page-main,
+.footer-main {
+   flex-shrink: 0;
+}
+// _________________________________________
+
+
+// ____________________Обычный контейнер для респонза_________
+.container {
+   margin: 0 auto;
+
+   // Ограничиваем стили для мобильных
+   @include media('<=phone') {
+      padding: 0 var(--space-md);
+      min-width: var(--minWidth);
+   }
+
+   @include media('>phone') {
+      padding: 0 var(--space-lg);
+      max-width: calc(var(--space-lg) * 2 + map.get($breakpoints, 'phone'));
+   }
+
+   @include media('>=tablet') {
+      max-width: calc(var(--space-lg) * 2 + map.get($breakpoints, 'tablet'));
+   }
+
+   @include media('>=laptop') {
+      max-width: calc(var(--space-lg) * 2 + map.get($breakpoints, 'laptop'));
+   }
+
+   @include media('>=desktop') {
+      max-width: calc(var(--space-lg) * 2 + map.get($breakpoints, 'desktop'));
+   }
+
+}
+
+// ____________________________________________________________
+
+// __________________Класс для скрытия от всех__________________________________
+.hide {
+   display: none;
+   &__mobile {
+      @include media('<=phone') {
+         display: none;
+      }
+   }
+   &__desktop {
+      @include media('>phone') {
+         display: none;
+      }
+   }
+}
+// ______________________________________________________________________________
+
+
+// _________________Класс для скрытия блоков, но сохранения для скрин ридеров____________
+.clipped {
+   position: absolute !important;
+   clip: rect(1px 1px 1px 1px);
+   clip: rect(1px, 1px, 1px, 1px);
+   padding: 0 !important;
+   border: 0 !important;
+   height: 1px !important;
+   width: 1px !important;
+   overflow: hidden;
+}
+// _____________________________________________________________________________________
+
+// _________________Класс для кнопки "Пропустить навигацию____________
+.skip-nav-link {
+   position: absolute;
+   transform: translateY(-120%);
+   left: rem(5);
+   transition: transform 300ms ease-in;
+
+   background-color: #fff;
+   padding: rem(5) rem(10);
+
+   &:focus {
+      transform: translateY(0);
+   }
+}
+// ___________________________________________________________________
+
+
+// ________Класс для полифила focus_____________________
+.js-focus-visible :focus:not(.focus-visible) {
+   outline: none;
+}
+.focus-visible {
+   @include focus;
+}
+// ____________________________________________________
