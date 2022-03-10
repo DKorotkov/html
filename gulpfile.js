@@ -2,6 +2,7 @@
 //npm i - установка всех пакетов.
 // npm install gulp-imagemin@7.1.0 - установка конкретной версии плагина для корректной работы
 //git subtree push --prefix dist origin gh-pages - добавляет в репозиторий новую ветку, для отображения страницы в github pages
+// git clone https://github.com/DKorotkov/html.git .
 
 import gulp from "gulp";
 
