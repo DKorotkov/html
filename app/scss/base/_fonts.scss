@@ -10,11 +10,8 @@
 // }
 
 // RFS (simply the abbreviation for Responsive Font Size)  Это модуль, который дает возможность работы с адаптивным шрифтом (пример использования - @include rfs(64); где 64 это размер шрифта.
-<<<<<<< HEAD
 // @import "../../node_modules/rfs/scss";
-=======
 // @import "../../../node_modules/rfs/scss";
->>>>>>> 5d0581bba1980c6faf68dad3058e10b53c1c9fe3
 // $rfs-two-dimensional: "true"; //Включение двухмерных медиа-запросов определит размер шрифта на основе самой маленькой стороны экрана с vmin. Это предотвращает изменение размера шрифта, если устройство переключается между портретным и альбомным режимами.
 
 // @import "../../node_modules/system-font-css/system-font.scss"; //Не забудь посмотреть обновления к этому модулю. npm install --save system-font-css, и отключи если не нужны эти системные шрифты ---system-ui----
