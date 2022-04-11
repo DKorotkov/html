@@ -23,15 +23,18 @@
     "gulp-uglify": "^3.0.2",
     "gulp-version-number": "^0.2.4",
     "gulp-webp": "^4.0.1",
-    "gulp-webp-html-nosvg": "^1.0.2",
+    "gulp-webp-html-nosvg": "^1.0.5",
     "rename": "^1.0.4",
     "rfs": "^9.0.6",
-    "sass": "^1.48.0",
+    "sass": "^1.49.7",
     "system-font-css": "^2.0.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Danila Korotkov",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "hamburgers": "^1.1.3"
+  }
 }

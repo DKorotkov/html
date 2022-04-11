@@ -1,0 +1,36 @@
+@use "config" as *;
+
+.info {
+   position: relative;
+   align-self: center;
+   padding-right: rem(30);
+   padding-left: min(calc(20% + rem(20)), rem(150));
+   z-index: 100;
+
+		&__title {
+         display: grid;
+         position: absolute;
+         top: 0;
+		}
+
+      &__maintitle {
+         width: max-content;
+         @include font-size(82px);
+      }
+
+		&__subtitle {
+         @include font-size(28px);
+         
+		}
+
+		&__desc {
+         padding-top: min(calc(25% + rem(60)), rem(180));
+         padding-bottom: min(calc(10% + rem(30)), rem(100));
+		}
+
+		&__link {
+         color: var(--color-white);
+         text-decoration: none;
+         text-transform: uppercase;
+		}
+}

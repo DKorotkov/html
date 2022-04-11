@@ -26,9 +26,9 @@ body {
 
 img,
 picture {
-   width: 100%;
-   max-width: 100%;
-   height: inherit;
+   // width: 100%;
+   // max-width: 100%;
+   // height: inherit;
    object-fit: cover;
    // aspect-ratio: attr(width) / attr(height);
    // background-image: url(data:image/gif;base64,R0lGODlhCgAIAIABAN3d3f///yH5BAEAAAEALAAAAAAKAAgAAAINjAOnyJv2oJOrVXrzKQA7);
@@ -40,6 +40,7 @@ picture {
 .body-main {
    display: flex;
    flex-direction: column;
+   background-color: var(--color-black);
 }
 .page-main {
    flex-grow: 1;
