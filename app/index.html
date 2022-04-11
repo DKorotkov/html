@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html lang="ru">
-   @@include('html/_head.html', { "description": "Описание сайта", "keywords": "Ключевые слова", "title": " Главная страница ", "site_name": " Название сайта ", "socials": { "autor": " Данила Коротков ", "copyright": " Данила Коротков ", "adress": "danila.korotkov@gmail.com", "image":
+   @@include('html/_head.html', { "description": "Описание сайта", "keywords": "Ключевые слова", "title": " Главная страница ", "site_name": "Портфолио Данила Коротков", "socials": { "autor": " Данила Коротков ", "copyright": " Данила Коротков ", "adress": "danila.korotkov@gmail.com", "image":
    "img/img1.jpeg", "link": "/index.html", "fb": "facebook.com/include", "tw": "twitter.com/include" } })
    <body class="body-main">
       @@include('html/_header.html')
-      <main class="page-main" id="main-content"></main>
+      <main class="page-main" id="main-content">
+         <div class="wrapper">
+            <div class="section">
+               <div class="section__info info">
+                  <h1 class="info__title">
+                     <span class="info__subtitle">Junior Front-End Developer</span>
+                     <span class="info__maintitle">Данила Коротков</span>
+                  </h1>
+                  <div class="info__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sequi non sit repellat error ad dignissimos eum doloribus enim minus!</div>
+                  <a class="info__link" href="#">больше обо мне</a>
+               </div>
+               <div class="section__img-wrapper">
+                  <img class="section__img" src="/img/dk.jpeg" alt="Фотография Данилы Короткова" />
+               </div>
+            </div>
+            <div class="section">
+               <div class="section__info info">
+                  <h1 class="info__title">
+                     <span class="info__subtitle">Junior Front-End Developer</span>
+                     <span class="info__maintitle">Данила Коротков</span>
+                  </h1>
+                  <div class="info__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sequi non sit repellat error ad dignissimos eum doloribus enim minus!</div>
+                  <a class="info__link" href="#">больше обо мне</a>
+               </div>
+               <div class="section__img-wrapper">
+                  <img class="section__img" src="/img/dk2.jpg" alt="Фотография Данилы Короткова" />
+               </div>
+            </div>
+            <div class="section">
+               <div class="section__info info">
+                  <h1 class="info__title">
+                     <span class="info__subtitle">Junior Front-End Developer</span>
+                     <span class="info__maintitle">Данила Коротков</span>
+                  </h1>
+                  <div class="info__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid sequi non sit repellat error ad dignissimos eum doloribus enim minus!</div>
+                  <a class="info__link" href="#">больше обо мне</a>
+               </div>
+               <div class="section__img-wrapper">
+                  <img class="section__img" src="/img/dk.jpeg" alt="Фотография Данилы Короткова" />
+               </div>
+            </div>
+         </div>
+      </main>
       @@include('html/_footer.html') @@include('html/_scripts.html')
    </body>
 </html>
