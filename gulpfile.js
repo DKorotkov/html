@@ -4,6 +4,9 @@
 //git subtree push --prefix dist origin gh-pages - добавляет в репозиторий новую ветку, для отображения страницы в github pages
 // git clone https://github.com/DKorotkov/html.git .
 
+// !!!Убрать source map при готовой сборке
+// Сделать объединение моих модулей при сборке
+
 import gulp from "gulp";
 
 // Конфиг

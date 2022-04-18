@@ -2,24 +2,27 @@
 
 
 .page {
-   @media (min-width: $md1+px) {
+   // @media (min-width: $md1+px) {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
-   }
+   // }
 }
 
 .simple__section {
    border: 1px dotted #ccc;
    padding-top: rem(10);
    padding-bottom: rem(10);
-   @media (max-width: $md0+px) {
+   // @media (max-width: $md0+px) {
       margin: rem(20) auto;
-   }
+   // }
 }
 
 .sblock {
    max-width: rem(400);
+   margin-top: 30px;
+   margin-bottom: 30px;
+   
    &__title {
       margin: 10px 0;
    }
@@ -59,4 +62,10 @@
    &--information {
       background-color: var(--color-information);
    }
+}
+
+
+.error {
+   font-weight: bold;
+   color: tomato;
 }

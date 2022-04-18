@@ -30,6 +30,28 @@
             <div class="sblock__title">Элементы формы</div>
             <button class="button">Кнопка</button>
          </section>
+         <section class="simple__section sblock">
+            <form novalidate>
+               <fieldset>
+                  <legend>Онлайн запись</legend>
+                  <label for="input-name-menu" id="label-name-menu">Имя</label>
+                  <input type="text" id="input-name-menu" aria-labelledby="label-name-menu" placeholder="Имя" maxlength="15" autocomplete="on" />
+                  <span class="error" aria-live="polite"></span>
+
+                  <label for="input-phone-menu" id="label-phone-menu">Телефон</label>
+                  <input type="tel" id="input-phone-menu" aria-labelledby="label-phone-menu" placeholder="Телефон" required autocomplete="on" />
+                  <span class="error" aria-live="polite"></span>
+
+                  <label for="input-phone-menu" id="label-phone-menu">Телефон</label>
+                  <input type="email" id="input-phone-menu" aria-labelledby="label-phone-menu" placeholder="Телефон" required autocomplete="on" />
+                  <span class="error" aria-live="polite"></span>
+
+                  <small>Нажимая на кнопку, вы принимаете условия пользовательского <a class="appointment-form__link" href="#">соглашения</a>.</small>
+
+                  <button type="button">Отправить</button>
+               </fieldset>
+            </form>
+         </section>
       </main>
       @@include('html/_footer.html') @@include('html/_scripts.html')
    </body>

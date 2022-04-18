@@ -1,5 +1,7 @@
+// import { formValid } from "/js/modules/formValidation.min.js";
+
 (function () {
-   "use strict";
+   ("use strict");
 
    // Загрузка шрифтов через скрипт
    //    var font = new FontFaceObserver("Pangolin");
@@ -18,14 +20,12 @@
    //          sessionStorage.fontsLoaded = false;
    //       });
 
-   const actionBtn = document.querySelector(".action-btn");
-   actionBtn.addEventListener("click", actionClick);
+   // -----------Проверка валидация формы-------------------
 
-   function actionClick() {
-      const bkContainer = document.querySelector(".block1__container");
-      bkContainer.classList.toggle("block1__container--action");
+   // const form1 = document.querySelector("form[novalidate]");
+   // const form = new FormValid(form1);
+   // console.log(form);
+   FormValid.init();
 
-      const block3 = document.querySelector(".block3");
-      block3.classList.toggle("block3--active");
-   }
+   // ------------------------------------------------------
 })();
