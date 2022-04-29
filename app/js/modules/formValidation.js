@@ -27,7 +27,10 @@ class FormValid {
       this.options = Object.assign(defaultOptions, this.constructorOptions);
 
       this.forms = document.querySelectorAll("form");
-      if (!this.forms) console.error("Форма на странице не найдена");
+      if (!this.forms) {
+         console.error("Форма на странице не найдена");
+         return;
+      }
 
       this.forms.forEach((form) => {
          // form.setAttribute("novalidate", "");
