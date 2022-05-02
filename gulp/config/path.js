@@ -11,8 +11,8 @@ export const path = {
       html: `${appFolder}/*.html`,
       scss: `${appFolder}/scss/*.scss`,
       js: `${appFolder}/js/**/*.js`,
-      img: `${appFolder}/img/**/*.{jpg,jpeg,png,gif,webp}`,
-      svg: `${appFolder}/img/**/*.svg`,
+      img: [`${appFolder}/img/**/*.{jpg,jpeg,png,gif,webp}`, `!${appFolder}/img/svg_icons/*.*`],
+      svg: `${appFolder}/img/svg_icons/*.svg`,
       files: `${appFolder}/files/**/*.*`, // Для простого копирования в папку с результатом
    },
    dist: {
@@ -20,6 +20,7 @@ export const path = {
       css: `${distFolder}/css/`,
       js: `${distFolder}/js/`,
       img: `${distFolder}/img/`,
+      svg: `${distFolder}/img/icons/`,
       files: `${distFolder}/files/`,
    },
    watch: {
@@ -27,6 +28,7 @@ export const path = {
       scss: `${appFolder}/scss/**/*.scss`,
       js: `${appFolder}/js/**/*.js`,
       img: `${appFolder}/img/**/*.{jpg,jpeg,png,gif,webp,svg}`,
+      svg: `${appFolder}/img/svg_icons/*.svg`,
       files: `${appFolder}/files/**/*.*`,
    },
    clean: distFolder,
