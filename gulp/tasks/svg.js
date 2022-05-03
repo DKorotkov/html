@@ -1,9 +1,9 @@
 import svgSprite from "gulp-svg-sprite";
-import GulpSvgmin from "gulp-svgmin";
 import gulpCheerio from "gulp-cheerio";
 import replace from "gulp-replace";
+import svgo from "gulp-svgo";
 
-// <svg>
+// <svg role="img">
 //    <use xlink:href="/sprite.svg#icon1"></use>
 // </svg>;
 // Создать миксин, который будем передлывать ссылку на конкретную svg в ссылку на спрайт с указанием id этого конкретного svg
@@ -14,10 +14,8 @@ export const svg = () => {
          .src(gl.path.app.svg)
          .pipe(gl.plugins.newer(gl.path.dist.svg))
          .pipe(
-            GulpSvgmin({
-               js2svg: {
-                  pretty: true,
-               },
+            svgo({
+               plugins: [{ removeViewBox: false }],
             })
          )
          .pipe(
