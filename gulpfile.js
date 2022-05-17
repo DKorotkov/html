@@ -26,7 +26,8 @@ global.gl = {
    path: path,
    gulp: gulp,
    plugins: plugins,
-   isBuild: false,
+   isBuild: process.argv.includes("build"),
+   isDev: !process.argv.includes("build"),
 };
 
 const dev = gulp.series(clean, html, scss, js, images, svg, copyFiles, gulp.parallel(watcher, server));

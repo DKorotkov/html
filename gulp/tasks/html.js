@@ -1,5 +1,6 @@
 import webpHtmlNosvg from "gulp-webp-html-nosvg"; // Создает тэг для поддержки webp
 import versionNumber from "gulp-version-number"; // Для обновления версий файлов стилей и скриптов (проблема кэширования на сервере)
+import htmlmin from "gulp-htmlmin";
 
 export const html = () => {
    return (
@@ -30,6 +31,12 @@ export const html = () => {
                   output: {
                      file: "gulp/version.json",
                   },
+               }),
+               htmlmin({
+                  // collapseWhitespace: true, // удаляем все переносы
+                  removeComments: true, // удаляем все комментарии
+                  // minifyJS: true,
+                  // removeCommentsFromCDATA: true,
                })
             )
          )

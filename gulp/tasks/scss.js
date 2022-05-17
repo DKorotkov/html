@@ -18,7 +18,7 @@ export const scss = () => {
                extname: ".min.css",
             })
          )
-         .pipe(gl.plugins.sourcemaps.init())
+         .pipe(gl.plugins.gulpIf(gl.isDev, gl.plugins.sourcemaps.init()))
          .pipe(gl.plugins.replace(/@img\//g, "img/"))
          .pipe(
             sass({
@@ -40,7 +40,7 @@ export const scss = () => {
          //    })
          // )
          .pipe(gl.plugins.gulpIf(gl.isBuild, GulpCleanCss()))
-         .pipe(gl.plugins.sourcemaps.write("./maps"))
+         .pipe(gl.plugins.gulpIf(gl.isDev, gl.plugins.sourcemaps.write("./maps")))
          .pipe(gl.gulp.dest(gl.path.dist.css))
          .pipe(gl.plugins.browserSync.stream())
    );
