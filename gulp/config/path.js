@@ -1,5 +1,6 @@
 const appFolder = `./app`;
 const distFolder = `./dist`;
+const ftpFolder = `/domains/a0675453.xsph.ru/public_html/wp-content/themes/medcial-center-angel/assets`;
 
 // Получаем имя папки проекта
 import * as nodePath from "path";
@@ -35,5 +36,11 @@ export const path = {
    appFolder: appFolder,
    distFolder: distFolder,
    projectFolder: projectFolder,
-   ftp: ``,
+   ftp: {
+      from: {
+         css: `${distFolder}/css/**`,
+         js: `${distFolder}/js/**`,
+      },
+      to: ftpFolder,
+   },
 };

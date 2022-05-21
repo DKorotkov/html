@@ -9,6 +9,7 @@ import gulp from "gulp";
 // Конфиг
 import { path } from "./gulp/config/path.js";
 import { plugins } from "./gulp/config/plugins.js";
+import { ftpSettings } from "./gulp/config/ftp.js";
 
 // Задачи
 import { watcher } from "./gulp/tasks/watcher.js";
@@ -20,6 +21,7 @@ import { js } from "./gulp/tasks/js.js";
 import { images } from "./gulp/tasks/images.js";
 import { svg } from "./gulp/tasks/svg.js";
 import { server } from "./gulp/tasks/server.js";
+import { ftp } from "./gulp/tasks/ftp.js";
 
 // Объявдяем глобальную переменную для вызова из функций
 global.gl = {
@@ -28,12 +30,11 @@ global.gl = {
    plugins: plugins,
    isBuild: process.argv.includes("build"),
    isDev: !process.argv.includes("build"),
+   ftpSettings: ftpSettings,
 };
 
 const dev = gulp.series(clean, html, scss, js, images, svg, copyFiles, gulp.parallel(watcher, server));
-const build = gulp.series(clean, html, scss, js, images, svg, copyFiles, server);
+const build = gulp.series(clean, html, scss, js, images, svg, copyFiles, ftp);
 
 gulp.task("default", dev);
-gulp.task("build", build, function () {
-   gl.isBuild = true;
-});
+gulp.task("build", build);
