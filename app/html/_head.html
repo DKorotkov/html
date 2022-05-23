@@ -65,11 +65,12 @@
 
    <link rel="stylesheet" href="css/header.min.css" />
    <link rel="stylesheet" href="css/style.min.css" />
+
    <!-- Здесь загружается иконочный шрифт, если иконки используються в верхней части страницы -->
    <!-- <link rel="preload" href="/fonts/fontello.woff" as="font" /> -->
    <!-- Здесь проверяется есть ли шрифт в кэше, в кэш он попал из js при прошлой загрузке (используется font face observe) -->
    <script>
-      var html = document.documentElement;
+      const html = document.documentElement;
       html.classList.add("fonts-loading");
       if (sessionStorage.fontsLoaded) {
          html.classList.remove("fonts-loading");

@@ -4,8 +4,8 @@
    ("use strict");
 
    // Загрузка шрифтов через скрипт
-   //    var font = new FontFaceObserver("Pangolin");
-   //    var html = document.documentElement;
+   //    const font = new FontFaceObserver("Pangolin");
+   //    const html = document.documentElement;
 
    //    font
    //       .load()

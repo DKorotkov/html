@@ -15,8 +15,16 @@ body {
 }
 
 body {
-   font-family: system-ui, system, sans-serif;
+   // font-family: system-ui, system, sans-serif;
+   font-family: var(--font-main);
    background-size: cover;
+}
+
+// ____Класс для объявления шрифты после его загрузки_____
+.fonts-loaded body:root {
+    
+      --font-main: "Pangolin", serif;
+   
 }
 
 *::selection { // Цвет выделения текста
@@ -116,8 +124,8 @@ picture {
 // _________________Класс для кнопки "Пропустить навигацию____________
 .skip-nav-link {
    position: absolute;
-   transform: translateY(-120%);
    left: rem(5);
+   transform: translateY(-120%);
    transition: transform 300ms ease-in;
 
    background-color: #fff;
