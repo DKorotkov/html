@@ -11,7 +11,7 @@ export const path = {
    app: {
       html: `${appFolder}/*.html`,
       scss: `${appFolder}/scss/*.scss`,
-      js: `${appFolder}/js/**/*.js`,
+      js: `${appFolder}/js/*.js`,
       img: `${appFolder}/img/**/*.{jpg,jpeg,png,gif,webp}`,
       svg: `${appFolder}/img/svg_icons/*.svg`,
       files: `${appFolder}/files/**/*.*`, // Для простого копирования в папку с результатом
@@ -38,8 +38,8 @@ export const path = {
    projectFolder: projectFolder,
    ftp: {
       from: {
-         css: `${distFolder}/css/**`,
-         js: `${distFolder}/js/**`,
+         css: `${distFolder}/css/*.css`,
+         js: `${distFolder}/js/*.js`,
       },
       to: ftpFolder,
    },
