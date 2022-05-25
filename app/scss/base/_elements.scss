@@ -146,3 +146,21 @@ picture {
    @include focus;
 }
 // ____________________________________________________
+
+// __________Класс для работы с grid___________________
+[class|="grid"] {
+   display: grid;
+   gap: rem(10);
+}
+
+.grid- {
+   &even-columns {
+      grid-template-columns: repeat(auto-fit, minmax(min(rem(150), 100%), 1fr));
+   }
+
+   &auto-columns {
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+   }
+}
+// ____________________________________________________
