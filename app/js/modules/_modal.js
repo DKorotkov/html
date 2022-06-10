@@ -17,12 +17,19 @@
    focusTrap - Требуется ли перемещаться табом только внутри объекта (default: false)
    collapseOnFocusOut - Требуется ли закрывать при потери фокуса (default: false)
    activeClass - класс, который будет добавлен при открытии
+
+   focusTrap - требуется ли переходить табом только по модальному окну (default: false) не работает с collapseOnFocusOut = true 
+   collapseOnFocusOut - требуется ли закрывать окно при потери фокуса (default: false)
+
+   overlay - требуется ли оверлей (default: true)
+   overlayBg - цвет bg (defult: "rgba(0,0,0, 0.5)")
+   overlayZindex - zindex оверлея (default: "0"),
+
    onClose() - Функция при закрытии
    
    m = new ModalDK({
       selector: "#modal",
       openBtnsSelector: [".btn--open"],
-      closeBtnsSelector: [".btn--close", ".es"],
       focusTrap: true, // Требуется ли перемещаться табом только внутри объекта (default: false)
       collapseOnFocusOut: true, // Требуется ли закрывать при потери фокуса
       activeClass: "--active",
@@ -31,6 +38,11 @@
          console.log("closing");
       },
    });
+
+   Реализация в html 
+   <div class="modal">
+      <div class="modal__container"></div>
+   </div>
     
 
    TODO:
@@ -50,7 +62,6 @@ class ModalDK extends NodaDK {
       super(options);
       this._options = Object.assign(this.#defaultOptions, this._options);
       this._$openBtns = document.querySelectorAll(this._options.openBtnsSelector);
-      this._$closeBtns = document.querySelectorAll(this._options.closeBtnsSelector);
 
       this.#check();
       this.#init();
@@ -76,7 +87,7 @@ class ModalDK extends NodaDK {
          overlay.style.zIndex = this._options.overlayZindex;
          overlay.style.transition = `all ${this.#OVERLAY_ANIMTAION_TIME}ms ease`;
          overlay.addEventListener("click", this.close.bind(this));
-         this._$el.querySelector(":first-child").style.position = "relative";
+         if (this._$el.querySelector(":first-child").style.position === "static") this._$el.querySelector(":first-child").style.position = "relative";
          this._$el.querySelector(":first-child").style.zIndex = toString(parseInt(this._options.overlayZindex) + 1);
          this._$el.insertBefore(overlay, this._$el.firstChild);
       }
@@ -108,7 +119,7 @@ class ModalDK extends NodaDK {
             });
          } else super.open();
          this._$el.setAttribute("aria-hidden", "false");
-         this._$focusableContent[0].focus();
+         if (this._$focusableContent.length > 0) this._$focusableContent[0].focus();
          // Работа с оверлеем
          this._$el.querySelector(":first-child").style.inset = "0";
          this._$el.querySelector(":first-child").style.opacity = "1";
@@ -139,7 +150,5 @@ class ModalDK extends NodaDK {
 
       this._$el.setAttribute("aria-hidden", "true");
       document.querySelector("main").removeAttribute("inert", "");
-
-      this.destroy();
    }
 }

@@ -26,7 +26,7 @@ class NodaDK {
    constructor(options) {
       this._options = Object.assign(this.#defaultOptions, options);
       this._$el = document.querySelector(this._options.selector);
-      this._$focusableContent = [...this._$el.querySelectorAll(this.#focusableElements)];
+      this._getFocusableContent();
       this._$lastFocusableEl = this._$el.querySelector('[data-select-last="true"]');
 
       this.#check();
@@ -46,6 +46,10 @@ class NodaDK {
 
       // Последний элемент который будет в фокусе
       if (this._$lastFocusableEl) this._$lastFocusableEl.tabIndex = -1;
+      // Удаляем этот элемент (который последний в фокусе)
+      this._$focusableContent = this._$focusableContent.filter((el) => {
+         if (el !== this._$lastFocusableEl) return el;
+      });
    }
 
    #focusTrapAndCollapse(e) {
@@ -90,6 +94,10 @@ class NodaDK {
       }
    }
 
+   _getFocusableContent() {
+      this._$focusableContent = [...this._$el.querySelectorAll(this.#focusableElements)];
+   }
+
    open() {
       if (this.#destroyed) return console.error(`Объект с классом - ${this._options.selector} уничтожен и не может быть "Открыт"`);
       this._$el.removeAttribute("hidden", "");
@@ -101,7 +109,7 @@ class NodaDK {
    }
 
    destroy() {
-      this.#destroyed = true;
+      // this.#destroyed = true;
       this._$el.removeEventListener("click", (e) => this._mainElClick(e));
       this._$el.removeEventListener("keydown", (e) => this._checkPress(e), true);
    }
