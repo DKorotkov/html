@@ -103,6 +103,9 @@ class NodaDK {
       if (this._options.activeClass) {
          this._$el.classList.add(this._options.selector.slice(1) + this._options.activeClass);
       } else this._$el.removeAttribute("hidden", "");
+
+      // Для запрета прокрутки основного контента
+      document.body.style.overflow = "hidden";
    }
 
    close() {
@@ -110,6 +113,9 @@ class NodaDK {
       if (this._options.activeClass) {
          this._$el.classList.remove(this._options.selector.slice(1) + this._options.activeClass);
       } else this._$el.setAttribute("hidden", "");
+
+      // Для прокрутки основного контента
+      document.body.style.overflow = "";
    }
 
    destroy() {
@@ -117,4 +123,24 @@ class NodaDK {
       this._$el.removeEventListener("click", (e) => this._mainElClick(e));
       this._$el.removeEventListener("keydown", (e) => this._checkPress(e), true);
    }
+}
+
+/**
+ *  ПРАВИЛА ПО СОЗДАНИЮ МОДУЛЯ
+ *
+ * 1. Использовать вместо селектро готовый объект. Это значит, что на вход
+ * необходимо получать:
+ * const el = document.qeurySelect(".el")
+ *
+ * const noda = New NodaDK(el, {options});
+ *
+ * 2. Если в процессе работы модуля создается новая нода в html, то необходимо
+ * ее создавать каждый раз при открытии и удалять при закрытии, включая все
+ * event Listners
+ *
+ * 3. Разделять функции по направляению или элемента
+ */
+
+function isTouchDevice() {
+   return "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 }
