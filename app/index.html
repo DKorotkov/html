@@ -4,7 +4,29 @@
    "img/img1.jpeg", "link": "/index.html", "fb": "facebook.com/include", "tw": "twitter.com/include" } })
    <body class="body-main">
       @@include('html/_header.html')
-      <main class="page-main" id="main-content"></main>
+      <main class="page-main" id="main-content">
+         <div class="container">
+            <section class="section">
+               <h2>Проверка модального окна</h2>
+               <button class="btn-main" data-name="modal">Открыть модальное окно</button>
+               <div class="modal" id="modal">
+                  <div class="modal__container">
+                     <button class="btn-modal-close" data-close="true">х</button>
+                     <p>Это модальное окно</p>
+                  </div>
+               </div>
+            </section>
+
+            <section class="section">
+               <h2>Проверка валидации форм</h2>
+               <form action="">
+                  <input type="email" name="mail" id="mail" />
+                  <input type="password" name="password" id="password" required />
+                  <button class="btn-main">Отправить</button>
+               </form>
+            </section>
+         </div>
+      </main>
       @@include('html/_footer.html') @@include('html/_scripts.html')
    </body>
 </html>

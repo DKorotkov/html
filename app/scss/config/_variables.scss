@@ -68,8 +68,15 @@
 
    --component-padding: var(--space-md);
 
+   
+}
+
+// _____________________Общие настройки_________________________________
+:root {
    --size-navigation-small: 3.75rem;
    --size-navigation-large: 4.5rem;
 
    --font-main: serif;
+
+   --border-radius: .375rem;
 }

@@ -100,12 +100,16 @@ class NodaDK {
 
    open() {
       if (this.#destroyed) return console.error(`Объект с классом - ${this._options.selector} уничтожен и не может быть "Открыт"`);
-      this._$el.removeAttribute("hidden", "");
+      if (this._options.activeClass) {
+         this._$el.classList.add(this._options.selector.slice(1) + this._options.activeClass);
+      } else this._$el.removeAttribute("hidden", "");
    }
 
    close() {
       this.destroy();
-      this._$el.setAttribute("hidden", "");
+      if (this._options.activeClass) {
+         this._$el.classList.remove(this._options.selector.slice(1) + this._options.activeClass);
+      } else this._$el.setAttribute("hidden", "");
    }
 
    destroy() {

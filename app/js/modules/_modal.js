@@ -14,8 +14,6 @@
    selector - селектор модального окна с которым будем работать
    openBtnsSelector - кнопки открытия (могут быть указаны ввиде массива)
    closeBtnsSelector: - кнопки закрытия (могут быть указаны ввиде массива)
-   focusTrap - Требуется ли перемещаться табом только внутри объекта (default: false)
-   collapseOnFocusOut - Требуется ли закрывать при потери фокуса (default: false)
    activeClass - класс, который будет добавлен при открытии
 
    focusTrap - требуется ли переходить табом только по модальному окну (default: false) не работает с collapseOnFocusOut = true 
@@ -33,9 +31,8 @@
       focusTrap: true, // Требуется ли перемещаться табом только внутри объекта (default: false)
       collapseOnFocusOut: true, // Требуется ли закрывать при потери фокуса
       activeClass: "--active",
-      Функция при закрытии
       onClose() {
-         console.log("closing");
+         console.log("modal closing");
       },
    });
 
@@ -110,32 +107,31 @@ class ModalDK extends NodaDK {
    open() {
       setTimeout(() => {
          this.#$activeOpenBtn = document.activeElement;
-
+         super.open();
          if (this._options.activeClass) {
-            this._$el.classList.add(this._options.selector.slice(1) + this._options.activeClass);
             // Убираем возможность фокуса на элементах для скрытого меню
             this._$focusableContent.forEach((element) => {
                if (!element.dataset.selectLast) element.removeAttribute("tabindex");
             });
-         } else super.open();
+         }
          this._$el.setAttribute("aria-hidden", "false");
          if (this._$focusableContent.length > 0) this._$focusableContent[0].focus();
          // Работа с оверлеем
          this._$el.querySelector(":first-child").style.inset = "0";
          this._$el.querySelector(":first-child").style.opacity = "1";
 
-         document.querySelector("main").setAttribute("inert", "");
+         // document.querySelector("main").setAttribute("inert", "");
       }, 1);
    }
 
    close() {
+      super.close();
       if (this._options.activeClass) {
-         this._$el.classList.remove(this._options.selector.slice(1) + this._options.activeClass);
          // Убираем возможность фокуса на элементах для скрытого меню
          this._$focusableContent.forEach((element) => {
             element.tabIndex = -1;
          });
-      } else super.close();
+      }
 
       setTimeout(() => {
          if (this.#$activeOpenBtn.tabIndex !== -1) this.#$activeOpenBtn.focus();
@@ -149,6 +145,6 @@ class ModalDK extends NodaDK {
       }, this.#OVERLAY_ANIMTAION_TIME);
 
       this._$el.setAttribute("aria-hidden", "true");
-      document.querySelector("main").removeAttribute("inert", "");
+      // document.querySelector("main").removeAttribute("inert", "");
    }
 }
