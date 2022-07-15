@@ -34,3 +34,10 @@
    }
 }
 
+.gallery {
+   display: flex;
+   aspect-ratio: 3/1;
+   overflow: hidden;
+   gap: rem(20);
+}
+

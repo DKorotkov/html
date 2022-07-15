@@ -63,7 +63,7 @@
       // дополнительные стили
       width: rem(32);
       aspect-ratio: 1;
-      border: rem(1) solid var(--color-accent);
+      border: rem(1) solid var(--color-primary, steelblue);
       border-radius: 50%;
       background-color: var(--color-white);
       cursor: pointer;
@@ -79,7 +79,7 @@
       content: '';
       width: 60%;
       height: rem(1);
-      background-color: var(--color-accent);
+      background-color: var(--color-primary, steelblue);
       transform: translateX(-50%) rotate(45deg);
    }
 
@@ -129,7 +129,7 @@
       aspect-ratio: 1;
       content: '';
       width: rem(30);
-      border-radius: var(--border-radius, rem(5));
+      // border-radius: var(--border-radius, rem(5));
       border-top: rem(3) solid var(--border-color);
       border-left: rem(3) solid var(--border-color);
       transform: translateY(-50%) rotate(-45deg);
@@ -142,7 +142,7 @@
 
    &__to-right:hover::before,
    &__to-left:hover::before {
-      --border-color: var(--color-accent);
+      --border-color: var(--color-primary, steelblue);
    }
 
    &__zoom {
@@ -159,7 +159,7 @@
       // дополнительные стили
       width: rem(32);
       aspect-ratio: 1;
-      border: rem(1) solid var(--color-accent);
+      border: rem(1) solid var(--color-primary, steelblue);
       border-radius: 50%;
       background-color: var(--color-white);
       cursor: pointer;
@@ -171,7 +171,7 @@
       margin-left: 17%;
       width: 65%;
       aspect-ratio: 1;
-      stroke: var(--color-accent);
+      stroke: var(--color-primary, steelblue);
    }
 
 //-----------------------------------------------------------------------
@@ -293,7 +293,7 @@
       position: relative;
       grid-area: list;
       flex-wrap: nowrap;
-      overflow-x: scroll;
+      overflow-x: auto;
       overflow-y: hidden;
       gap: rem(10);
       z-index: 11;
@@ -301,17 +301,31 @@
       width: auto;
       margin: var(--padding) 0;
       align-items: center;
-      
+      padding-bottom:  var(--padding);
 
       @media (max-height: 960px) and (orientation: landscape) { 
          flex-direction: column;
          overflow-x: hidden;
-         overflow-y: scroll;
+         overflow-y: auto;
          width: var(--list-size);
          height: auto;
          padding: 0;
          margin: 0;
          padding-right: var(--padding);
+      }
+      
+      &::-webkit-scrollbar {
+         width: rem(5);
+         height: rem(5);
+      }
+
+      &::-webkit-scrollbar-track {
+         border-radius: rem(5);
+      }
+
+   &::-webkit-scrollbar-thumb {
+         border-radius: rem(5);
+         background: var(--color-primary, steelblue);
       }
    }
 

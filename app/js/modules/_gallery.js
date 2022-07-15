@@ -3,6 +3,28 @@
  *
  *
  * data-gallery - для передачи больших изображений
+ * 
+ * Объект модального окна:
+   selector - селектор модального окна с которым будем работать
+   openBtnsSelector - кнопки открытия (могут быть указаны ввиде массива)
+   closeBtnsSelector: - кнопки закрытия (могут быть указаны ввиде массива)
+   description - требуется ли выводить описсание из тэга alt (true)
+   imgsList - трбуется ли создавать список изображений (true)
+
+   data-close="true" - необходимо установить на элемент, который будет закрывать модальное окно (только на элементы внутри окна)
+   data-select-last="true" - необходимо установить на элемент, который должн попасть в фокус в самый последний момент
+   data-gallery="http://localhost:3000/img/cert/1-1.jpg" - ссылка на файл, большого размера
+
+   g = new GalleryDK({
+      selector: ".gallery", // селектор контейнера, который объединяет все изображения
+      focusTrap: true,
+      collapseOnFocusOut: false,
+   });
+
+   * TODO:
+   * ?Добавить знак загрузки
+   * ?При двойном нажатии увеличивать в точке нажатия
+
  */
 class GalleryDK extends NodaDK {
    #defaultOptions = {
@@ -93,7 +115,7 @@ class GalleryDK extends NodaDK {
 
    #getTemaplate() {
       const descriptionClipped = this._options.description ? "" : "clipped";
-      const list = this._options.imgsList ? '<ul class="gallery-dk__list scroll scroll--v" role="list"></ul>' : "";
+      const list = this._options.imgsList ? '<ul class="gallery-dk__list" role="list"></ul>' : "";
       return `<div class="gallery-dk__btns-wrapper">
                   <button class="gallery-dk__to-left" data-prev="true" aria-label="предыдущее изображение"></button>
                   <button class="gallery-dk__to-right" data-next="true"  aria-label="следующее изображение"></button>
@@ -434,11 +456,3 @@ class GalleryDK extends NodaDK {
    //_______________________
    // -----------------------------------------
 }
-
-/**
- * TODO:
- * ?Добавить знак загрузки
- * ?При двойном нажатии увеличивать в точке нажатия
- */
-
-// -----------------------------------------------------------------------------
