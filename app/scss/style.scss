@@ -1,9 +1,4 @@
-@forward "_style";
-// ---------------------Общие стили------------------------
-@forward "base";
-@forward "config";
-@forward "globals";
-// --------------------------------------------------------
-
 @forward "blocks";
 @forward "components";
+
+@forward "vendors";
