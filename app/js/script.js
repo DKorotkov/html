@@ -41,7 +41,7 @@
       selector: "#modal",
       openBtnsSelector: ['[data-name="modal"]'],
       focusTrap: true, // Требуется ли перемещаться табом только внутри объекта (default: false)
-      collapseOnFocusOut: true, // Требуется ли закрывать при потери фокуса
+      collapseOnFocusOut: false, // Требуется ли закрывать при потери фокуса
       activeClass: "--active",
       onClose() {
          console.log("modal closing");
