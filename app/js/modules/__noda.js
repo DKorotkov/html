@@ -26,18 +26,24 @@ class NodaDK {
    constructor(options) {
       this._options = Object.assign(this.#defaultOptions, options);
       this._$el = document.querySelector(this._options.selector);
-      this._getFocusableContent();
-      this._$lastFocusableEl = this._$el.querySelector('[data-select-last="true"]');
+      if (this.#check()) {
+         this._getFocusableContent();
+         this._$lastFocusableEl = this._$el.querySelector('[data-select-last="true"]');
 
-      this.#check();
-      this.#init();
+         this.#init();
+      } else this._hasErrors = true;
    }
 
    #check() {
       if (!this._$el) {
          console.error(`Не найден класс - ${this._options.selector}`);
-         return;
+         return false;
       }
+      // Проверяет на соответсвие к медиа запросу
+      if (typeof this._options.matchMedia !== "undefined" && !window.matchMedia(this._options.matchMedia).matches) {
+         return false;
+      }
+      return true;
    }
 
    #init() {
@@ -89,7 +95,7 @@ class NodaDK {
 
    _mainElClick(e) {
       // Если по кнопке закрытия
-      if (e.target.dataset.close) {
+      if (e.target.closest('[data-close="true"]') || e.target.dataset.close) {
          this.close();
       }
    }
@@ -139,6 +145,12 @@ class NodaDK {
  * event Listners
  *
  * 3. Разделять функции по направляению или элемента
+ */
+
+/**
+ *
+ * TODO:
+ * 1. переделать вывод ошибок через throw New Error
  */
 
 function isTouchDevice() {

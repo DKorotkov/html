@@ -10,6 +10,7 @@
    closeBtnsSelector: - кнопки закрытия (могут быть указаны ввиде массива)
    description - требуется ли выводить описсание из тэга alt (true)
    imgsList - трбуется ли создавать список изображений (true)
+   matchMedia - медиа запрос, в котором должен запускаться новый класс (none)
 
    data-close="true" - необходимо установить на элемент, который будет закрывать модальное окно (только на элементы внутри окна)
    data-select-last="true" - необходимо установить на элемент, который должн попасть в фокус в самый последний момент
@@ -38,9 +39,15 @@ class GalleryDK extends NodaDK {
 
    constructor(options) {
       super(options);
-      this._options = Object.assign(this.#defaultOptions, this._options);
-      this._$originalImgs = [...this._$el.querySelectorAll("img")];
-      this.#init();
+      if (this.#check()) {
+         this._options = Object.assign(this.#defaultOptions, this._options);
+         this._$originalImgs = [...this._$el.querySelectorAll("img")];
+         this.#init();
+      }
+   }
+
+   #check() {
+      return !this._hasErrors;
    }
 
    #init() {
@@ -174,9 +181,9 @@ class GalleryDK extends NodaDK {
          if (!this._$el.classList.contains("gallery-dk--active")) this.open();
          this.setImg(id);
          this._$galleryMainImg.style.opacity = 0;
-      } else if (e.target.dataset.next) this.nextImg();
-      else if (e.target.dataset.prev) this.prevImg();
-      else if (e.target.dataset.zoom) this._zoomImg();
+      } else if (e.target.closest('[data-next="true"]') || e.target.dataset.next) this.nextImg();
+      else if (e.target.closest('[data-prev="true"]') || e.target.dataset.prev) this.prevImg();
+      else if (e.target.closest('[data-zoom="true"]') || e.target.dataset.zoom) this._zoomImg();
    }
 
    open() {

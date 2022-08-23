@@ -28,7 +28,7 @@ global.gl = {
    path: path,
    gulp: gulp,
    plugins: plugins,
-   isBuild: process.argv.includes("build"),
+   isBuild: !process.argv.includes("build"),
    isDev: !process.argv.includes("build"),
    ftpSettings: ftpSettings,
 };

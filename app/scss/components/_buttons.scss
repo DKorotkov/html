@@ -1,4 +1,4 @@
-@use "config" as *;
+@use "__config" as *;
 
 [class|="btn"] {
    background-color: transparent;
@@ -14,6 +14,12 @@
    border: rem(1) solid var(--color-black);
    color: var(--color-white);
    background-color: var(--color-primary);
-   border-radius: var(--border-radius);
+   // border-radius: var(--border-radius);
+   border-radius: 100vmax;
    padding: rem(20) rem(30);
+}
+
+.btn-main:hover,
+.btn-main:focus-visible {
+   
 }

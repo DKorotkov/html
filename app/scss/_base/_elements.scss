@@ -1,4 +1,4 @@
-@use "config" as *;
+@use "__config" as *;
 @use "sass:map";
 
 // --------------------------------------ОБНУЛЕНИE И ОБЩИЕ ПАРАМЕТРЫ--------------------------------------
@@ -12,11 +12,13 @@
 html,
 body {
    width: 100%;
+   min-width: var(--minWidth);
 }
 
 body {
    // font-family: system-ui, system, sans-serif;
    font-family: var(--ff-main);
+   font-size: var(--fs-body);
    background-size: cover;
 }
 
@@ -60,32 +62,38 @@ picture {
 
 // ____________________Обычный контейнер для респонза_________
 .container {
-   margin: 0 auto;
-
-   // Ограничиваем стили для мобильных
-   @include media('<=phone') {
-      padding: 0 var(--space-md);
-      min-width: var(--minWidth);
-   }
-
-   @include media('>phone') {
-      padding: 0 var(--space-lg);
-      max-width: calc(var(--space-lg) * 2 + map.get($breakpoints, 'phone'));
-   }
-
-   @include media('>=tablet') {
-      max-width: calc(var(--space-lg) * 2 + map.get($breakpoints, 'tablet'));
-   }
-
-   @include media('>=laptop') {
-      max-width: calc(var(--space-lg) * 2 + map.get($breakpoints, 'laptop'));
-   }
-
-   @include media('>=desktop') {
-      max-width: calc(var(--space-lg) * 2 + map.get($breakpoints, 'desktop'));
-   }
-
+   --padding: 1rem;
+   width: min(var(--maxWidth), 100% - (var(--padding) * 2));
+   margin-inline: auto;
 }
+
+// .container {
+//    margin-inline: auto;
+//    padding: 0 var(--space-container-padding);
+
+//    // Ограничиваем стили для мобильных
+//    @include media('<=phone') {
+//       // padding: 0 var(--space-md);
+//       min-width: var(--minWidth);
+//    }
+
+//    @include media('>phone') {
+//       // padding: 0 var(--space-lg);
+//       max-width: calc(var(--space-container-padding) * 2 + map.get($breakpoints, 'phone'));
+//    }
+
+//    @include media('>=tablet') {
+//       max-width: calc(var(--space-container-padding) * 2 + map.get($breakpoints, 'tablet'));
+//    }
+
+//    @include media('>=laptop') {
+//       max-width: calc(var(--space-container-padding) * 2 + map.get($breakpoints, 'laptop'));
+//    }
+
+//    @include media('>=desktop') {
+//       max-width: calc(var(--space-container-padding) * 2 + map.get($breakpoints, 'desktop'));
+//    }
+// }
 
 // __________________Класс для скрытия от всех__________________________________
 .hide {
@@ -144,15 +152,40 @@ picture {
 }
 
 .grid- {
-   &even-columns {
+   &auto-columns {
       grid-template-columns: repeat(auto-fit, minmax(min(rem(150), 100%), 1fr));
    }
 
-   &auto-columns {
+   &even-columns {
       grid-auto-flow: column;
       grid-auto-columns: 1fr;
    }
 }
 
-// __________Класс для работы с переменными___________________
+// where делает специфичность калсса = 0, а сам селектор можно использовать для организации отстов
+:where(.flow :not(:first-child)) {
+   margin-top: 1rem;
+}
 
+// __________Класс для работы с переменными___________________
+.fw-regular {
+   font-weight: var(--fw-regular);
+}
+
+.fs-400 {
+   font-size: var(--fs-16);
+}
+
+.padding-block-400 {
+   padding-block: var(--space-sm);
+}
+
+.font-primary-heading {
+   font-size: var(--fs-primary-heading);
+   line-height: 1.2;
+}
+
+.font-secondary-heading {
+   font-size: var(--fs-secondary-heading);
+   line-height: 1.1;
+}

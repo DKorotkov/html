@@ -14,6 +14,7 @@
    selector - селектор модального окна с которым будем работать
    openBtnsSelector - кнопки открытия (могут быть указаны ввиде массива)
    activeClass - класс, который будет добавлен при открытии
+   matchMedia - медиа запрос, в котором должен запускаться новый класс (none)
 
    focusTrap - требуется ли переходить табом только по модальному окну (default: false) не работает с collapseOnFocusOut = true 
    collapseOnFocusOut - требуется ли закрывать окно при потери фокуса (default: false)
@@ -42,6 +43,7 @@
     
 
    TODO:
+   !Определять для каких экранов не запускать
    Когда добавлю aria атрибуты, то использовать их вместо класса active
    aria указывать что окно появилось
 */
@@ -56,14 +58,17 @@ class ModalDK extends NodaDK {
    #$activeOpenBtn; // Храним ноду кнопки, которой открыли, для перевода на нее фокусе, когд закроем окно
    constructor(options) {
       super(options);
-      this._options = Object.assign(this.#defaultOptions, this._options);
-      this._$openBtns = document.querySelectorAll(this._options.openBtnsSelector);
+      if (this.#check()) {
+         this._options = Object.assign(this.#defaultOptions, this._options);
+         this._$openBtns = document.querySelectorAll(this._options.openBtnsSelector);
 
-      this.#check();
-      this.#init();
+         this.#init();
+      }
    }
 
-   #check() {}
+   #check() {
+      return !this._hasErrors;
+   }
 
    #init() {
       this._$el.setAttribute("role", "dialog");

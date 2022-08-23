@@ -1,4 +1,4 @@
-@use "config" as *;
+@use "__config" as *;
 
 .gallery-dk {
    --animation-time: 300ms; // Установить аналогичную в js 
@@ -63,9 +63,9 @@
       // дополнительные стили
       width: rem(32);
       aspect-ratio: 1;
-      border: rem(1) solid var(--color-primary, steelblue);
+      border: rem(1) solid var(--clr-primary, steelblue);
       border-radius: 50%;
-      background-color: var(--color-white);
+      background-color: var(--clr-white);
       cursor: pointer;
       margin-bottom: rem(10);
    }
@@ -79,7 +79,7 @@
       content: '';
       width: 60%;
       height: rem(1);
-      background-color: var(--color-primary, steelblue);
+      background-color: var(--clr-primary, steelblue);
       transform: translateX(-50%) rotate(45deg);
    }
 
@@ -123,10 +123,10 @@
 
    &__to-left::before,
    &__to-right::before {
-      --border-color: var(--color-white, #fff);
+      --border-color: var(--clr-white, #fff);
       position: relative;
       top: 50%;
-      aspect-ratio: 1;
+      height: rem(30);
       content: '';
       width: rem(30);
       // border-radius: var(--border-radius, rem(5));
@@ -142,7 +142,7 @@
 
    &__to-right:hover::before,
    &__to-left:hover::before {
-      --border-color: var(--color-primary, steelblue);
+      --border-color: var(--clr-primary, steelblue);
    }
 
    &__zoom {
@@ -159,9 +159,9 @@
       // дополнительные стили
       width: rem(32);
       aspect-ratio: 1;
-      border: rem(1) solid var(--color-primary, steelblue);
+      border: rem(1) solid var(--clr-primary, steelblue);
       border-radius: 50%;
-      background-color: var(--color-white);
+      background-color: var(--clr-white);
       cursor: pointer;
       margin-bottom: rem(10);
       place-content: center;
@@ -171,7 +171,7 @@
       margin-left: 17%;
       width: 65%;
       aspect-ratio: 1;
-      stroke: var(--color-primary, steelblue);
+      stroke: var(--clr-primary, steelblue);
    }
 
 //-----------------------------------------------------------------------
@@ -273,7 +273,7 @@
       text-overflow: ellipsis;
       
       max-height: var(--info-size);
-      color: var(--color-white);
+      color: var(--clr-white);
       justify-content: center;
       margin-bottom: auto;
    }
@@ -325,7 +325,7 @@
 
    &::-webkit-scrollbar-thumb {
          border-radius: rem(5);
-         background: var(--color-primary, steelblue);
+         background: var(--clr-primary, steelblue);
       }
    }
 
