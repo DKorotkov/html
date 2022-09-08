@@ -7,8 +7,36 @@
       <main class="main" id="main-content">
          <div class="container">
             <section class="section">
-               <h2>Проверка модального окна</h2>
-               <button class="btn-main" data-name="modal">Открыть модальное окно</button>
+               <h2 class="h2">Форма</h2>
+               <form class="form" action="">
+                  <label for="">
+                     <input class="form__input" type="text" required />
+                     Текстовое поле
+                  </label>
+                  <label for="checkbox">
+                     <input class="form__input" type="checkbox" name="" id="checkbox" />
+                     CheckBox
+                  </label>
+                  <div class="test grid-even-columns">
+                     <label for="radio1">
+                        <input class="form__input" type="radio" name="radio1" id="radio1" />
+                        radio
+                     </label>
+                     <label for="radio2">
+                        <input class="form__input" type="radio" name="radio1" id="radio2" checked />
+                        radio
+                     </label>
+                     <label for="radio3">
+                        <input class="form__input" type="radio" name="radio1" id="radio3" />
+                        radio
+                     </label>
+                  </div>
+               </form>
+            </section>
+
+            <section class="section">
+               <h2 class="h2">Проверка модального окна</h2>
+               <button class="btn" data-name="modal">Открыть модальное окно</button>
                <div class="modal" id="modal">
                   <div class="modal__container">
                      <button class="btn-modal-close" data-close="true">х</button>
@@ -17,16 +45,7 @@
                </div>
             </section>
 
-            <section class="section">
-               <h2>Проверка валидации форм</h2>
-               <form action="">
-                  <input type="email" name="mail" id="mail" />
-                  <input type="password" name="password" id="password" required />
-                  <button class="btn-main">Отправить</button>
-               </form>
-            </section>
-
-            <section class="section">
+            <!--   <section class="section">
                <h2>Галерея изображений</h2>
                <div class="gallery">
                   <img src="/img/1.jpg" alt="" />
@@ -36,9 +55,13 @@
                   <img src="/img/2.jpg" alt="Описание картинки №3" />
                   <img src="/img/3.jpg" alt="" />
                </div>
-            </section>
+            </section> -->
          </div>
       </main>
       @@include('html/_footer.html') @@include('html/_scripts.html')
    </body>
 </html>
+
+<!-- TODO:
+1. передлать размер шрифта в переменных через calc и размер основного шрифта body
+-->

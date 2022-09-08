@@ -7,9 +7,11 @@ class FormValid {
 
    static init() {
       const defaultOptions = {
-         errorClassName: "appointment-form__error",
-         inputClassName: "input",
+         formClassName: "form",
+         errorClassName: "error",
+         inputClassName: "form__input",
          invalidClassName: "invalid",
+         withValueClassName: "not-empty",
          errors: {
             required: "Заполните обязательное поле",
             email: "Пожалуйста, введите правильный email",
@@ -36,17 +38,27 @@ class FormValid {
          inputs.forEach((input) => {
             // Добавялем елемент для вывода ошибок
             const error = document.createElement("span");
-            error.classList.add(this.options.errorClassName);
+            error.classList.add(`${this.options.formClassName}__${this.options.errorClassName}`);
             error.setAttribute("aria-live", "polite");
             input.insertAdjacentElement("afterend", error);
 
-            input.addEventListener("blur", (e) => this.validate(e));
+            input.addEventListener("blur", (e) => {
+               this.validate(e);
+               this.isEmpty(e);
+            });
          });
 
          form.addEventListener("submit", (e) => {
             this.checkValid(e);
          });
       });
+   }
+
+   // Проверяем пустое ли поле
+   static isEmpty(input) {
+      if (input.target) input = input.target;
+      if (input.value.length > 0) input.classList.add(`${this.options.inputClassName}--${this.options.withValueClassName}`);
+      else input.classList.remove(`${this.options.inputClassName}--${this.options.withValueClassName}`);
    }
 
    // Проверяем поля на валидацию

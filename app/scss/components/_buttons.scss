@@ -1,25 +1,21 @@
 @use "__config" as *;
 
-[class|="btn"] {
+button:where([class]) {
    background-color: transparent;
    border: none;
    padding: 0;
    margin: 0;
    cursor: pointer;
+   text-decoration: none;
 }
 
+.btn {
 
+   &:where(:hover, :focus-visible) {
+      
+   }
 
-.btn-main {
-   border: rem(1) solid var(--color-black);
-   color: var(--color-white);
-   background-color: var(--color-primary);
-   // border-radius: var(--border-radius);
-   border-radius: 100vmax;
-   padding: rem(20) rem(30);
-}
+   &:disabled {
 
-.btn-main:hover,
-.btn-main:focus-visible {
-   
+   }
 }

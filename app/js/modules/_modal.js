@@ -31,6 +31,7 @@
       focusTrap: true, // Требуется ли перемещаться табом только внутри объекта (default: false)
       collapseOnFocusOut: true, // Требуется ли закрывать при потери фокуса
       activeClass: "--active",
+      mathcMedia: '(max-width: 50rem)',
       onClose() {
          console.log("modal closing");
       },
@@ -110,6 +111,10 @@ class ModalDK extends NodaDK {
 
    open() {
       setTimeout(() => {
+         if (this._$el.getAttribute("aria-hidden") === "false") {
+            this.close();
+            return;
+         }
          this.#$activeOpenBtn = document.activeElement;
          super.open();
          if (this._options.activeClass) {

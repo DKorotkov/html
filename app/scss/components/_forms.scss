@@ -1,0 +1,40 @@
+@use "__config" as *;
+
+.form {
+   //----удалить
+   display: grid;
+   gap: 2rem;
+   //-----------
+
+   &__input {
+      
+   }
+
+   &__input:where(:not([type="checkbox"], [type="radio"])) {
+      outline: 0; // использовать в случае, если у инпута задан стиль активного элемента 
+   }
+
+   &__input:where(:focus, :focus-visible) {
+      //----удалить
+      border-color: var(--clr-primary);
+      //-----------
+   }
+
+   &__input:disabled {
+
+   }
+
+   &__input--not-empty {
+      
+   }
+   
+   &__input--invalid {
+      
+   }
+
+   &__error {
+      //----удалить
+         color: var(--clr-error);
+      //-----------
+   }
+}

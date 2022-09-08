@@ -13,20 +13,7 @@ html,
 body {
    width: 100%;
    min-width: var(--minWidth);
-}
-
-body {
-   // font-family: system-ui, system, sans-serif;
-   font-family: var(--ff-main);
-   font-size: var(--fs-body);
-   background-size: cover;
-}
-
-// ____Класс для объявления шрифты после его загрузки_____
-.fonts-loaded body:root {
-    
-      --ff-main: "Pangolin", serif;
-   
+   accent-color: var(--clr-primary);
 }
 
 *::selection { // Цвет выделения текста
@@ -36,9 +23,9 @@ body {
 
 img,
 picture {
-   width: 100%;
-   max-width: 100%;
-   height: inherit;
+   // width: 100%;
+   // max-width: 100%;
+   // height: inherit;
    object-fit: cover;
    // aspect-ratio: attr(width) / attr(height);
    // background-image: url(data:image/gif;base64,R0lGODlhCgAIAIABAN3d3f///yH5BAEAAAEALAAAAAAKAAgAAAINjAOnyJv2oJOrVXrzKQA7);
@@ -47,16 +34,21 @@ picture {
 // ----------------------------------------------СТАНДАРТНЫЕ КЛАССЫ---------------------------------------------
 
 // _____________Футер к низу_______________
-.body-main {
+.body {
    display: flex;
    flex-direction: column;
+   // font-family: system-ui, system, sans-serif;
+   font-family: var(--ff-body);
+   font-size: var(--fs-body);
 }
-.page-main {
+
+.main {
    flex-grow: 1;
 }
-.header-main,
-.page-main,
-.footer-main {
+
+.header,
+.main,
+.footer {
    flex-shrink: 0;
 }
 
@@ -146,7 +138,7 @@ picture {
 }
 
 // __________Класс для работы с grid___________________
-[class|="grid"] {
+[class*="grid-"] {
    display: grid;
    gap: rem(10);
 }
@@ -180,12 +172,38 @@ picture {
    padding-block: var(--space-sm);
 }
 
-.font-primary-heading {
-   font-size: var(--fs-primary-heading);
-   line-height: 1.2;
+
+.h1 {
+   font-family: var(--ff-heading);
+   font-size: var(--fs-48);
+
+   @media (min-width: (50rem)) { 
+      font-size: var(--fs-72);
+      font-weight: var(--fw-bold);
+      line-height: 1.1;
+   }
 }
 
-.font-secondary-heading {
-   font-size: var(--fs-secondary-heading);
-   line-height: 1.1;
+.h2 {
+   font-family: var(--ff-heading);
+   font-size: var(--fs-48);
+   font-weight: var(--fw-semi-bold);
+}
+
+.h3 {
+   font-family: var(--ff-heading);
+   font-size: var(--fs-36);
+   font-weight: var(--fw-semi-bold);
+}
+
+.h4 {
+   font-family: var(--ff-heading);
+   font-size: var(--fs-24);
+   font-weight: var(--fw-semi-bold);
+}
+
+.h5 {
+   font-family: var(--ff-heading);
+   font-size: var(--fs-20);
+   font-weight: var(--fw-semi-bold);
 }
