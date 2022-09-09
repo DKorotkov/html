@@ -1,0 +1,51 @@
+@use "__config" as *;
+
+@keyframes fade-in {
+   0% {opacity: 0;}
+   100% {opacity: 1;}
+}
+
+@keyframes fade-out {
+   0% {opacity: 1;}
+   100% {opacity: 0;}
+}
+
+@keyframes slide-up {
+   0% {translate: 0 100%;}
+   100% {translate: 0 0;}
+}
+
+@keyframes slide-down {
+   0% {translate: 0 -100%;}
+   100% {translate: 0 0;}
+}
+
+@keyframes slide-to-left {
+   0% {translate: 100% 0;}
+   100% {translate: 0 0;}
+}
+
+@keyframes slide-to-right {
+   0% {translate: -100% 0;}
+   100% {translate: 0 0;}
+}
+
+@keyframes slide-from-left {
+   0% {translate: 0 0;}
+   100% {translate: 100% 0;}
+}
+
+@keyframes slide-from-right {
+   0% {translate: 0 0;}
+   100% {translate: -100% 0;}
+}
+
+@keyframes fade-bg-in {
+   0% {box-shadow: 0 0 0 100vw  transparent;}
+   100% {box-shadow: 0 0 0 100vw  var( --backdrop-clr);}
+}
+
+@keyframes fade-bg-out {
+   0% {box-shadow: 0 0 0 100vw  var( --backdrop-clr);}
+   100% {box-shadow: 0 0 0 100vw  transparent;}
+}

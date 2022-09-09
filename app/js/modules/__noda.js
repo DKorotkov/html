@@ -52,7 +52,7 @@ class NodaDK {
 
       // Последний элемент который будет в фокусе
       if (this._$lastFocusableEl) this._$lastFocusableEl.tabIndex = -1;
-      // Удаляем этот элемент (который последний в фокусе)
+      // Удаляем этот элемент (который последний в фокусе) из спсика всех элементов фокуса
       this._$focusableContent = this._$focusableContent.filter((el) => {
          if (el !== this._$lastFocusableEl) return el;
       });
@@ -106,9 +106,8 @@ class NodaDK {
 
    open() {
       if (this.#destroyed) return console.error(`Объект с классом - ${this._options.selector} уничтожен и не может быть "Открыт"`);
-      if (this._options.activeClass) {
-         this._$el.classList.add(this._options.selector.slice(1) + this._options.activeClass);
-      } else this._$el.removeAttribute("hidden", "");
+      if (this._options.activeClass) this._$el.classList.add(this._options.selector.slice(1) + this._options.activeClass);
+      else this._$el.removeAttribute("hidden");
 
       // Для запрета прокрутки основного контента
       document.body.style.overflow = "hidden";
@@ -116,9 +115,8 @@ class NodaDK {
 
    close() {
       this.destroy();
-      if (this._options.activeClass) {
-         this._$el.classList.remove(this._options.selector.slice(1) + this._options.activeClass);
-      } else this._$el.setAttribute("hidden", "");
+      if (this._options.activeClass) this._$el.classList.remove(this._options.selector.slice(1) + this._options.activeClass);
+      else this._$el.setAttribute("hidden", "");
 
       // Для прокрутки основного контента
       document.body.style.overflow = "";

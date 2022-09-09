@@ -1,0 +1,70 @@
+@use "__config" as *;
+
+// Вызов диалогового окна через тэг <div>
+.modal {
+   
+
+   &[closing] &__content {
+      animation: slide-from-right 500ms forwards;
+   }
+
+   &[closing] &__overlay {
+      animation: fade-out 500ms forwards;
+   }
+   
+   &:not([closing]) &__content {
+      animation: slide-to-right 500ms forwards;
+   }
+
+   &__content {
+   }
+   
+
+   &__overlay {
+      animation: fade-in 500ms forwards;
+   }
+
+}
+
+
+// Вызов диалогового окна через тэг <dialog>
+.modal-dg {
+   --backdrop-clr: rgba(0,0,0, 0.5);
+   padding: 0;
+   // костыль для firefox, учтен в анимации
+   // box-shadow: 0 0 0 100vw var(--backdrop-clr);
+   border: none;
+   max-width: 80%;
+
+   &[open] {
+      animation: 
+                 fade-bg-in 500ms forwards,
+                 slide-to-right 500ms forwards;
+   }
+
+   // &[open]::backdrop {
+   //    animation: fade-in 500ms forwards;
+   // }
+
+   &[closing] {
+      display: block;
+      pointer-events: none;
+      inset: 0;
+      animation: 
+                 fade-bg-out 500ms forwards,
+                 slide-from-right 500ms forwards;
+   }
+
+   &::backdrop {
+      background-color: transparent;
+      // background-color: var(--backdrop-clr);
+   }
+
+   // &[closing]::backdrop {
+   //    animation: fade-out 500ms forwards;
+   // }
+
+   &__content {
+      padding: 20px;
+   }
+}

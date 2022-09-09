@@ -8,32 +8,6 @@
    padding-bottom: rem(30);
 }
 
-.modal {
-   // position: fixed;
-   // opacity: 0;
-
-   &__container {
-      position: fixed;
-      top: 35%;
-      left: 50%;
-      padding: rem(30);
-      border: rem(2) solid #ccc;
-      border-radius: var(--border-radius);
-      color: var(--color-white);
-      font-weight: bold;
-      background-color: steelblue;
-      transform: translateX(-50%);
-      opacity: 0;
-      transition: top 300ms ease, opacity 300ms ease;
-   }
-
-   &--active &__container {
-      top: 50%;
-      opacity: 1;
-      transform: translateX(-50%) translateY(-50%);
-   }
-}
-
 .gallery {
    display: flex;
    aspect-ratio: 3/1;

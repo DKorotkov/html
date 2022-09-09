@@ -13,49 +13,61 @@
    Объект модального окна:
    selector - селектор модального окна с которым будем работать
    openBtnsSelector - кнопки открытия (могут быть указаны ввиде массива)
-   activeClass - класс, который будет добавлен при открытии
+   contentClass - класс, который используется для обертки содержимого "content",
    matchMedia - медиа запрос, в котором должен запускаться новый класс (none)
+   dialogFullScreen - указывает открывать ли диалог (dialog) на весь экарн (default: true)
 
    focusTrap - требуется ли переходить табом только по модальному окну (default: false) не работает с collapseOnFocusOut = true 
    collapseOnFocusOut - требуется ли закрывать окно при потери фокуса (default: false)
-
+   
    overlay - требуется ли оверлей (default: true)
+   ovarlayClass - класс для оверлэя (default: "ovarlay")
    overlayBg - цвет bg (defult: "rgba(0,0,0, 0.5)")
-   overlayZindex - zindex оверлея (default: "0"),
 
    onClose() - Функция при закрытии
    
-   m = new ModalDK({
+   modal = new ModalDK({
       selector: "#modal",
       openBtnsSelector: [".btn--open"],
+      contentClass: "content",
+      mathcMedia: '(max-width: 50rem)',
+      dialogFullScreen: true,
       focusTrap: true, // Требуется ли перемещаться табом только внутри объекта (default: false)
       collapseOnFocusOut: true, // Требуется ли закрывать при потери фокуса
-      activeClass: "--active",
-      mathcMedia: '(max-width: 50rem)',
+      ovarlayClass: "overlay",
+      overlay: true,
+      overlayBg: "rgba(0,0,0, 0.5)",
       onClose() {
          console.log("modal closing");
       },
    });
 
+   Реализация в html для dialog
+   <dialog class="modal" id="modal">
+      <button class="btn-modal-close" data-close="true">х</button>
+      <p>Это модальное окно</p>
+   </dialog>
+
    Реализация в html 
-   <div class="modal">
-      <div class="modal__container"></div>
+   <div class="modal" id="modal" hidden>
+      <button class="btn-modal-close" data-close="true">х</button>
+      <p>Это модальное окно</p>
    </div>
     
 
    TODO:
-   !Определять для каких экранов не запускать
    Когда добавлю aria атрибуты, то использовать их вместо класса active
    aria указывать что окно появилось
 */
 
 class ModalDK extends NodaDK {
    #defaultOptions = {
+      dialogFullScreen: true,
+      contentClass: "content",
       overlay: true,
+      ovarlayClass: "overlay",
       overlayBg: "rgba(0,0,0, 0.5)",
-      overlayZindex: "0",
    };
-   #OVERLAY_ANIMTAION_TIME = 300;
    #$activeOpenBtn; // Храним ноду кнопки, которой открыли, для перевода на нее фокусе, когд закроем окно
    constructor(options) {
       super(options);
@@ -72,33 +84,31 @@ class ModalDK extends NodaDK {
    }
 
    #init() {
-      this._$el.setAttribute("role", "dialog");
-      this._$el.setAttribute("aria-modal", "true");
-      this._$el.setAttribute("aria-hidden", "true");
+      if (this._$el.nodeName !== "DIALOG") {
+         this._$el.setAttribute("role", "dialog");
+         this._$el.setAttribute("aria-modal", "true");
+         this._$el.setAttribute("aria-hidden", "true");
+      }
+
+      // Добавялем элемент обертку (content)
+      const content = document.createElement("div");
+      content.classList.add(`${this._options.selector.slice(1)}__${this._options.contentClass}`);
+      content.innerHTML = this._$el.innerHTML;
+      this._$el.innerHTML = "";
+      this._$el.appendChild(content);
 
       // Добавляем оверлей
-      if (this._options.overlay) {
+      if (this._options.overlay && this._$el.nodeName !== "DIALOG") {
          const overlay = document.createElement("div");
 
          overlay.style.backgroundColor = this._options.overlayBg;
          overlay.style.position = "fixed";
-         overlay.style.inset = "auto";
-         overlay.style.opacity = 0;
-         // overlay.style.display = "none";
-         overlay.classList.add(this._options.selector.slice(1) + "__overlay");
-         overlay.style.zIndex = this._options.overlayZindex;
-         overlay.style.transition = `all ${this.#OVERLAY_ANIMTAION_TIME}ms ease`;
+         overlay.style.inset = "0";
+         overlay.classList.add(this._options.selector.slice(1) + "__" + this._options.ovarlayClass);
          overlay.addEventListener("click", this.close.bind(this));
          if (this._$el.querySelector(":first-child").style.position === "static") this._$el.querySelector(":first-child").style.position = "relative";
-         this._$el.querySelector(":first-child").style.zIndex = toString(parseInt(this._options.overlayZindex) + 1);
          this._$el.insertBefore(overlay, this._$el.firstChild);
       }
-
-      if (this._options.activeClass)
-         // Убираем возможность фокуса на элементах для скрытого меню
-         this._$focusableContent.forEach((element) => {
-            element.tabIndex = -1;
-         });
 
       if (this._$openBtns) {
          // События
@@ -109,37 +119,50 @@ class ModalDK extends NodaDK {
       }
    }
 
+   _mainElClick(e) {
+      super._mainElClick(e);
+      if (e.target.nodeName === "DIALOG") {
+         this.close();
+         return;
+      }
+   }
+
    open() {
       setTimeout(() => {
-         if (this._$el.getAttribute("aria-hidden") === "false") {
+         if (this._$el.getAttribute("aria-hidden") === "false" || this._$el.hasAttribute("open")) {
             this.close();
             return;
          }
          this.#$activeOpenBtn = document.activeElement;
-         super.open();
-         if (this._options.activeClass) {
-            // Убираем возможность фокуса на элементах для скрытого меню
-            this._$focusableContent.forEach((element) => {
-               if (!element.dataset.selectLast) element.removeAttribute("tabindex");
-            });
+
+         if (this._$el.nodeName === "DIALOG") {
+            if (this._options.dialogFullScreen) this._$el.showModal();
+            else this._$el.show();
+         } else {
+            super.open();
+            this._$el.setAttribute("aria-hidden", "false");
          }
-         this._$el.setAttribute("aria-hidden", "false");
+
          if (this._$focusableContent.length > 0) this._$focusableContent[0].focus();
-         // Работа с оверлеем
-         this._$el.querySelector(":first-child").style.inset = "0";
-         this._$el.querySelector(":first-child").style.opacity = "1";
 
          // document.querySelector("main").setAttribute("inert", "");
       }, 1);
    }
 
    close() {
-      super.close();
-      if (this._options.activeClass) {
-         // Убираем возможность фокуса на элементах для скрытого меню
-         this._$focusableContent.forEach((element) => {
-            element.tabIndex = -1;
-         });
+      this._$el.setAttribute("closing", "");
+      const _$elLsAnim = this._$el.nodeName === "DIALOG" ? this._$el : this._$el.querySelector(`.${this._options.selector.slice(1)}__${this._options.contentClass}`);
+      if (_$elLsAnim.getAnimations().length === 0) {
+         console.error(`Необходимо добавить анимацию для`, _$elLsAnim);
+         this.#closing();
+      } else {
+         _$elLsAnim.addEventListener(
+            "animationend",
+            () => {
+               this.#closing();
+            },
+            { once: true }
+         );
       }
 
       setTimeout(() => {
@@ -147,13 +170,17 @@ class ModalDK extends NodaDK {
          if (typeof this._options.onClose === "function") this._options.onClose();
       }, 1);
 
-      // Работа с оверлеем
-      this._$el.querySelector(":first-child").style.opacity = "0";
-      setTimeout(() => {
-         this._$el.querySelector(":first-child").style.inset = "auto";
-      }, this.#OVERLAY_ANIMTAION_TIME);
-
-      this._$el.setAttribute("aria-hidden", "true");
       // document.querySelector("main").removeAttribute("inert", "");
+   }
+
+   #closing() {
+      this._$el.removeAttribute("closing");
+      if (this._$el.nodeName === "DIALOG") {
+         this._$el.close();
+         super.destroy();
+      } else {
+         this._$el.setAttribute("aria-hidden", "true");
+         super.close();
+      }
    }
 }
