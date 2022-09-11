@@ -2,7 +2,7 @@
 
 // Вызов диалогового окна через тэг <div>
 .modal {
-   
+   position: absolute;
 
    &[closing] &__content {
       animation: slide-from-right 500ms forwards;
@@ -17,6 +17,7 @@
    }
 
    &__content {
+      background-color: #fff;
    }
    
 

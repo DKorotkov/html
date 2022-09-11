@@ -21,17 +21,13 @@ class NodaDK {
       collapseOnFocusOut: false,
    };
 
-   #destroyed = false; // Храним информации о том уничтежен ли объект
+   // #destroyed = false; // Храним информации о том уничтежен ли объект
 
    constructor(options) {
       this._options = Object.assign(this.#defaultOptions, options);
       this._$el = document.querySelector(this._options.selector);
-      if (this.#check()) {
-         this._getFocusableContent();
-         this._$lastFocusableEl = this._$el.querySelector('[data-select-last="true"]');
-
-         this.#init();
-      } else this._hasErrors = true;
+      if (this.#check()) this.#init();
+      else this._hasErrors = true;
    }
 
    #check() {
@@ -49,6 +45,11 @@ class NodaDK {
    #init() {
       this._$el.addEventListener("click", (e) => this._mainElClick(e));
       this._$el.addEventListener("keydown", (e) => this._checkPress(e), true);
+   }
+
+   _initFocusableContent() {
+      this._$lastFocusableEl = this._$el.querySelector('[data-select-last="true"]');
+      this._getFocusableContent();
 
       // Последний элемент который будет в фокусе
       if (this._$lastFocusableEl) this._$lastFocusableEl.tabIndex = -1;
@@ -105,27 +106,31 @@ class NodaDK {
    }
 
    open() {
-      if (this.#destroyed) return console.error(`Объект с классом - ${this._options.selector} уничтожен и не может быть "Открыт"`);
+      // if (this.#destroyed) return console.error(`Объект с классом - ${this._options.selector} уничтожен и не может быть "Открыт"`);
       if (this._options.activeClass) this._$el.classList.add(this._options.selector.slice(1) + this._options.activeClass);
       else this._$el.removeAttribute("hidden");
 
+      if (typeof this._$focusableContent === "undefined") this._initFocusableContent();
+
       // Для запрета прокрутки основного контента
-      document.body.style.overflow = "hidden";
+      window.disableScroll();
+      // document.body.style.overflow = "hidden";
    }
 
    close() {
-      this.destroy();
       if (this._options.activeClass) this._$el.classList.remove(this._options.selector.slice(1) + this._options.activeClass);
       else this._$el.setAttribute("hidden", "");
+      this.destroy();
 
       // Для прокрутки основного контента
-      document.body.style.overflow = "";
+      // document.body.style.overflow = "";
    }
 
    destroy() {
-      // this.#destroyed = true;
       this._$el.removeEventListener("click", (e) => this._mainElClick(e));
       this._$el.removeEventListener("keydown", (e) => this._checkPress(e), true);
+      window.enableScroll();
+      // this.#destroyed = true;
    }
 }
 
