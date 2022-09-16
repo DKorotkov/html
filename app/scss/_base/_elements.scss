@@ -173,7 +173,7 @@ picture {
 }
 
 
-.h1 {
+:where(h1) {
    font-family: var(--ff-heading);
    font-size: var(--fs-48);
 
@@ -184,25 +184,25 @@ picture {
    }
 }
 
-.h2 {
+:where(h2) {
    font-family: var(--ff-heading);
    font-size: var(--fs-48);
    font-weight: var(--fw-semi-bold);
 }
 
-.h3 {
+:where(h3) {
    font-family: var(--ff-heading);
    font-size: var(--fs-36);
    font-weight: var(--fw-semi-bold);
 }
 
-.h4 {
+:where(h4) {
    font-family: var(--ff-heading);
    font-size: var(--fs-24);
    font-weight: var(--fw-semi-bold);
 }
 
-.h5 {
+:where(h5) {
    font-family: var(--ff-heading);
    font-size: var(--fs-20);
    font-weight: var(--fw-semi-bold);

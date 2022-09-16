@@ -14,6 +14,7 @@ export const path = {
       js: `${appFolder}/js/*.js`,
       img: `${appFolder}/img/**/*.{jpg,jpeg,png,gif,webp}`,
       svg: `${appFolder}/img/svg_icons/*.svg`,
+      fonts: `${appFolder}/fonts/`,
       files: `${appFolder}/files/**/*.*`, // Для простого копирования в папку с результатом
    },
    dist: {
@@ -22,6 +23,7 @@ export const path = {
       js: `${distFolder}/js/`,
       img: `${distFolder}/img/`,
       svg: `${distFolder}/img/icons/`,
+      fonts: `${distFolder}/fonts/`,
       files: `${distFolder}/files/`,
    },
    watch: {
@@ -30,6 +32,7 @@ export const path = {
       js: `${appFolder}/js/**/*.js`,
       img: `${appFolder}/img/**/*.{jpg,jpeg,png,gif,webp}`,
       svg: `${appFolder}/img/svg_icons/*.svg`,
+      fonts: `${appFolder}/fonts/**/*.*`,
       files: `${appFolder}/files/**/*.*`,
    },
    clean: distFolder,
@@ -43,4 +46,5 @@ export const path = {
       },
       to: ftpFolder,
    },
+   fontImportFile: `${appFolder}/scss/_base/_fonts.scss`,
 };
