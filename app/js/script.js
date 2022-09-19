@@ -1,5 +1,3 @@
-// import { formValid } from "/js/modules/formValidation.min.js";
-
 (function () {
    ("use strict");
 
@@ -52,6 +50,22 @@
    collapseOnFocusOut: false,
 });
 
+   // ------------------------------------------------------
+
+    // ------------Font Observer-----------------------------
+   // Загрузка шрифтов через скрипт
+      const font = new FontFaceObserver("LyuLin");
+      const html = document.documentElement;
+   font.load().then(function () {
+            html.classList.remove("fonts-loading");
+            html.classList.add("fonts-loaded");
+            sessionStorage.fontsLoaded = true;
+         })
+         .catch(function () {
+            html.classList.remove("fonts-loading");
+            html.classList.add("fonts-failed");
+            sessionStorage.fontsLoaded = false;
+         });
    // ------------------------------------------------------
 
 })();

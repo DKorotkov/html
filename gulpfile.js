@@ -20,6 +20,7 @@ import { scss } from "./gulp/tasks/scss.js";
 import { js } from "./gulp/tasks/js.js";
 import { images } from "./gulp/tasks/images.js";
 import { svg } from "./gulp/tasks/svg.js";
+import { svgColor } from "./gulp/tasks/svgColor.js";
 import { fonts } from "./gulp/tasks/fonts.js";
 import { server } from "./gulp/tasks/server.js";
 import { ftp } from "./gulp/tasks/ftp.js";
@@ -34,8 +35,8 @@ global.gl = {
    ftpSettings: ftpSettings,
 };
 
-const dev = gulp.series(clean, html, scss, js, images, svg, fonts, copyFiles, gulp.parallel(watcher, server));
-const build = gulp.series(clean, html, scss, js, images, svg, fonts, copyFiles);
+const dev = gulp.series(clean, html, scss, js, images, svg, svgColor, fonts, copyFiles, gulp.parallel(watcher, server));
+const build = gulp.series(clean, html, scss, js, images, svg, svgColor, fonts, copyFiles);
 
 gulp.task("default", dev);
 gulp.task("build", build);

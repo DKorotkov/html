@@ -37,9 +37,12 @@ picture {
 .body {
    display: flex;
    flex-direction: column;
-   // font-family: system-ui, system, sans-serif;
-   font-family: var(--ff-body);
+   font-family: system-ui, system, sans-serif;
    font-size: var(--fs-body);
+}
+
+.fonts-loaded .body {
+   font-family: var(--ff-body);
 }
 
 .main {
