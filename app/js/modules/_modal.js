@@ -24,6 +24,7 @@
    ovarlayClass - класс для оверлэя (default: "ovarlay")
    overlayBg - цвет bg (defult: "rgba(0,0,0, 0.5)")
 
+   onOpen() - Функция при открытии
    onClose() - Функция при закрытии
    
    modal = new ModalDK({
@@ -37,6 +38,9 @@
       ovarlayClass: "overlay",
       overlay: true,
       overlayBg: "rgba(0,0,0, 0.5)",
+      onOpen() {
+         console.log("modal opening");
+      },
       onClose() {
          console.log("modal closing");
       },
@@ -144,8 +148,10 @@ class ModalDK extends NodaDK {
          }
 
          if (this._$focusableContent.length > 0) this._$focusableContent[0].focus();
+         if (typeof this._options.onOpen === "function") this._options.onOpen();
+         // setTimeout(() => {
 
-         // document.querySelector("main").setAttribute("inert", "");
+         // }, 1);
       }, 1);
    }
 

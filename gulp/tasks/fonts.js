@@ -29,7 +29,7 @@ function fontsStyle() {
 
       fs.writeFile(gl.path.fontImportFile, removeLines(data), "utf8", function (err) {
          if (err) throw err;
-         fs.readdir(gl.path.dist.fonts, function (err, items) {
+         fs.readdir(gl.path.app.fonts, function (err, items) {
             if (items) {
                let c_fontname;
                let name;
