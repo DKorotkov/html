@@ -1,0 +1,86 @@
+@use "__config" as *;
+
+.select {
+   &__menu {
+      --padding: 1em;
+      --width: 15.625rem;
+      --size: none;
+      --hight-option: 1.25rem;
+      --hight-size: calc(var(--hight-option) * var(--size) + (var(--padding)));
+      width: var(--width);
+   }
+
+   &__button {
+      display: flex;
+      position: relative;
+      
+      height: rem(45);
+      padding-inline: var(--padding);
+      text-align: left;
+      border: rem(2) solid var(--clr-silver);
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   &__button::after {
+      content: '';
+      width: 0;
+      height: 0;
+      margin-top: rem(7);
+      border: rem(7) solid transparent;
+      border-color: var(--clr-black) transparent transparent transparent;
+   }
+
+   &__button:focus-visible {
+      outline: none;
+      border-color: var(--clr-primary);
+   }
+
+   &__menu[multiple] &__button {
+      display: none;
+   }
+
+   &__menu:has(.select__popup:not([hidden])) &__button::after {
+      border-color: transparent transparent var(--clr-black) transparent;
+      margin-bottom: rem(14);
+   }
+
+   &__popup:not([hidden]) {
+      display: grid;
+      padding-block: calc(var(--padding) / 2);
+      border: rem(1) solid var(--clr-silver);
+      border-top: none;
+      gap: rem(5);
+
+      height: var(--hight-size);
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      overscroll-behavior-block: contain;
+      scroll-snap-type: block mandatory;
+   }
+
+   &__option {
+      position: relative;
+      cursor: pointer;
+      padding-inline: var(--padding);
+      scroll-snap-align: start;
+   }
+
+   &__option[aria-checked="true"] {
+      border: rem(1) solid var(--clr-primary);
+   }
+
+   &__option::before {
+      position: absolute;
+      content: '';
+      inset: 0;
+      background-color: transparent;
+      opacity: 0.5;
+   }
+
+   &__option:where(:hover, :focus-visible)::before {
+      background-color: var(--clr-primary);
+   }
+}
+

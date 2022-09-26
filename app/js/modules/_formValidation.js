@@ -33,7 +33,9 @@ class FormValid {
 
       this.forms.forEach((form) => {
          // form.setAttribute("novalidate", "");
-         const inputs = form.querySelectorAll("input");
+         let inputs = [...form.querySelectorAll("input")];
+         const textarea = [...form.querySelectorAll("textarea")];
+         inputs = inputs.concat(textarea);
 
          inputs.forEach((input) => {
             // Добавялем елемент для вывода ошибок
