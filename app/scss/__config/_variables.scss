@@ -1,13 +1,13 @@
-@use "_include-media" as *;
+// @use "_include-media" as *;
 // -----------------------------------------ПЕРЕМЕННЫЕ-----------------------------------------------
 
-//Точки в bootstrap sm-540px	md-720px	lg-960px	xl-1140px
-// @media (min-width:320px) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ }
-// @media (min-width:480px) { /* smartphones, Android phones, landscape iPhone */ }
-// @media (min-widtТ:600px) { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ }
-// @media (min-width:801px) { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
-// @media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
-// @media (min-width:1281px) { /* hi-res laptops and desktops */ }
+// Breakpoint	   Class infix	      Dimensions
+// X-Small	      None	            <576px
+// Small	         sm	               ≥576px
+// Medium	      md	               ≥768px
+// Large	         lg	               ≥992px
+// Extra          large	xl	         ≥1200px
+// Extra          extra large	xxl	≥1400px
 
 // $minWidth: 320; // минимальным размер экрана
 // $maxWidth: 1140; // максимальный размер экрана
@@ -18,11 +18,12 @@
 }
 
 // ____________________Брейкпоинты__________________________________
-// $md0: 520;
-// $md1: 521;
-// $md2: 720;
-// $md3: 960;
-// $md4: 1140;
+// $md0: 576;
+// $md1: 576;
+// $md2: 768;
+// $md3: 992;
+// $md4: 1200;
+// $md5: 1400;
 
 // :root {
 //    --md0: 520px;
