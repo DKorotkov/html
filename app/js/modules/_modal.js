@@ -147,7 +147,7 @@ class ModalDK extends NodaDK {
             this._$el.setAttribute("aria-hidden", "false");
          }
 
-         if (this._$focusableContent.length > 0) this._$focusableContent[0].focus();
+         if (this._$focusableContent.length > 0 && !isTouchDevice()) this._$focusableContent[0].focus();
          if (typeof this._options.onOpen === "function") this._options.onOpen();
          // setTimeout(() => {
 

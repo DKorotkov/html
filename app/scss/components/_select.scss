@@ -1,15 +1,20 @@
 @use "__config" as *;
 
 .select {
+   --padding: 1em;
+   --width: 15.625rem;
+   --size: none;
+   --hight-option: 1.25rem;
+   --hight-size: calc(var(--hight-option) * var(--size) + (var(--padding)));
+   
    &__menu {
-      --padding: 1em;
-      --width: 15.625rem;
-      --size: none;
-      --hight-option: 1.25rem;
-      --hight-size: calc(var(--hight-option) * var(--size) + (var(--padding)));
       width: var(--width);
+      @media (hover: none) and (pointer: coarse) {
+           display: none;
+      }
    }
 
+   &__native,
    &__button {
       display: flex;
       position: relative;
@@ -20,6 +25,15 @@
       border: rem(2) solid var(--clr-silver);
       justify-content: space-between;
       align-items: center;
+      width: var(--width);
+   }
+
+   &__native {
+      display: none;
+      @media (hover: none) and (pointer: coarse) {
+           display: block;
+      }
+      // appearance: none; // убирает стандартную стреклу
    }
 
    &__button::after {

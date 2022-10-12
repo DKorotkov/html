@@ -4,6 +4,8 @@
  *
  * Для мобильных версий должен отражаться нативный select, для пк кастомный
  *
+ * Для отслеживания изменений в кастомном select можно использовать: addEventListener("menuchange", {})
+ *
  */
 
 class SelectDK {
@@ -39,6 +41,7 @@ class SelectDK {
          select.addEventListener("change", (e) => this._setCustomValue(e, i));
       });
       this._initCustom();
+      this.menuEvent = new Event("menuchange");
    }
 
    static _makeCustom(select, i) {
@@ -53,6 +56,8 @@ class SelectDK {
          text: _$selectOptions[0].innerHTML,
       };
 
+      _$selectParent.classList.add(`${this._options.selectClassName}`);
+      select.classList.add(`${this._options.selectClassName}__native`);
       _$selectMenu.classList.add(`${this._options.selectClassName}__menu`);
       _$selectButton.classList.add(`${this._options.selectClassName}__button`);
       _$selectPopup.classList.add(`${this._options.selectClassName}__popup`);
@@ -72,7 +77,7 @@ class SelectDK {
             _$selectOption.tabIndex = 0;
          }
 
-         if (option.hasAttribute("selected")) {
+         if (option.hasAttribute("selected") && i !== 0) {
             _selectedOption.value = option.getAttribute("value");
             _selectedOption.text = option.innerHTML;
             _$selectOption.setAttribute("aria-checked", "true");
@@ -278,6 +283,7 @@ class SelectDK {
             nativeOptions[i].selected = optionCustomValue;
          });
       }
+      this._$selects[selectNumber].dispatchEvent(this.menuEvent);
    }
 
    static _setCustomValue(e, selectNumber) {

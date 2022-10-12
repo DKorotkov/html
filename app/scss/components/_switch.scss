@@ -1,0 +1,68 @@
+@use "__config" as *;
+
+// <label class="switch">
+//          <input class="switch__checkbox" type="checkbox" />
+//          <span class="switch__slider switch__slider--round"></span>
+//       </label>
+
+.switch {
+   display: inline-block;
+   position: absolute;
+   width: rem(60);
+   height: rem(34);
+
+   &__checkbox {
+      opacity: 0;
+      width: 0;
+      height: 0;
+   }
+
+   &__slider {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      cursor: pointer;
+      background-color: var(--clr-wild-sand);
+      -webkit-transition: .4s;
+      transition: .4s;
+   }
+
+   &__slider:before {
+      position: absolute;
+      bottom: rem(4);
+      left: rem(4);
+      content: "";
+      height: rem(26);
+      width: rem(26);
+      background-color: var(--clr-white);
+      -webkit-transition: .4s;
+      transition: .4s;
+   }
+
+   &__checkbox:checked + &__slider {
+      background-color: var(--clr-primary);
+   }
+
+   &__checkbox:focus + &__slider {
+      box-shadow: 0 0 rem(1) var(--clr-primary);
+   }
+
+   
+   &__checkbox:checked + &__slider:before {
+      -webkit-transform: translateX(rem(26));
+      -ms-transform: translateX(rem(26));
+      transform: translateX(rem(26));
+   }
+
+   /* Rounded sliders */
+   &__slider--round {
+      border-radius: rem(34);
+   }
+
+   &__slider--round:before {
+      box-shadow: 0 0 rem(1) var(--clr-primary);
+      border-radius: 50%;
+   }
+}
