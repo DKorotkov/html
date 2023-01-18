@@ -1,6 +1,6 @@
 node_modules
 dist
-*.code-workspaces
+*.code-workspace
 # gulp
 # gulpfile.js
 # /*.json
