@@ -1,6 +1,9 @@
 node_modules
 dist
 *.code-workspace
+html.code-workspace
+package-lock.json
+tsconfig.json
 # gulp
 # gulpfile.js
 # /*.json
