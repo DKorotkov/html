@@ -20,6 +20,7 @@ import { clean } from './gulp/tasks/clean.js'
 import { copyFiles } from './gulp/tasks/copyFiles.js'
 import { html } from './gulp/tasks/html.js'
 import { scss } from './gulp/tasks/scss.js'
+import { ts } from './gulp/tasks/ts.js'
 import { js } from './gulp/tasks/js.js'
 import { images } from './gulp/tasks/images.js'
 import { svg } from './gulp/tasks/svg.js'
@@ -28,18 +29,18 @@ import { fonts } from './gulp/tasks/fonts.js'
 import { server } from './gulp/tasks/server.js'
 import { ftp } from './gulp/tasks/ftp.js'
 
-// Объявдяем глобальную переменную для вызова из функций
+// Объявляем глобальную переменную для вызова из функций
 global.gl = {
 	path: path,
 	gulp: gulp,
 	plugins: plugins,
-	isBuild: !process.argv.includes('build'),
+	isBuild: process.argv.includes('build'),
 	isDev: !process.argv.includes('build'),
 	ftpSettings: ftpSettings,
 }
 
-const dev = gulp.series(clean, html, scss, js, images, svg, svgColor, fonts, copyFiles, gulp.parallel(watcher, server))
-const build = gulp.series(clean, html, scss, js, images, svg, svgColor, fonts, copyFiles)
+const dev = gulp.series(clean, html, scss, ts, js, images, svg, svgColor, fonts, copyFiles, gulp.parallel(watcher, server))
+const build = gulp.series(clean, html, scss, ts, js, images, svg, svgColor, fonts, copyFiles)
 
 gulp.task('default', dev)
 gulp.task('build', build)

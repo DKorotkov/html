@@ -1,5 +1,5 @@
 // ____________________________________Очищает папку_______________________________
-import del from "del";
+import { deleteAsync } from 'del'
 export const clean = () => {
-   return del(gl.path.clean);
-};
+	return deleteAsync(gl.path.clean)
+}
