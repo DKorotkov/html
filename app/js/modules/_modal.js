@@ -64,129 +64,129 @@
    aria указывать что окно появилось
 */
 
-class ModalDK extends NodaDK {
-   #defaultOptions = {
-      dialogFullScreen: true,
-      contentClass: "content",
-      overlay: true,
-      ovarlayClass: "overlay",
-      overlayBg: "rgba(0,0,0, 0.5)",
-   };
-   #$activeOpenBtn; // Храним ноду кнопки, которой открыли, для перевода на нее фокусе, когд закроем окно
-   constructor(options) {
-      super(options);
-      if (this.#check()) {
-         this._options = Object.assign(this.#defaultOptions, this._options);
-         this._$openBtns = document.querySelectorAll(this._options.openBtnsSelector);
+export class ModalDK extends NodaDK {
+	#defaultOptions = {
+		dialogFullScreen: true,
+		contentClass: 'content',
+		overlay: true,
+		ovarlayClass: 'overlay',
+		overlayBg: 'rgba(0,0,0, 0.5)',
+	}
+	#$activeOpenBtn // Храним ноду кнопки, которой открыли, для перевода на нее фокусе, когд закроем окно
+	constructor(options) {
+		super(options)
+		if (this.#check()) {
+			this._options = Object.assign(this.#defaultOptions, this._options)
+			this._$openBtns = document.querySelectorAll(this._options.openBtnsSelector)
 
-         this.#init();
-      }
-   }
+			this.#init()
+		}
+	}
 
-   #check() {
-      return !this._hasErrors;
-   }
+	#check() {
+		return !this._hasErrors
+	}
 
-   #init() {
-      if (this._$el.nodeName !== "DIALOG") {
-         this._$el.setAttribute("role", "dialog");
-         this._$el.setAttribute("aria-modal", "true");
-         this._$el.setAttribute("aria-hidden", "true");
-      }
+	#init() {
+		if (this._$el.nodeName !== 'DIALOG') {
+			this._$el.setAttribute('role', 'dialog')
+			this._$el.setAttribute('aria-modal', 'true')
+			this._$el.setAttribute('aria-hidden', 'true')
+		}
 
-      // Добавялем элемент обертку (content)
-      const content = document.createElement("div");
-      content.classList.add(`${this._options.selector.slice(1)}__${this._options.contentClass}`);
-      content.innerHTML = this._$el.innerHTML;
-      this._$el.innerHTML = "";
-      this._$el.appendChild(content);
+		// Добавялем элемент обертку (content)
+		const content = document.createElement('div')
+		content.classList.add(`${this._options.selector.slice(1)}__${this._options.contentClass}`)
+		content.innerHTML = this._$el.innerHTML
+		this._$el.innerHTML = ''
+		this._$el.appendChild(content)
 
-      // Добавляем оверлей
-      if (this._options.overlay && this._$el.nodeName !== "DIALOG") {
-         const overlay = document.createElement("div");
+		// Добавляем оверлей
+		if (this._options.overlay && this._$el.nodeName !== 'DIALOG') {
+			const overlay = document.createElement('div')
 
-         overlay.style.backgroundColor = this._options.overlayBg;
-         overlay.style.position = "fixed";
-         overlay.style.inset = "0";
-         overlay.classList.add(this._options.selector.slice(1) + "__" + this._options.ovarlayClass);
-         overlay.addEventListener("click", this.close.bind(this));
-         if (this._$el.querySelector(":first-child").style.position === "static") this._$el.querySelector(":first-child").style.position = "relative";
-         this._$el.insertBefore(overlay, this._$el.firstChild);
-      }
+			overlay.style.backgroundColor = this._options.overlayBg
+			overlay.style.position = 'fixed'
+			overlay.style.inset = '0'
+			overlay.classList.add(this._options.selector.slice(1) + '__' + this._options.ovarlayClass)
+			overlay.addEventListener('click', this.close.bind(this))
+			if (this._$el.querySelector(':first-child').style.position === 'static') this._$el.querySelector(':first-child').style.position = 'relative'
+			this._$el.insertBefore(overlay, this._$el.firstChild)
+		}
 
-      if (this._$openBtns) {
-         // События
-         this._$openBtns.forEach((openBtn) => {
-            openBtn.setAttribute("aria-haspopup", "dialog");
-            openBtn.addEventListener("click", this.open.bind(this));
-         });
-      }
-   }
+		if (this._$openBtns) {
+			// События
+			this._$openBtns.forEach((openBtn) => {
+				openBtn.setAttribute('aria-haspopup', 'dialog')
+				openBtn.addEventListener('click', this.open.bind(this))
+			})
+		}
+	}
 
-   _mainElClick(e) {
-      super._mainElClick(e);
-      if (e.target.nodeName === "DIALOG") {
-         this.close();
-         return;
-      }
-   }
+	_mainElClick(e) {
+		super._mainElClick(e)
+		if (e.target.nodeName === 'DIALOG') {
+			this.close()
+			return
+		}
+	}
 
-   open() {
-      setTimeout(() => {
-         if (this._$el.getAttribute("aria-hidden") === "false" || this._$el.hasAttribute("open")) {
-            this.close();
-            return;
-         }
-         this.#$activeOpenBtn = document.activeElement;
+	open() {
+		setTimeout(() => {
+			if (this._$el.getAttribute('aria-hidden') === 'false' || this._$el.hasAttribute('open')) {
+				this.close()
+				return
+			}
+			this.#$activeOpenBtn = document.activeElement
 
-         if (this._$el.nodeName === "DIALOG") {
-            if (this._options.dialogFullScreen) this._$el.showModal();
-            else this._$el.show();
-         } else {
-            super.open();
-            this._$el.setAttribute("aria-hidden", "false");
-         }
+			if (this._$el.nodeName === 'DIALOG') {
+				if (this._options.dialogFullScreen) this._$el.showModal()
+				else this._$el.show()
+			} else {
+				super.open()
+				this._$el.setAttribute('aria-hidden', 'false')
+			}
 
-         if (this._$focusableContent.length > 0 && !isTouchDevice()) this._$focusableContent[0].focus();
-         if (typeof this._options.onOpen === "function") this._options.onOpen();
-         // setTimeout(() => {
+			if (this._$focusableContent.length > 0 && !isTouchDevice()) this._$focusableContent[0].focus()
+			if (typeof this._options.onOpen === 'function') this._options.onOpen()
+			// setTimeout(() => {
 
-         // }, 1);
-      }, 1);
-   }
+			// }, 1);
+		}, 1)
+	}
 
-   close() {
-      this._$el.setAttribute("closing", "");
-      const _$elLsAnim = this._$el.nodeName === "DIALOG" ? this._$el : this._$el.querySelector(`.${this._options.selector.slice(1)}__${this._options.contentClass}`);
-      if (_$elLsAnim.getAnimations().length === 0) {
-         console.error(`Необходимо добавить анимацию для`, _$elLsAnim);
-         this.#closing();
-      } else {
-         _$elLsAnim.addEventListener(
-            "animationend",
-            () => {
-               this.#closing();
-            },
-            { once: true }
-         );
-      }
+	close() {
+		this._$el.setAttribute('closing', '')
+		const _$elLsAnim = this._$el.nodeName === 'DIALOG' ? this._$el : this._$el.querySelector(`.${this._options.selector.slice(1)}__${this._options.contentClass}`)
+		if (_$elLsAnim.getAnimations().length === 0) {
+			console.error(`Необходимо добавить анимацию для`, _$elLsAnim)
+			this.#closing()
+		} else {
+			_$elLsAnim.addEventListener(
+				'animationend',
+				() => {
+					this.#closing()
+				},
+				{ once: true }
+			)
+		}
 
-      setTimeout(() => {
-         if (this.#$activeOpenBtn.tabIndex !== -1) this.#$activeOpenBtn.focus();
-         if (typeof this._options.onClose === "function") this._options.onClose();
-      }, 1);
+		setTimeout(() => {
+			if (this.#$activeOpenBtn.tabIndex !== -1) this.#$activeOpenBtn.focus()
+			if (typeof this._options.onClose === 'function') this._options.onClose()
+		}, 1)
 
-      // document.querySelector("main").removeAttribute("inert", "");
-   }
+		// document.querySelector("main").removeAttribute("inert", "");
+	}
 
-   #closing() {
-      this._$el.removeAttribute("closing");
-      if (this._$el.nodeName === "DIALOG") {
-         this._$el.close();
-         super.destroy();
-      } else {
-         this._$el.setAttribute("aria-hidden", "true");
-         super.close();
-      }
-   }
+	#closing() {
+		this._$el.removeAttribute('closing')
+		if (this._$el.nodeName === 'DIALOG') {
+			this._$el.close()
+			super.destroy()
+		} else {
+			this._$el.setAttribute('aria-hidden', 'true')
+			super.close()
+		}
+	}
 }
