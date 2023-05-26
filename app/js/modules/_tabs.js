@@ -1,3 +1,4 @@
+//
 /**
  *
  * Структа работы с Вкладками (табами)
@@ -33,87 +34,87 @@
  */
 
 class TabsDk extends NodaDK {
-   #defaultOptions = {
-      initialIndex: 0,
-   };
-   constructor(options) {
-      super(options);
-      if (this.#check()) {
-         this._options = Object.assign(this.#defaultOptions, this._options);
+	#defaultOptions = {
+		initialIndex: 0,
+	}
+	constructor(options) {
+		super(options)
+		if (this.#check()) {
+			this._options = Object.assign(this.#defaultOptions, this._options)
 
-         this.#init();
-         this.#initARIA();
-      }
-   }
+			this.#init()
+			this.#initARIA()
+		}
+	}
 
-   #check() {
-      return !this._hasErrors;
-   }
+	#check() {
+		return !this._hasErrors
+	}
 
-   #init() {
-      this._initialIndex = this._options.initialIndex;
-      this._$tabList = this._$el;
-      this._$tabs = [...this._$el.querySelectorAll(this._options.tabItem)];
-      this._$links = [...this._$el.querySelectorAll(`${this._options.tabItem} > a`)];
-      this._$panels = [];
-      if (this._$tabs.length !== this._$links.length) console.error(`Недопустимое количество ссылок в элементах табов - ${this._options.tabItem}`);
-      this._$links.forEach((link) => {
-         const id = link.getAttribute("href").slice(1);
-         this._$panels.push(document.querySelector(`#${id}`));
-      });
-      this._$panels.filter((el, i) => i !== this._initialIndex).forEach((el) => (el.hidden = true));
-   }
+	#init() {
+		this._initialIndex = this._options.initialIndex
+		this._$tabList = this._$el
+		this._$tabs = [...this._$el.querySelectorAll(this._options.tabItem)]
+		this._$links = [...this._$el.querySelectorAll(`${this._options.tabItem} > a`)]
+		this._$panels = []
+		if (this._$tabs.length !== this._$links.length) console.error(`Недопустимое количество ссылок в элементах табов - ${this._options.tabItem}`)
+		this._$links.forEach((link) => {
+			const id = link.getAttribute('href').slice(1)
+			this._$panels.push(document.querySelector(`#${id}`))
+		})
+		this._$panels.filter((el, i) => i !== this._initialIndex).forEach((el) => (el.hidden = true))
+	}
 
-   #initARIA() {
-      this._$tabList.setAttribute("role", "tablist");
-      this._$tabs.forEach((el) => el.setAttribute("role", "tab"));
-      this._$panels.forEach((el) => {
-         const id = el.getAttribute("id");
-         el.setAttribute("role", "tabpanel");
-         el.setAttribute("aria-labelledby", "tab-" + id);
-      });
-      this._$links.forEach((el) => {
-         const id = el.getAttribute("href").slice(1);
-         el.setAttribute("role", "presentation");
-         el.setAttribute("id", "tab-" + id);
-         el.setAttribute("aria-controls", id);
-         el.removeAttribute("href");
-      });
-      this._$tabs[this._initialIndex].setAttribute("aria-selected", "true");
-      this._$tabs[this._initialIndex].tabIndex = 0;
-   }
+	#initARIA() {
+		this._$tabList.setAttribute('role', 'tablist')
+		this._$tabs.forEach((el) => el.setAttribute('role', 'tab'))
+		this._$panels.forEach((el) => {
+			const id = el.getAttribute('id')
+			el.setAttribute('role', 'tabpanel')
+			el.setAttribute('aria-labelledby', 'tab-' + id)
+		})
+		this._$links.forEach((el) => {
+			const id = el.getAttribute('href').slice(1)
+			el.setAttribute('role', 'presentation')
+			el.setAttribute('id', 'tab-' + id)
+			el.setAttribute('aria-controls', id)
+			el.removeAttribute('href')
+		})
+		this._$tabs[this._initialIndex].setAttribute('aria-selected', 'true')
+		this._$tabs[this._initialIndex].tabIndex = 0
+	}
 
-   _checkPress(e) {
-      let index = this._initialIndex;
-      if (e.keyCode === this._KEYS.ARROW_RIGHT || e.keyCode === this._KEYS.ARROW_DOWN) {
-         index++;
-         if (index === this._$tabs.length) index = 0;
-         this.open(index);
-         e.preventDefault();
-      } else if (e.keyCode === this._KEYS.ARROW_LEFT || e.keyCode === this._KEYS.ARROW_UP) {
-         index--;
-         if (index < 0) index = this._$tabs.length - 1;
-         this.open(index);
-         e.preventDefault();
-      }
-   }
+	_checkPress(e) {
+		let index = this._initialIndex
+		if (e.keyCode === this._KEYS.ARROW_RIGHT || e.keyCode === this._KEYS.ARROW_DOWN) {
+			index++
+			if (index === this._$tabs.length) index = 0
+			this.open(index)
+			e.preventDefault()
+		} else if (e.keyCode === this._KEYS.ARROW_LEFT || e.keyCode === this._KEYS.ARROW_UP) {
+			index--
+			if (index < 0) index = this._$tabs.length - 1
+			this.open(index)
+			e.preventDefault()
+		}
+	}
 
-   _mainElClick(e) {
-      if (e.target.getAttribute("role") === "presentation") this.open(this._$tabs.indexOf(e.target.parentElement));
-   }
+	_mainElClick(e) {
+		if (e.target.getAttribute('role') === 'presentation') this.open(this._$tabs.indexOf(e.target.parentElement))
+	}
 
-   open(index) {
-      this._close();
-      this._$tabs[index].setAttribute("aria-selected", "true");
-      this._$tabs[index].tabIndex = 0;
-      this._$tabs[index].focus();
-      this._$panels[index].hidden = false;
-      this._initialIndex = index;
-   }
+	open(index) {
+		this._close()
+		this._$tabs[index].setAttribute('aria-selected', 'true')
+		this._$tabs[index].tabIndex = 0
+		this._$tabs[index].focus()
+		this._$panels[index].hidden = false
+		this._initialIndex = index
+	}
 
-   _close() {
-      this._$tabs[this._initialIndex].setAttribute("aria-selected", "false");
-      this._$tabs[this._initialIndex].removeAttribute("tabindex");
-      this._$panels[this._initialIndex].hidden = true;
-   }
+	_close() {
+		this._$tabs[this._initialIndex].setAttribute('aria-selected', 'false')
+		this._$tabs[this._initialIndex].removeAttribute('tabindex')
+		this._$panels[this._initialIndex].hidden = true
+	}
 }

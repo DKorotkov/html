@@ -1,10 +1,11 @@
+//
 /**
  * Общий класс для работы с модулями DK
  *
  *
  */
 
-export class NodaDK {
+class NodaDK {
 	_KEYS = {
 		ESC: 27,
 		SPACE: 32,
@@ -156,6 +157,6 @@ export class NodaDK {
  * 1. переделать вывод ошибок через throw New Error
  */
 
-export function isTouchDevice() {
+function isTouchDevice() {
 	return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0
 }

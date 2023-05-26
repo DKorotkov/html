@@ -1,3 +1,4 @@
+//
 /*
 
    Появляеющиеся модальное окно (эффекты появления настраиваются дополнительно).
@@ -64,7 +65,7 @@
    aria указывать что окно появилось
 */
 
-export class ModalDK extends NodaDK {
+class ModalDK extends NodaDK {
 	#defaultOptions = {
 		dialogFullScreen: true,
 		contentClass: 'content',

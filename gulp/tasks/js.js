@@ -17,6 +17,7 @@ export const js = () => {
 		.plugin(tsify)
 		.bundle()
 		.pipe(source('bundle.min.js'))
+		.pipe(gl.plugins.fileinclude())
 		.pipe(gl.plugins.gulpIf(gl.isBuild, buffer()))
 		.pipe(gl.plugins.gulpIf(gl.isBuild, uglify()))
 		.pipe(gl.gulp.dest(gl.path.dist.js))
