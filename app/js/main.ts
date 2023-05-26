@@ -4,8 +4,10 @@ import { Accordion, AccordionBtn } from './modules/_accordion' // Загузка
 import SelectDk from './modules/_select' //Загрузка класса кастомизации Select SelectDK.init();
 import EventTouch from './modules/_eventTouch' // Загрузка класса Событий "касаний"
 import './modules/_disableScroll' //Загрузка класса "Запрета прокрутки"
+import './modules/_inputPhone' //Загрузка маски для телефона
 
 FormValid.init() 
+SelectDk.init()
 
 
    // Загрузка шрифтов через скрипт
@@ -45,3 +47,15 @@ FormValid.init()
       collapseOnFocusOut: false,
    });
    // ------------------------------------------------------
+
+   // -------------Табы-----------------------
+   //@ts-ignore
+   const tabs = new TabsDk({
+      selector: ".tablist",
+      tabItem: ".tabitem",
+      initialIndex: 0,
+      focusTrap: true, // Требуется ли перемещаться табом только внутри объекта (default: false)
+      collapseOnFocusOut: true, // Требуется ли закрывать при потери фокуса
+      mathcMedia: '(max-width: 50rem)',
+   });
+   // -------------КОНЕЦ Табы-----------------------
