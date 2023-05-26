@@ -14,3 +14,14 @@
    overflow: hidden;
    gap: rem(20);
 }
+
+.tablist {
+   display: flex;
+   padding: 20px;
+   background-color: #ccc;
+   justify-content: space-around;
+}
+
+.tabitem[aria-selected="true"] {
+   border: 1px solid #000;
+}
