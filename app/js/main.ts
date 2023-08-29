@@ -61,7 +61,7 @@ SelectDk.init()
    });
    // -------------КОНЕЦ Табы-----------------------
 
-   // -------------Прокрутка-----------------------
+   // -------------Прокрутка изображений-----------------------
    const tkEl = document.querySelector('.gallery')
    // const tк = new ScrollBtns(tkEl, {
    //    classBtnNext: 'btn-navigation--prev',
