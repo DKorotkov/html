@@ -3,8 +3,9 @@ import FormValid from "./modules/_formValidation" // Загрузка класс
 import { Accordion, AccordionBtn } from './modules/_accordion' // Загузка класса Аккардион
 import SelectDk from './modules/_select' //Загрузка класса кастомизации Select SelectDK.init();
 import EventTouch from './modules/_eventTouch' // Загрузка класса Событий "касаний"
+import ScrollBtns from './modules/_scrollButtons' // Загрузка класс управления списком элемтов с прокруткой
 import './modules/_disableScroll' //Загрузка класса "Запрета прокрутки"
-import './modules/_inputPhone' //Загрузка маски для телефона
+import './modules/_inputPhone.js' //Загрузка маски для телефона
 
 FormValid.init() 
 SelectDk.init()
@@ -59,3 +60,12 @@ SelectDk.init()
       mathcMedia: '(max-width: 50rem)',
    });
    // -------------КОНЕЦ Табы-----------------------
+
+   // -------------Прокрутка-----------------------
+   const tkEl = document.querySelector('.gallery')
+   // const tк = new ScrollBtns(tkEl, {
+   //    classBtnNext: 'btn-navigation--prev',
+   //    classPrevNext: 'btn-navigation--next',
+   // })
+   // -------------КОНЕЦ Прокрутка-----------------
+

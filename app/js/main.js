@@ -1,7 +1,10 @@
 // import 'focus-visible' //Скрипт полифил для корректной работы не стадартного фокуса (focus-visible)
 import FormValid from "./modules/_formValidation"; // Загрузка класса Валидации форм - FormValid.init()
+import SelectDk from './modules/_select'; //Загрузка класса кастомизации Select SelectDK.init();
 import './modules/_disableScroll'; //Загрузка класса "Запрета прокрутки"
+import './modules/_inputPhone.js'; //Загрузка маски для телефона
 FormValid.init();
+SelectDk.init();
 // Загрузка шрифтов через скрипт
 // include('modules/_fonts.js')
 // @@include('./app/js/modules/__noda.js')
@@ -29,3 +32,21 @@ const g = new GalleryDK({
     collapseOnFocusOut: false,
 });
 // ------------------------------------------------------
+// -------------Табы-----------------------
+//@ts-ignore
+const tabs = new TabsDk({
+    selector: ".tablist",
+    tabItem: ".tabitem",
+    initialIndex: 0,
+    focusTrap: true,
+    collapseOnFocusOut: true,
+    mathcMedia: '(max-width: 50rem)',
+});
+// -------------КОНЕЦ Табы-----------------------
+// -------------Прокрутка-----------------------
+const tkEl = document.querySelector('.gallery');
+// const tк = new ScrollBtns(tkEl, {
+//    classBtnNext: 'btn-navigation--prev',
+//    classPrevNext: 'btn-navigation--next',
+// })
+// -------------КОНЕЦ Прокрутка-----------------

@@ -10,7 +10,7 @@
  * focusTrap - требуется ли переходить табом только по модальному окну (default: false) не работает с collapseOnFocusOut = true 
    collapseOnFocusOut - требуется ли закрывать окно при потери фокуса (default: false)
  * 
- * tabs = new TabsDk({
+ * const tabs = new TabsDk({
       selector: ".tablist",
       tabItem: ".tabitem",
       initialIndex: 0,

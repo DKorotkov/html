@@ -62,19 +62,25 @@
 
 				<section class="section">
 					<h2>Галерея изображений</h2>
+
+					<div class="section__btns">
+						<button class="btn btn-navigation btn-navigation--prev" aria-label="следующие карточки">туда</button>
+						<button class="btn btn-navigation btn-navigation--next" aria-label="предыдущие карточки">сюда</button>
+					</div>
+
 					<div class="gallery">
-						<img src="/img/1.jpg" alt="" />
-						<img src="/img/2.jpg" alt="Описание картинки №3" />
-						<img src="/img/3.jpg" alt="" />
-						<img src="/img/1.jpg" alt="" />
-						<img src="/img/2.jpg" alt="Описание картинки №3" />
-						<img src="/img/3.jpg" alt="" />
-						<img src="/img/1.jpg" alt="" />
-						<img src="/img/2.jpg" alt="Описание картинки №3" />
-						<img src="/img/3.jpg" alt="" />
-						<img src="/img/1.jpg" alt="" />
-						<img src="/img/2.jpg" alt="Описание картинки №3" />
-						<img src="/img/3.jpg" alt="" />
+						<img class="gallery__img" src="/img/1.jpg" alt="" />
+						<img class="gallery__img" src="/img/2.jpg" alt="Описание картинки №3" />
+						<img class="gallery__img" src="/img/3.jpg" alt="" />
+						<img class="gallery__img" src="/img/1.jpg" alt="" />
+						<img class="gallery__img" src="/img/2.jpg" alt="Описание картинки №3" />
+						<img class="gallery__img" src="/img/3.jpg" alt="" />
+						<img class="gallery__img" src="/img/1.jpg" alt="" />
+						<img class="gallery__img" src="/img/2.jpg" alt="Описание картинки №3" />
+						<img class="gallery__img" src="/img/3.jpg" alt="" />
+						<img class="gallery__img" src="/img/1.jpg" alt="" />
+						<img class="gallery__img" src="/img/2.jpg" alt="Описание картинки №3" />
+						<img class="gallery__img" src="/img/3.jpg" alt="" />
 					</div>
 				</section>
 
@@ -94,6 +100,7 @@
 </html>
 
 <!-- TODO:
+	При выходе из галереи не ввключается прокрутка экрана
 1. добавить параметр @media min width через переменную scss, прменять к контейнеру, так же считать через css переменную в js  
 2. добавить файл gitignore локальный и для github 
 -->
