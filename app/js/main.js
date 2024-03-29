@@ -43,7 +43,7 @@ const tabs = new TabsDk({
     mathcMedia: '(max-width: 50rem)',
 });
 // -------------КОНЕЦ Табы-----------------------
-// -------------Прокрутка-----------------------
+// -------------Прокрутка изображений-----------------------
 const tkEl = document.querySelector('.gallery');
 // const tк = new ScrollBtns(tkEl, {
 //    classBtnNext: 'btn-navigation--prev',
