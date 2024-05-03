@@ -1,81 +1,82 @@
 <head>
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width,initial-scale=1" />
-   <!-- определяет оптимизирована ли страница сайта под мобильные устройства на Palm и Blackberry, в таком браузере как AvantGo. Сейчас распознаётся и многими другими мобильными браузерами -->
-   <meta content="true" name="HandheldFriendly" />
-   <!-- фиксированная ширина в 320 пикселей -->
-   <!-- <meta name="MobileOptimized" content="320"> -->
-   <!-- ширина страницы в соответствии с размером экрана, аналог device-width -->
-   <meta name="MobileOptimized" content="width" />
-   <!-- позволяет странице работать в полноэкранном режиме, актуален для мобильных устройств Apple -->
-   <meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<!-- определяет оптимизирована ли страница сайта под мобильные устройства на Palm и Blackberry, в таком браузере как AvantGo. Сейчас распознаётся и многими другими мобильными браузерами -->
+	<meta name="HandheldFriendly" content="true" />
+	<!-- фиксированная ширина в 320 пикселей -->
+	<!-- <meta name="MobileOptimized" content="320"> -->
+	<!-- ширина страницы в соответствии с размером экрана, аналог device-width -->
+	<meta name="MobileOptimized" content="width" />
+	<!-- позволяет странице работать в полноэкранном режиме, актуален для мобильных устройств Apple -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
 
-   <!-- Создать иконку здесь: https://realfavicongenerator.net/ -->
-   <!--Запрещает увеличивать изображение на экране мобильных устройств-->
-   <!--- <meta name="viewport" content="width=device-width, initial-scale=1.0,initial-scale=1.0,maximum=1.0"> -->
-   <!-- Отключает форматирование ссылки у номера телефона на ios -->
-   <meta name="format-detection" content="telephone=no" />
-   <!-- Краткое описание страницы -->
-   <meta name="description" content="@@description" />
-   <!-- Ключевые слова страницы -->
-   <meta name="keywords" content="@@keywords" />
+	<!-- Создать иконку здесь: https://realfavicongenerator.net/ -->
+	<!-- для икноки добавить в тег type="image/x-icon" -->
+	<!--Запрещает увеличивать изображение на экране мобильных устройств-->
+	<!--- <meta name="viewport" content="width=device-width, initial-scale=1.0,initial-scale=1.0,maximum=1.0"> -->
+	<!-- Отключает форматирование ссылки у номера телефона на ios -->
+	<meta name="format-detection" content="telephone=no" />
+	<!-- Краткое описание страницы -->
+	<meta name="description" content="@@description" />
+	<!-- Ключевые слова страницы -->
+	<meta name="keywords" content="@@keywords" />
 
-   <!-- Управление доступом поисковых роботов к старнице -->
-   <!-- <meta name="robots" content=""> -->
-   <!-- Запрет индексации страницы полностью -->
-   <!-- <meta name="robots" content="noindex, nofollow"> -->
-   <!-- или <meta name="robots" content="none"> -->
-   <!-- Запрет индексации ссылок и изобраений -->
-   <!-- <meta name="robots" content="noimageindex, nofolow"> -->
+	<!-- Управление доступом поисковых роботов к старнице -->
+	<!-- <meta name="robots" content=""> -->
+	<!-- Запрет индексации страницы полностью -->
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<!-- или <meta name="robots" content="none"> -->
+	<!-- Запрет индексации ссылок и изобраений -->
+	<!-- <meta name="robots" content="noimageindex, nofolow"> -->
 
-   <!-- Автор страницы -->
-   <meta name="Author" content="@@socials.autor" />
-   <!-- Авторские права -->
-   <meta name="Copyright" content="@@socials.copyright" />
-   <!-- Адрес автора -->
-   <meta name="Address" content="@@socials.adress" />
+	<!-- Автор страницы -->
+	<meta name="Author" content="@@socials.autor" />
+	<!-- Авторские права -->
+	<meta name="Copyright" content="@@socials.copyright" />
+	<!-- Адрес автора -->
+	<meta name="Address" content="@@socials.adress" />
 
-   <!-- Соцтальные сети: -->
-   <!-- Локализация сайта -->
-   <meta property="og:locale" content="ru_RU" />
-   <!-- Тип контента -->
-   <meta property="og:type" content="article" />
-   <!-- Заголовок страницы, который будет выводиться в записи социальной сети -->
-   <meta property="og:title" content="@@title" />
-   <!-- Описание страницы -->
-   <meta property="og:description" content="@@description" />
-   <!-- Ссылка на изображение которое будет публиковаться в записи -->
-   <meta property="og:image" content="@@socials.image" />
-   <!-- Ссылка на текущую страницу -->
-   <meta property="og:url" content="@@socials.link" />
-   <!-- Название сайта -->
-   <meta property="og:site_name" content="@@site_name" />
+	<!-- Соцтальные сети: -->
+	<!-- Локализация сайта -->
+	<meta property="og:locale" content="ru_RU" />
+	<!-- Тип контента -->
+	<meta property="og:type" content="article" />
+	<!-- Заголовок страницы, который будет выводиться в записи социальной сети -->
+	<meta property="og:title" content="@@title" />
+	<!-- Описание страницы -->
+	<meta property="og:description" content="@@description" />
+	<!-- Ссылка на изображение которое будет публиковаться в записи -->
+	<meta property="og:image" content="@@socials.image" />
+	<!-- Ссылка на текущую страницу -->
+	<meta property="og:url" content="@@socials.link" />
+	<!-- Название сайта -->
+	<meta property="og:site_name" content="@@site_name" />
 
-   <!-- Twitter -->
-   <!-- Тип карты -->
-   <meta name="twitter:card" content="summary" />
-   <!-- Имя\Логин автора -->
-   <meta name="twitter:site" content="@@socials.autor" />
-   <!-- Название страницы -->
-   <meta name="twitter:title" content="@@title" />
-   <!-- Описание страницы -->
-   <meta name="twitter:description" content="@@description" />
-   <!-- Ссылка на изображение -->
-   <meta name="twitter:image" content="@@socials.image" />
+	<!-- Twitter -->
+	<!-- Тип карты -->
+	<meta name="twitter:card" content="summary" />
+	<!-- Имя\Логин автора -->
+	<meta name="twitter:site" content="@@socials.autor" />
+	<!-- Название страницы -->
+	<meta name="twitter:title" content="@@title" />
+	<!-- Описание страницы -->
+	<meta name="twitter:description" content="@@description" />
+	<!-- Ссылка на изображение -->
+	<meta name="twitter:image" content="@@socials.image" />
 
-   <link rel="stylesheet" href="css/header.min.css" />
-   <link rel="stylesheet" href="css/style.min.css" />
+	<link rel="stylesheet" href="css/header.min.css" />
+	<link rel="stylesheet" href="css/style.min.css" />
 
-   <!-- Здесь загружается иконочный шрифт, если иконки используються в верхней части страницы -->
-   <!-- <link rel="preload" href="/fonts/fontello.woff" as="font" /> -->
-   <!-- Здесь проверяется есть ли шрифт в кэше, в кэш он попал из js при прошлой загрузке (используется font face observe) -->
-   <script>
-      const html = document.documentElement;
-      html.classList.add("fonts-loading");
-      if (sessionStorage.fontsLoaded) {
-         html.classList.remove("fonts-loading");
-         html.classList.add("fonts-loaded");
-      }
-   </script>
-   <title>@@site_name | @@title</title>
+	<!-- Здесь загружается иконочный шрифт, если иконки используються в верхней части страницы -->
+	<!-- <link rel="preload" href="/fonts/fontello.woff" as="font" /> -->
+	<!-- Здесь проверяется есть ли шрифт в кэше, в кэш он попал из js при прошлой загрузке (используется font face observe) -->
+	<script>
+		const html = document.documentElement
+		html.classList.add('fonts-loading')
+		if (sessionStorage.fontsLoaded) {
+			html.classList.remove('fonts-loading')
+			html.classList.add('fonts-loaded')
+		}
+	</script>
+	<title>@@site_name | @@title</title>
 </head>

@@ -9,6 +9,11 @@
    transition: outline-offset 0.2s linear;
 }
 
+html {
+   // Для отключения эффекта "скачка" при появлении dialog
+   scrollbar-gutter: stable;
+}
+
 html,
 body {
    width: 100%;
@@ -21,12 +26,25 @@ body {
    color: var(--clr-bg-main);
 }
 
+h1, h2, h3, h4 {
+   text-wrap: balance;
+}
+
+input {
+   caret-color: var(--clr-primary);
+   accent-color: var(--clr-primary);
+}
+
+
 img,
 picture {
-   // width: 100%;
-   // max-width: 100%;
-   // height: inherit;
+   display: block;
+   font-style: italic;
+   max-width: 100%;
+   height: auto;
    object-fit: cover;
+   background-repeat: no-repeat;
+   background-size: cover;
    // aspect-ratio: attr(width) / attr(height);
    // background-image: url(data:image/gif;base64,R0lGODlhCgAIAIABAN3d3f///yH5BAEAAAEALAAAAAAKAAgAAAINjAOnyJv2oJOrVXrzKQA7);
 }
@@ -163,17 +181,17 @@ picture {
 }
 
 // __________Класс для работы с переменными___________________
-.fw-regular {
-   font-weight: var(--fw-regular);
-}
+// .fw-regular {
+//    font-weight: var(--fw-regular);
+// }
 
-.fs-400 {
-   font-size: var(--fs-16);
-}
+// .fs-400 {
+//    font-size: var(--fs-16);
+// }
 
-.padding-block-400 {
-   padding-block: var(--space-sm);
-}
+// .padding-block-400 {
+//    padding-block: var(--space-sm);
+// }
 
 
 :where(h1) {
