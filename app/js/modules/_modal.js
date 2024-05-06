@@ -1,3 +1,4 @@
+import { isTouchDevice, NodaDK } from './__noda'
 //
 /*
 
@@ -58,14 +59,31 @@
       <button class="btn-modal-close" data-close="true">х</button>
       <p>Это модальное окно</p>
    </div>
+
+	Пример анимации:
+	&__content {
+		animation: slide-right 500ms forwards;
+	}
+
+	&[closing] &__content {
+		animation: slide-left 500ms forwards;
+	}
+	
+	&__overlay {
+      animation: fade-in 500ms forwards;
+   }
+
+	&[closing] &__overlay {
+      animation: fade-out 500ms forwards;
+   }
+   
     
 
    TODO:
    Когда добавлю aria атрибуты, то использовать их вместо класса active
    aria указывать что окно появилось
 */
-
-class ModalDK extends NodaDK {
+export class ModalDK extends NodaDK {
 	#defaultOptions = {
 		dialogFullScreen: true,
 		contentClass: 'content',
@@ -76,25 +94,20 @@ class ModalDK extends NodaDK {
 	#$activeOpenBtn // Храним ноду кнопки, которой открыли, для перевода на нее фокусе, когд закроем окно
 	constructor(options) {
 		super(options)
-		if (this.#check()) {
-			this._options = Object.assign(this.#defaultOptions, this._options)
-			this._$openBtns = document.querySelectorAll(this._options.openBtnsSelector)
+		this._options = Object.assign(this.#defaultOptions, this._options)
+		this._$openBtns = document.querySelectorAll(this._options.openBtnsSelector)
 
-			this.#init()
-		}
+		if (super.check()) this.init()
 	}
 
-	#check() {
-		return !this._hasErrors
-	}
+	init() {
+		super.init()
 
-	#init() {
 		if (this._$el.nodeName !== 'DIALOG') {
 			this._$el.setAttribute('role', 'dialog')
-			this._$el.setAttribute('aria-modal', 'true')
+			this._$el.setAttribute('aria-MODAL', 'true')
 			this._$el.setAttribute('aria-hidden', 'true')
 		}
-
 		// Добавялем элемент обертку (content)
 		const content = document.createElement('div')
 		content.classList.add(`${this._options.selector.slice(1)}__${this._options.contentClass}`)
@@ -160,13 +173,13 @@ class ModalDK extends NodaDK {
 		this._$el.setAttribute('closing', '')
 		const _$elLsAnim = this._$el.nodeName === 'DIALOG' ? this._$el : this._$el.querySelector(`.${this._options.selector.slice(1)}__${this._options.contentClass}`)
 		if (_$elLsAnim.getAnimations().length === 0) {
-			console.error(`Необходимо добавить анимацию для`, _$elLsAnim)
-			this.#closing()
+			console.warn(`Необходимо добавить анимацию для`, _$elLsAnim)
+			this.closing()
 		} else {
 			_$elLsAnim.addEventListener(
 				'animationend',
 				() => {
-					this.#closing()
+					this.closing()
 				},
 				{ once: true }
 			)
@@ -180,7 +193,7 @@ class ModalDK extends NodaDK {
 		// document.querySelector("main").removeAttribute("inert", "");
 	}
 
-	#closing() {
+	closing() {
 		this._$el.removeAttribute('closing')
 		if (this._$el.nodeName === 'DIALOG') {
 			this._$el.close()

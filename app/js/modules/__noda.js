@@ -2,10 +2,9 @@
 /**
  * Общий класс для работы с модулями DK
  *
- *
  */
 
-class NodaDK {
+export class NodaDK {
 	_KEYS = {
 		ESC: 27,
 		SPACE: 32,
@@ -20,6 +19,7 @@ class NodaDK {
 	#defaultOptions = {
 		focusTrap: false,
 		collapseOnFocusOut: false,
+		setAttributeHidden: false, // Определяет необходимо ли к закрытому элементу добавлять аттрибут "hidden"
 	}
 
 	// #destroyed = false; // Храним информации о том уничтежен ли объект
@@ -27,13 +27,11 @@ class NodaDK {
 	constructor(options) {
 		this._options = Object.assign(this.#defaultOptions, options)
 		this._$el = document.querySelector(this._options.selector)
-		if (this.#check()) this.#init()
-		else this._hasErrors = true
 	}
 
-	#check() {
+	check() {
 		if (!this._$el) {
-			console.error(`Не найден класс - ${this._options.selector}`)
+			console.warn(`Не найден класс - ${this._options.selector}`)
 			return false
 		}
 		// Проверяет на соответсвие к медиа запросу
@@ -43,7 +41,7 @@ class NodaDK {
 		return true
 	}
 
-	#init() {
+	init() {
 		this._$el.addEventListener('click', (e) => this._mainElClick(e))
 		this._$el.addEventListener('keydown', (e) => this._checkPress(e), true)
 	}
@@ -114,13 +112,13 @@ class NodaDK {
 		if (typeof this._$focusableContent === 'undefined') this._initFocusableContent()
 
 		// Для запрета прокрутки основного контента
-		window.disableScroll()
+		// window.disableScroll()
 		// document.body.style.overflow = "hidden";
 	}
 
 	close() {
 		if (this._options.activeClass) this._$el.classList.remove(this._options.selector.slice(1) + this._options.activeClass)
-		else this._$el.setAttribute('hidden', '')
+		else if (this._options.setAttributeHidden) this._$el.setAttribute('hidden', '')
 		this.destroy()
 
 		// Для прокрутки основного контента
@@ -130,7 +128,7 @@ class NodaDK {
 	destroy() {
 		this._$el.removeEventListener('click', (e) => this._mainElClick(e))
 		this._$el.removeEventListener('keydown', (e) => this._checkPress(e), true)
-		window.enableScroll()
+		// window.enableScroll()
 		// this.#destroyed = true;
 	}
 }
@@ -157,6 +155,6 @@ class NodaDK {
  * 1. переделать вывод ошибок через throw New Error
  */
 
-function isTouchDevice() {
+export function isTouchDevice() {
 	return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0
 }
