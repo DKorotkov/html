@@ -1,0 +1,23 @@
+@use "__config" as *;
+
+.nav {
+	min-height: rem(70);
+	padding-block: rem(5);
+	
+	&__item {
+		display: inline-block;
+		min-width: max-content;
+		text-decoration: none;
+		padding-inline: rem(10);
+	} 
+}
+
+@media (width > 680px) {
+	.nav {
+		padding-block: rem(10);
+
+		&__box {
+			display: flex;
+		}
+	}
+}

@@ -52,6 +52,18 @@
 }   
 // ____________________Цвета_________________________________________
 :root {
+
+
+   --clr-bg-main: #fff;
+   --clr-bg-gray: #f0f0f0;
+
+   --clr-white: #fff;
+   --clr-black: #000;
+
+   --clr-success: rgb(38, 203, 124);
+   --clr-error: rgb(255, 70, 66);
+   --clr-warning: rgb(247, 125, 5);
+   --clr-information: rgb(56, 132, 255);
    // Оттенки цвета
    $color-shades: (
       100: 20%,
@@ -84,24 +96,12 @@
    @each $keyColor, $valueColor in $colors {
       --clr-#{$keyColor} : #{$valueColor};
    }
-
-
-   --clr-bg-main: #fff;
-   --clr-bg-gray: #f0f0f0;
-
-   --clr-white: #fff;
-   --clr-black: #000;
-
-   --clr-success: rgb(38, 203, 124);
-   --clr-error: rgb(255, 70, 66);
-   --clr-warning: rgb(247, 125, 5);
-   --clr-information: rgb(56, 132, 255);
 }
 // _____________________Шрифт_________________________________
 :root {
    
    --ff-main: serif;
-   --ff-secondary: serif
+   --ff-secondary: serif;
 
    // --fw-thin: 100;
    // --fw-ultra-light: 200;
@@ -133,31 +133,30 @@
    // --fs-72: 4.5rem;
 
    // Золотое сечение https://grtcalculator.com/
-   --fs-s: rem(13);
-   --fs-m: rem(16);
-   --fs-l: rem(20);
-   --fs-xl: rem(26);
-   --fs-xxl: rem(33);
-   --fs-xxxl: rem(42);
+   --fs-s: #{rem(13)};
+   --fs-m: #{rem(16)};
+   --fs-l: #{rem(20)};
+   --fs-xl: #{rem(26)};
+   --fs-xxl: #{rem(33)};
+   --fs-xxxl: #{rem(42)};
 
-   --lh-s: rem(23);
-   --lh-m: rem(27);
-   --lh-l: rem(33);
-   --lh-xl: rem(42);
-   --lh-xxl: rem(52);
-   --lh-xxxl: rem(65);
+   --lh-s: #{rem(23)};
+   --lh-m: #{rem(27)};
+   --lh-l: #{rem(33)};
+   --lh-xl: #{rem(42)};
+   --lh-xxl: #{rem(52)};
+   --lh-xxxl: #{rem(65)};
 
 }
 // _____________________Общие настройки_________________________________
 :root {
    
-   --ff-body: var(--ff-main);
-   --ff-heading: var(--ff-secondary);
+   // --ff-heading: var(--ff-secondary);
    
-   --fs-body: var(--fs-16);
-   --fs-primary-heading: var(--fs-16);
-   --fs-primary-btn: var(--fs-16);
-   --fs-nav: var(--fs-16);
+   // --fs-body: var(--fs-16);
+   // --fs-primary-heading: var(--fs-16);
+   // --fs-primary-btn: var(--fs-16);
+   // --fs-nav: var(--fs-16);
    
    
    --sz-navigation-small: 3.75rem;

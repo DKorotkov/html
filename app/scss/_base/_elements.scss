@@ -18,11 +18,11 @@ html,
 body {
    width: 100%;
    min-width: var(--minWidth);
-   accent-color: var(--clr-primary);
+   accent-color: var(--clr-accent);
 }
 
 *::selection { // Цвет выделения текста
-   background-color: var(--clr-primary);
+   background-color: var(--clr-accent);
    color: var(--clr-bg-main);
 }
 
@@ -31,8 +31,8 @@ h1, h2, h3, h4 {
 }
 
 input {
-   caret-color: var(--clr-primary);
-   accent-color: var(--clr-primary);
+   caret-color: var(--clr-accent);
+   accent-color: var(--clr-accent);
 }
 
 
@@ -56,11 +56,11 @@ picture {
    display: flex;
    flex-direction: column;
    font-family: system-ui, system, sans-serif;
-   font-size: var(--fs-body);
+   font-size: var(--fs-m);
 }
 
 .fonts-loaded .body {
-   font-family: var(--ff-body);
+   font-family: var(--ff-main);
 }
 
 .main {
@@ -142,7 +142,7 @@ picture {
    transform: translateY(-120%);
    transition: transform 300ms ease-in;
 
-   background-color: #fff;
+   background-color: var(--clr-white);
    padding: rem(5) rem(10);
 
    &:focus {
@@ -166,7 +166,7 @@ picture {
 
 .grid- {
    &auto-columns {
-      grid-template-columns: repeat(auto-fit, minmax(min(rem(150), 100%), 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-column, rem(150)), 100%), 1fr));
    }
 
    &even-columns {
