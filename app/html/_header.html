@@ -1,17 +1,24 @@
 <header class="header">
 	<a class="skip-nav-link" href="#main-content">Пропустить навигацию</a>
-	<!-- <button class="" aria-label="Открыть основную навгацию" aria-controls="navigation" aria-expanded="false"></button> -->
+	<button class="" aria-label="Открыть основную навгацию" aria-controls="Mnavigation" aria-expanded="false" aria-haspopup="dialog"></button>
 	<!-- <button class="hamburger hamburger--squeeze" type="button">
       <span class="hamburger-box">
          <span class="hamburger-inner"></span>
       </span>
    </button> -->
 	<nav class="nav container" aria-label="Главная навигация">
-		<ul class="nav__box" role="list" id="navigation">
-			<li><a class="nav__item" href="#" aria-current="page">Cсылка</a></li>
-			<li><a class="nav__item" href="#">Cсылка</a></li>
-			<li><a class="nav__item" href="#">Cсылка</a></li>
-			<li><a class="nav__item" href="#">Cсылка</a></li>
+		<ul class="nav__box" id="Mnavigation" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+			<li itemprop="name"><a class="nav__item" href="#" aria-current="page" itemprop="url">Cсылка</a></li>
+			<li itemprop="name"><a class="nav__item" href="#" itemprop="url">Cсылка</a></li>
+			<li itemprop="name"><a class="nav__item" href="/elements.html" itemprop="url">Elements</a></li>
+			<li itemprop="name"><a class="nav__item" href="/404.html" itemprop="url">404</a></li>
 		</ul>
 	</nav>
+	<fieldset class="scheme-switcher" title="Color scheme">
+		<legend class="clipped">Scheme</legend>
+		<input class="scheme-switcher__radio scheme-switcher__radio--light" type="radio" name="color-scheme" value="light" aria-label="light" alt />
+		<input class="scheme-switcher__radio scheme-switcher__radio--auto" type="radio" name="color-scheme" value="auto" aria-label="auto" checked />
+		<input class="scheme-switcher__radio scheme-switcher__radio--dark" type="radio" name="color-scheme" value="dark" aria-label="dark" />
+		<div class="scheme-switcher__focus"></div>
+	</fieldset>
 </header>
