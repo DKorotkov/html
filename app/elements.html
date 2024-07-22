@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<!-- prettier-ignore -->
+	@@include('html/_head.html', { 
+		"description": "Описание сайта", 
+		"keywords": "Ключевые слова", 
+		"title": "Главная страница", 
+		"site_name": "Название сайта", 
+		"socials": {
+			"autor": "Данила Коротков", 
+			"copyright": "Данила Коротков", 
+			"adress": "danila.korotkov@gmail.com", 
+			"image":"img/img1.jpeg", 
+			"link": "/index.html", 
+			"fb": "facebook.com/include", 
+			"tw": "twitter.com/include" 
+		} 
+	})
+	<body class="body">
+		@@include('html/_header.html')
+		<main class="main" id="main-content" style="margin-top: 50px">
+			<div class="container-grid">
+				<p style="width: 100%; text-align: center; color: var(--clr-accent); outline: 1px solid currentColor; margin-bottom: 50px; padding: 20px"><- container-grid -></p>
+				<section class="section" style="display: grid; gap: 10px">
+					<h1>Header 1 / Заголовок 1</h1>
+					<h2>Header 2 / Заголовок 2</h2>
+					<h3>Header 3 / Заголовок 3</h3>
+					<h4>Header 4 / Заголовок 4</h4>
+					<h5>Header 5 / Заголовок 5</h5>
+					<h6>Header 6 / Заголовок 6</h6>
+					<h7>Header 7 / Заголовок 7</h7>
+					<p style="font-family: var(--ff-main); padding-top: 50px">Пример текста с главным шрифтом - Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, dolore!</p>
+					<p style="font-family: var(--ff-secondary)">Пример текста с акцентным шрифтом шрифтом - Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, dolore!</p>
+				</section>
+			</div>
+		</main>
+		@@include('html/_footer.html') @@include('html/_scripts.html')
+	</body>
+</html>
