@@ -39,8 +39,10 @@ global.gl = {
 	ftpSettings: ftpSettings,
 }
 
-const dev = gulp.series(clean, html, scss, ts, js, images, svg, svgColor, fonts, copyFiles, gulp.parallel(watcher, server))
-const build = gulp.series(clean, html, scss, ts, js, images, svg, svgColor, fonts, copyFiles)
+const dev = gulp.series(clean, html, scss, ts, js, images, svg, fonts, copyFiles, gulp.parallel(watcher, server))
+const build = gulp.series(clean, html, scss, ts, js, images, svg, fonts, copyFiles)
+// const dev = gulp.series(clean, html, scss, ts, js, images, svg, svgColor, fonts, copyFiles, gulp.parallel(watcher, server))
+// const build = gulp.series(clean, html, scss, ts, js, images, svg, svgColor, fonts, copyFiles)
 
 gulp.task('default', dev)
 gulp.task('build', build)
