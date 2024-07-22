@@ -66,8 +66,8 @@ samp {
 
 sub,
 sup {
-   line-height: 0;
    position: relative;
+   line-height: 0;
    vertical-align: baseline;
 }
 
@@ -113,8 +113,8 @@ button:-moz-focusring,
 }
 
 legend {
-   color: inherit;
    display: table;
+   color: inherit;
    max-width: 100%;
    padding: 0;
    white-space: normal;
@@ -149,7 +149,7 @@ textarea {
 
 /* Выставляем основные настройки по-умолчанию для body */
 body {
-   min-height: 100vh;
+   min-height: 100dvh;
    scroll-behavior: smooth;
    text-rendering: optimizeSpeed;
    // line-height: 1.5;

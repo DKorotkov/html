@@ -3,10 +3,16 @@
 .btn {
    background-color: transparent;
    border: none;
-   padding: 0;
+   padding: em(16, 16) em(24, 16);
    margin: 0;
    cursor: pointer;
    text-decoration: none;
+
+   /*  чтобы слишком длинную кнопку не делать  */
+   max-width: 150px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   overflow: hidden;
 
    &:where(:hover, :focus-visible) {
       

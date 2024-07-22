@@ -80,6 +80,58 @@ picture {
    margin-inline: auto;
 }
 
+.container-grid {
+   // justify-items: center - не дает содержимому расстягиваться на всю допустимую ширину
+  --padding-inline: 1rem;
+  
+  display: grid;
+  grid-template-columns:
+   [full-start]
+   0px
+   
+   [left-start]
+   minmax(var(--padding-inline), 1fr)
+
+   [right-start]
+   0px
+   
+   [content-start] 
+   min(100% - (var(--padding-inline) * 2), var(--maxWidth))
+   [content-end]
+
+   0px
+   [left-end]
+    
+   minmax(var(--padding-inline), 1fr) 
+   [right-end]
+
+   0px
+   [full-end] ;
+   & > * {
+      grid-column: content;
+   }
+
+   //Для container указать: 
+   // mobile - grid-column: full;
+   // pc - grid-column: right или left
+   // Также необходимо создавать padding (--padding-inline) для элементов, которые не должны косаться границ экрана
+
+   &__full-right {
+      // Размер в процентах
+      --columns-size: 50;
+      display: grid;
+      grid-template-columns: calc(min(100%, var(--maxWidth)) * calc(var(--columns-size)/100)) 1fr;
+   }
+
+   &__full-left {
+      // Размер в процентах
+      --columns-size: 50;
+      display: grid;
+      grid-template-columns: 1fr calc(min(100%, var(--maxWidth)) * calc(var(--columns-size)/100));
+   }
+}
+
+
 // .container {
 //    margin-inline: auto;
 //    padding: 0 var(--space-container-padding);
@@ -139,13 +191,15 @@ picture {
 .skip-nav-link {
    position: absolute;
    left: rem(5);
+   
+   background-color: var(--clr-white);
+   padding: rem(5) rem(10);
+   opacity: 0;
    transform: translateY(-120%);
    transition: transform 300ms ease-in;
 
-   background-color: var(--clr-white);
-   padding: rem(5) rem(10);
-
    &:focus {
+      opacity: 1;
       transform: translateY(0);
    }
 }
@@ -192,6 +246,12 @@ picture {
 // .padding-block-400 {
 //    padding-block: var(--space-sm);
 // }
+
+.overlay {
+   --overlay-from: hsl(240 100% 20% / 0.6);
+   --overlay-to: hsl(0 100% 20% / 0.6);
+   border-image: linear-gradient(var(--overlay-from), var(--overlay-to)) fill 1;
+}
 
 
 :where(h1) {

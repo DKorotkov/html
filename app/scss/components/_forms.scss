@@ -10,6 +10,10 @@
       
    }
 
+   &__input::placeholder {
+      color: var(--scheme-headers);
+   }
+
    &__input:where(:not([type="checkbox"], [type="radio"])) {
       outline: 0; // использовать в случае, если у инпута задан стиль активного элемента 
    }
@@ -30,6 +34,11 @@
    
    &__input--invalid {
       
+   }
+
+   // если инпут с ошибкой и без фокуса
+   &__input:not(:focus):invalid {
+
    }
 
    &__error {
