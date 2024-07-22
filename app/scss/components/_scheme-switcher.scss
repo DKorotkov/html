@@ -1,0 +1,151 @@
+@use "__config" as *;
+
+.scheme-switcher {
+	--outline: #{rem(3) solid var(--clr-accent-400)};
+	--icon-size: #{rem(16)};
+	--bd-radius: 1.2em;
+	--paddin-inline: #{rem(5)};
+	--padding-block: #{rem(5)};
+	--step: calc(var(--icon-size) + var(--paddin-inline));
+
+	display: flex;
+	position: relative;
+	justify-content: space-between;
+	align-items: center;
+	width: fit-content;
+	color: var(--scheme-headers);
+	font-size: var(--icon-size);
+	border: rem(1) solid currentColor;
+	border-radius: var(--bd-radius);
+	margin: 0;
+	padding: var(--padding-block);
+	overflow: hidden;
+	
+	// добавляем промежуток между икноками при открытии
+	&:focus-within {
+		padding: var(--padding-block) var(--paddin-inline);
+	}
+	// Появление активной обводки икноки
+	&:focus-within > &__focus::after {
+		opacity: 1;
+		// Добавялем задержку обводки после завершения появления всех иконок
+		transition-delay: 0s, 0.5s;
+	}
+	
+	// расскрываем при появлении фокуса
+	&:focus-within > &__radio {
+		// убираем задержку для появления иконки
+		transition-delay: 0s;
+		opacity: 1;
+		width: var(--icon-size);
+	}
+	// Добавляет расстояние между иконками в активном состоянии
+	&:focus-within > &__radio:not(:first-of-type, :last-of-type) {
+		margin-inline: var(--padding-block);
+	}
+	// рамка вокруг кнопок
+	&__focus {
+		display: block;
+		position: absolute;
+		z-index: -2;
+		content: '';
+		inset: 0;
+		border-radius: var(--bd-radius);
+		padding: var(--padding-block) var(--paddin-inline) ;
+	}
+	// обводка активной иконки
+	&__focus::after {
+		display: block;
+		content: '';
+		width: var(--icon-size);
+		height: var(--icon-size);
+		z-index: -1;
+		background-color: var(--clr-accent-400);
+		outline: rem(3) solid var(--clr-accent-400);
+		border-radius: 50%;
+		opacity: 0;
+		transition: margin 300ms, opacity 300ms;
+	}
+
+	// кнопка (иконка)
+	&__radio {
+		position: relative;
+		appearance: none;
+		margin: 0;
+		width: var(--icon-size);
+		height: var(--icon-size);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: calc(var(--icon-size) - #{rem(2)});
+		cursor: pointer;
+		transition: all 0.5s ease;
+		transition-delay: 300ms;
+	}
+
+	
+
+	// убираем лишнюю обводку без фокуса всех иконок
+	&__radio:focus {
+		outline: none;
+	}
+
+	// прячем неактивные иконки при отсутсвии фокуса
+	&__radio:not(:checked) {
+		width: 0;
+		opacity: 0;
+	}
+	// обводку для рамки вокруг всех иконок
+	&__radio:focus ~ &__focus {
+		outline: var(--outline);
+	}
+	// разные икноки
+	&__radio--light {
+		background-image: url('../../files/svg_icons/sun.svg');
+	}
+	&__radio--auto {
+		background-image: url('../../files/svg_icons/auto.svg');
+	}
+	&__radio--dark {
+		background-image: url('../../files/svg_icons/moon.svg');
+	}
+	
+	// Передвигаем 
+	&__radio--light:checked ~ &__focus::after {
+		margin-left: 0;
+	}
+
+	&__radio--auto:checked ~ &__focus::after {
+		margin-left: var(--step);
+	}
+
+	&__radio--dark:checked ~ &__focus::after {
+		margin-left: calc(var(--step) * 2);
+	}
+}
+
+@media (pointer:coarse) {
+	.scheme-switcher {
+
+		&__focus::after {
+			opacity: 1;
+		}
+
+		&__radio,
+		&__focus,
+		&__focus::after {
+			transition: 0.3s !important;
+			transition-delay: 0 !important;
+		}
+
+		&__radio:not(:checked) {
+			width: var(--icon-size);
+			opacity: 1;
+		}
+
+		&__radio:not(:first-of-type, :last-of-type) {
+			margin-inline: var(--padding-block) !important;
+		}
+	}
+}
+
+
