@@ -113,7 +113,7 @@ export class NodaDK {
 
 		// Для запрета прокрутки основного контента
 		// window.disableScroll()
-		// document.body.style.overflow = "hidden";
+		document.body.style.overflow = 'hidden'
 	}
 
 	close() {
@@ -122,7 +122,7 @@ export class NodaDK {
 		this.destroy()
 
 		// Для прокрутки основного контента
-		// document.body.style.overflow = "";
+		document.body.style.overflow = ''
 	}
 
 	destroy() {
