@@ -230,7 +230,7 @@ picture {
 }
 
 // where делает специфичность калсса = 0, а сам селектор можно использовать для организации отстов
-:where(.flow :not(:first-child)) {
+:where(.flow:not(:first-of-type)) {
    margin-top: 1rem;
 }
 
@@ -256,10 +256,10 @@ picture {
 
 :where(h1) {
    font-family: var(--ff-heading);
-   font-size: var(--fs-48);
+   font-size: var(--fs-l);
 
    @media (min-width: (50rem)) { 
-      font-size: var(--fs-72);
+      font-size: var(--fs-xl);
       font-weight: var(--fw-bold);
       line-height: 1.1;
    }

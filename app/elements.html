@@ -16,6 +16,12 @@
 			"tw": "twitter.com/include" 
 		} 
 	})
+	<style>
+		.section {
+			padding-block: 1rem;
+			border-bottom: 1px solid var(--clr-accent);
+		}
+	</style>
 	<body class="body">
 		@@include('html/_header.html')
 		<main class="main" id="main-content" style="margin-top: 50px">
@@ -31,6 +37,39 @@
 					<h7>Header 7 / Заголовок 7</h7>
 					<p style="font-family: var(--ff-main); padding-top: 50px">Пример текста с главным шрифтом - Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, dolore!</p>
 					<p style="font-family: var(--ff-secondary)">Пример текста с акцентным шрифтом шрифтом - Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, dolore!</p>
+				</section>
+				<section class="section">
+					<button class="btn">Обычная кнопка</button>
+					<button class="btn" disabled>Заблокир кнопка</button>
+				</section>
+				<section class="section">
+					<form>
+						<label for="text">Text</label>
+						<input id="text" type="text" placeholder="text" name="text" required />
+						<br />
+						<label>
+							e-mail
+							<input type="email" name="mail" placeholder="email" />
+						</label>
+						<br />
+						<label for="city-select">Ваш город</label>
+						<select name="city" id="city-select" class="select">
+							<option value="">-- Выберите город --</option>
+							<option value="petersburg">Санкт-Петербург</option>
+							<option value="samara">Самара</option>
+							<option value="perm">Пермь</option>
+							<option value="novosibirsk">Новосибирск</option>
+						</select>
+						<br />
+						<label class="switch">
+							<input class="switch__checkbox" type="checkbox" />
+							<span class="switch__slider switch__slider--round"></span>
+						</label>
+						<br />
+						<input type="checkbox" name="" id="" checked />
+						<br />
+						<input type="radio" name="" id="" checked />
+					</form>
 				</section>
 			</div>
 		</main>
