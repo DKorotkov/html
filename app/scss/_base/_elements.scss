@@ -132,49 +132,6 @@ picture {
 }
 
 
-// .container {
-//    margin-inline: auto;
-//    padding: 0 var(--space-container-padding);
-
-//    // Ограничиваем стили для мобильных
-//    @include media('<=phone') {
-//       // padding: 0 var(--space-md);
-//       min-width: var(--minWidth);
-//    }
-
-//    @include media('>phone') {
-//       // padding: 0 var(--space-lg);
-//       max-width: calc(var(--space-container-padding) * 2 + map.get($breakpoints, 'phone'));
-//    }
-
-//    @include media('>=tablet') {
-//       max-width: calc(var(--space-container-padding) * 2 + map.get($breakpoints, 'tablet'));
-//    }
-
-//    @include media('>=laptop') {
-//       max-width: calc(var(--space-container-padding) * 2 + map.get($breakpoints, 'laptop'));
-//    }
-
-//    @include media('>=desktop') {
-//       max-width: calc(var(--space-container-padding) * 2 + map.get($breakpoints, 'desktop'));
-//    }
-// }
-
-// __________________Класс для скрытия от всех__________________________________
-.hide {
-   display: none;
-   &__mobile {
-      @include media('<=phone') {
-         display: none;
-      }
-   }
-   &__desktop {
-      @include media('>phone') {
-         display: none;
-      }
-   }
-}
-
 // _________________Класс для скрытия блоков, но сохранения для скрин ридеров____________
 .clipped {
    position: absolute !important;
