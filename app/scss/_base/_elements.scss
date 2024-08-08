@@ -80,10 +80,13 @@ picture {
    margin-inline: auto;
 }
 
+
 .container-grid {
    // justify-items: center - не дает содержимому расстягиваться на всю допустимую ширину
-  --padding-inline: 1rem;
-  
+  --padding-inline: #{rem(30)};
+  --fw-column-size: 60;
+  --wrap-column-size: #{rem(300)}; // Этот размер подобран таким образом, чтобы при брейкпоинте 576 и соотнешении колонок 50-50 был переход с двух колонок в ряд в две колонки в столбец
+
   display: grid;
   grid-template-columns:
    [full-start]
@@ -107,30 +110,48 @@ picture {
 
    0px
    [full-end] ;
+
    & > * {
       grid-column: content;
    }
 
-   //Для container указать: 
-   // mobile - grid-column: full;
-   // pc - grid-column: right или left
-   // Также необходимо создавать padding (--padding-inline) для элементов, которые не должны косаться границ экрана
-
-   &__full-right {
-      // Размер в процентах
-      --columns-size: 50;
-      display: grid;
-      grid-template-columns: calc(min(100%, var(--maxWidth)) * calc(var(--columns-size)/100)) 1fr;
+   & > &__fw {
+      grid-column: full;
    }
 
-   &__full-left {
-      // Размер в процентах
-      --columns-size: 50;
-      display: grid;
-      grid-template-columns: 1fr calc(min(100%, var(--maxWidth)) * calc(var(--columns-size)/100));
+   & > &__fw-left, 
+   & > &__fw-right {
+      display: flex;
+      flex-wrap: wrap;
+
+   }
+
+   & > &__fw-left {
+      grid-column-start: 1;
+   }
+
+   & > &__fw-right {
+      grid-column-end: none;
+   }
+   
+   & > &__fw-left > *:last-child,
+   & > &__fw-right > *:first-child {
+      min-width: var(--wrap-column-size);
+      flex-grow: 1;
+      flex-shrink: 1;
+   }
+
+   & > &__fw-left > *:last-child,
+   & > &__fw-right > *:first-child {
+      flex-basis: calc(min((100% - var(--padding-inline)), var(--maxWidth)) * (1 - var(--fw-column-size)/100));
+   } 
+
+   & > &__fw-left > *:first-child, 
+   & > &__fw-right > *:last-child {
+      flex-grow: 1000000;
+      min-width: calc((var(--wrap-column-size) / (1 - var(--fw-column-size)/100)) - var(--wrap-column-size) + var(--padding-inline));
    }
 }
-
 
 // _________________Класс для скрытия блоков, но сохранения для скрин ридеров____________
 .clipped {
@@ -186,10 +207,6 @@ picture {
    }
 }
 
-// where делает специфичность калсса = 0, а сам селектор можно использовать для организации отстов
-:where(.flow:not(:first-of-type)) {
-   margin-top: 1rem;
-}
 
 // __________Класс для работы с переменными___________________
 // .fw-regular {
@@ -211,8 +228,12 @@ picture {
 }
 
 
-:where(h1) {
+:where(h1, h2, h3, h4, h5) {
    font-family: var(--ff-heading);
+   font-weight: var(--fw-semi-bold);
+}
+
+:where(h1) {
    font-size: var(--fs-l);
 
    @media (min-width: (50rem)) { 
@@ -223,25 +244,17 @@ picture {
 }
 
 :where(h2) {
-   font-family: var(--ff-heading);
    font-size: var(--fs-48);
-   font-weight: var(--fw-semi-bold);
 }
 
 :where(h3) {
-   font-family: var(--ff-heading);
    font-size: var(--fs-36);
-   font-weight: var(--fw-semi-bold);
 }
 
 :where(h4) {
-   font-family: var(--ff-heading);
    font-size: var(--fs-24);
-   font-weight: var(--fw-semi-bold);
 }
 
 :where(h5) {
-   font-family: var(--ff-heading);
    font-size: var(--fs-20);
-   font-weight: var(--fw-semi-bold);
 }
