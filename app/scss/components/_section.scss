@@ -1,0 +1,10 @@
+@use "__config" as *;
+
+
+.section {
+
+}
+
+:where(.section:not(:first-of-type)) {
+   margin-top: 1rem;
+}
