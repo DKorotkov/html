@@ -11,7 +11,7 @@
 
 html {
    // Для отключения эффекта "скачка" при появлении dialog
-   scrollbar-gutter: stable;
+   // scrollbar-gutter: stable;
 }
 
 html,
@@ -150,6 +150,25 @@ picture {
    & > &__fw-right > *:last-child {
       flex-grow: 1000000;
       min-width: calc((var(--wrap-column-size) / (1 - var(--fw-column-size)/100)) - var(--wrap-column-size) + var(--padding-inline));
+   }
+}
+
+.columns {
+   --column-gap: 5%;
+   --row-gap: 10%;
+   --columns: 1fr 1fr;
+   --align-items: center;
+
+   @media (width >= ($md2+px)) {
+      --row-gap: 0!important; 
+      display: grid;
+      grid-template-columns: var(--columns);
+		align-items: var(--align-items);
+		column-gap: var(--column-gap);
+	}
+
+   & > *:not(:last-child) {
+      margin-bottom: var(--row-gap);
    }
 }
 

@@ -14,7 +14,7 @@ export default class SelectDK {
 		this.init()
 	}
 
-	static init() {
+	init() {
 		this._KEYS = {
 			ESC: 27,
 			SPACE: 32,
@@ -44,7 +44,7 @@ export default class SelectDK {
 		this.menuEvent = new Event('menuchange')
 	}
 
-	static _makeCustom(select, i) {
+	_makeCustom(select, i) {
 		const _$selectParent = select.parentElement
 		const _$selectOptions = [...select.querySelectorAll('option')]
 		const _$selectMenu = document.createElement('div')
@@ -120,13 +120,13 @@ export default class SelectDK {
 		_$selectParent.appendChild(_$selectMenu)
 	}
 
-	static _initCustom() {
+	_initCustom() {
 		// this._$selectList = [...document.querySelectorAll(`.${this._options.selectClassName}__menu`)];
 		this._$popups = [...document.querySelectorAll(`.${this._options.selectClassName}__popup`)]
 		this._$buttons = [...document.querySelectorAll(`.${this._options.selectClassName}__button`)]
 	}
 
-	static _handleBlur(e, selectNumber) {
+	_handleBlur(e, selectNumber) {
 		if (this._selectMultiple[selectNumber]) return
 		const currentTarget = e.currentTarget
 		requestAnimationFrame(() => {
@@ -136,14 +136,14 @@ export default class SelectDK {
 		})
 	}
 
-	static _click(e, selectNumber = null) {
+	_click(e, selectNumber = null) {
 		if (e.target.classList.contains(`${this._options.selectClassName}__option`)) {
 			this._changeOptionByClick(e.target, selectNumber)
 			if (!this._selectMultiple[selectNumber]) this._closeSelect(selectNumber)
 		} else if (e.target.classList.contains(`${this._options.selectClassName}__button`)) this.toggleOpenSelect(selectNumber)
 	}
 
-	static _checkPress(e, selectNumber) {
+	_checkPress(e, selectNumber) {
 		if (e.keyCode === this._KEYS.ESC && !this._selectMultiple[selectNumber]) {
 			this._closeSelect(selectNumber)
 			return
@@ -173,52 +173,52 @@ export default class SelectDK {
 	}
 
 	//select func
-	static toggleOpenSelect(selectNumber) {
+	toggleOpenSelect(selectNumber) {
 		if (this._$popups[selectNumber].hasAttribute('hidden')) this._openSelect(selectNumber)
 		else this._closeSelect(selectNumber)
 	}
 
-	static _openSelect(selectNumber) {
+	_openSelect(selectNumber) {
 		this._$popups[selectNumber].hidden = false
 		this._$popups[selectNumber].previousSibling.setAttribute('aria-expanded', 'true')
 		this._$popups[selectNumber].querySelector('[tabindex="0"]').focus({ focusVisible: true })
 	}
 
-	static _closeSelect(selectNumber) {
+	_closeSelect(selectNumber) {
 		this._$popups[selectNumber].hidden = true
 		this._$popups[selectNumber].previousSibling.setAttribute('aria-expanded', 'false')
 		this._$popups[selectNumber].previousSibling.focus({ focusVisible: true })
 	}
 
 	// btn func
-	static _setButtonByOption(option, selectNumber) {
+	_setButtonByOption(option, selectNumber) {
 		this._$buttons[selectNumber].innerText = option.innerText
 	}
 
 	// option func
-	static _getCurrentOption(selectNumber) {
+	_getCurrentOption(selectNumber) {
 		return this._$popups[selectNumber].querySelector('[tabindex="0"]')
 	}
 
-	static _getOptionsValues(selectNumber) {
+	_getOptionsValues(selectNumber) {
 		const options = [...this._$popups[selectNumber].querySelectorAll(`.${this._options.selectClassName}__option`)]
 		return options.map((option) => {
 			return option.getAttribute('aria-checked')
 		})
 	}
 
-	static _resetOption(option) {
+	_resetOption(option) {
 		option.tabIndex = -1
 		option.removeAttribute('aria-checked')
 	}
 
-	static _setOption(option) {
+	_setOption(option) {
 		option.tabIndex = 0
 		option.setAttribute('aria-checked', 'true')
 		option.focus({ focusVisible: true })
 	}
 
-	static _changeOptionByClick(option, selectNumber) {
+	_changeOptionByClick(option, selectNumber) {
 		const _$currentOption = this._getCurrentOption(selectNumber)
 		if (!this._selectMultiple[selectNumber]) {
 			this._resetOption(_$currentOption)
@@ -237,7 +237,7 @@ export default class SelectDK {
 		}
 	}
 
-	static _changeOptionToNext(selectNumber) {
+	_changeOptionToNext(selectNumber) {
 		const _$currentOption = this._getCurrentOption(selectNumber)
 		if (_$currentOption.nextSibling !== null) {
 			if (!this._selectMultiple[selectNumber]) {
@@ -254,7 +254,7 @@ export default class SelectDK {
 		}
 	}
 
-	static _changeOptionToPrev(selectNumber) {
+	_changeOptionToPrev(selectNumber) {
 		const _$currentOption = this._getCurrentOption(selectNumber)
 		if (_$currentOption.previousSibling !== null) {
 			if (!this._selectMultiple[selectNumber]) {
@@ -272,7 +272,7 @@ export default class SelectDK {
 	}
 
 	//native select func
-	static _setNativeValue(selectNumber, value) {
+	_setNativeValue(selectNumber, value) {
 		if (!this._selectMultiple[selectNumber]) this._$selects[selectNumber].value = value
 		// если multiple
 		else {
@@ -286,7 +286,7 @@ export default class SelectDK {
 		this._$selects[selectNumber].dispatchEvent(this.menuEvent)
 	}
 
-	static _setCustomValue(e, selectNumber) {
+	_setCustomValue(e, selectNumber) {
 		if (!this._selectMultiple[selectNumber]) {
 			const value = e.currentTarget.value
 			const _$currentOption = this._getCurrentOption(selectNumber)

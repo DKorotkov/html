@@ -1,0 +1,22 @@
+@use "__config" as *;
+
+.accordion {
+		
+	
+
+		&__details[open] &__mark {
+		}
+
+		&__details[animation="true"] &__mark {
+		}
+		
+		&__summary {
+			
+		}
+
+		&__summary::-webkit-details-marker {
+			// display: none;
+		}
+
+	
+}

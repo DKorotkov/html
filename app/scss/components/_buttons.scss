@@ -14,11 +14,11 @@
    white-space: nowrap;
    overflow: hidden;
 
-   &:where(:hover, :focus-visible) {
-      
+   @media (hover: hover) {
+      &:not(:disabled):hover {}
    }
 
    &:disabled {
-
+      cursor: default;
    }
 }
